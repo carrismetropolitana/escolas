@@ -71,7 +71,7 @@ export default function Escola() {
 
         Mapa
 
-        <Mapa latitude='38.754244' longitude='-8.959557' text={escolaInfo.nome} />
+        <Mapa latitude='38.754244' longitude='-8.959557' text={escolaInfo.nome} paragens={paragens} />
 
       </main>
 

@@ -65,13 +65,13 @@ export default function Escola() {
           <b> {municipio} </b>
         </div>
         
-        <div style={{ backgroundColor: 'black', color: 'white', fontWeight: 'bold', padding: '10px', borderRadius: '10px' }}><b> {escolaInfo.nome} </b></div>
+        <div style={{ backgroundColor: 'black', color: 'white', fontWeight: 'bold', padding: '10px', borderRadius: '10px', marginBottom:'10px'}}><b> {escolaInfo.nome} </b></div>
+
+        <Mapa latitude='38.754244' longitude='-8.959557' text={escolaInfo.nome} paragens={paragens} />
 
         <ParagensVizinhas paragens={paragens} escola={escolaInfo.nome} />
 
-        Mapa
-
-        <Mapa latitude='38.754244' longitude='-8.959557' text={escolaInfo.nome} paragens={paragens} />
+        
 
       </main>
 

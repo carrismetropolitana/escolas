@@ -1,3 +1,16 @@
 .container > div {
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
+    font-size:10px;
+    /* background-color: white!important; */
+}
+
+.bolhaCinza {
+    background-color: whitesmoke;
+    font-family: 'Courier New', Courier, monospace;
+    color: grey;
+    margin-right: 5px;
+    padding: 2.5px 5px;
+    border-radius: 10px;
+    font-weight: normal;
+    font-size: 8px;
 }

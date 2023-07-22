@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
+
 import styles from './SelectMunicipio.module.css';
 import { customStyles } from './selectStyles';
 
 
 const SelectMunicipio = ({ selectedMunicipio, handleMunicipioChange, handleEscolasChange }) => {
+
     const [municipios, setMunicipios] = useState([]);
 
     // descarrega da API a lista de municipios 
@@ -26,7 +28,6 @@ const SelectMunicipio = ({ selectedMunicipio, handleMunicipioChange, handleEscol
                 console.log('Error fetching data:', error);
             }
         };
-
         fetchMunicipios();
     }, []);
 
@@ -57,8 +58,8 @@ const SelectMunicipio = ({ selectedMunicipio, handleMunicipioChange, handleEscol
 
     };
 
+    // apaga municipio escolhido, mostrando select municipio
     const handleClickMunicipio = () => {
-        // document.getElementById('escola').innerHTML = '';
         handleMunicipioChange(null);
     };
 
@@ -69,7 +70,7 @@ const SelectMunicipio = ({ selectedMunicipio, handleMunicipioChange, handleEscol
             {!selectedMunicipio ?
                 (
                     <>
-                        <p>Saiba como chegar à sua escola ou universidade com a Carris Metropolitana</p>
+                        <p>Saiba mais como chegar à sua escola <br></br>ou universidade com a Carris Metropolitana</p>
                         <Select
                             instanceId='InstanciaSelectMunicipio'
                             options={municipios}

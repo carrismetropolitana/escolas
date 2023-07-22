@@ -14,16 +14,15 @@ const SelectEscola = ({ selectedMunicipio, escolas }) => {
         console.log('escola',escola);
         console.log('escola value: ',escola.value);
 
-
-        router.push(`escola?escola=${escola.value}`)
+        router.push(`escola?municipio=${selectedMunicipio.value}&escola=${escola.value}`)
     };
 
     return (
         <div className={styles.container}>
             {selectedMunicipio && (
                 <>
-
                     <p>Selecione uma instituição de ensino:</p>
+
                     <Select
                         instanceId='InstanciaSelectEscola'
                         options={escolas}

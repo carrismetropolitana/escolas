@@ -2,7 +2,18 @@ Based on starter template for [Learn Next.js](https://nextjs.org/learn).
 
 # Passos
 
-1. para lançar: `npm run dev`
+1. instalar npm: `install npm`
+2. lançar app: `npm run dev`. Eventualmente correr noutro porto para não entrar em conflito com o index do pdf_generator, `npm run dev -- -p 3005`
+
+futuros passos:
+3. deploy in docker container, https://blog.tericcabrel.com/create-docker-image-nextjs-application/
+
+
+# Generate pdf
+
+em /pdf_generator executar:
+* node index.js
+* node pdf_generator.js
 
 
 # API cmescola

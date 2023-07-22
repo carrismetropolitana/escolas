@@ -3,7 +3,9 @@
 }
 
 .municipioSelecionado {
-    border-radius: 1rem;
+    border-radius: 8px;
     padding: 0.5rem;
     background-color: white;
+    width: 25ch;
+    margin: auto;
 }

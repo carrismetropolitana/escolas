@@ -1,12 +1,9 @@
-import Layout, { siteTitle } from '../components/layout';
 import React, { useEffect, useState } from 'react';
-
-import styles from '../styles/Home.module.css'; // não usado
-
 import Head from 'next/head';
+
+import Layout, { siteTitle } from '../components/Layout/layout';
 import SelectMunicipio from '../components/SelectMunicipio/SelectMunicipio'
 import SelectEscola from '../components/SelectEscola/SelectEscola'
-
 
 
 export default function Home() {
@@ -33,11 +30,18 @@ export default function Home() {
 
       <main >
 
-        <div className={styles.container}>
+        <div>
 
-          <SelectMunicipio selectedMunicipio={selectedMunicipio} handleMunicipioChange={handleMunicipioChange} handleEscolasChange={handleEscolasChange} />
+          <SelectMunicipio 
+            selectedMunicipio={selectedMunicipio} 
+            handleMunicipioChange={handleMunicipioChange} 
+            handleEscolasChange={handleEscolasChange} 
+          />
 
-          <SelectEscola selectedMunicipio={selectedMunicipio} escolas={escolas} />
+          <SelectEscola 
+            selectedMunicipio={selectedMunicipio} 
+            escolas={escolas} 
+          />
 
         </div>
 
@@ -46,4 +50,3 @@ export default function Home() {
     </Layout>
   )
 }
-

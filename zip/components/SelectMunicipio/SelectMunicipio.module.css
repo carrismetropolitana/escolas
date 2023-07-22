@@ -1,0 +1,9 @@
+.container > div {
+    margin-bottom: 3rem;
+}
+
+.municipioSelecionado {
+    border-radius: 1rem;
+    padding: 0.5rem;
+    background-color: white;
+}

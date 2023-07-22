@@ -3,21 +3,22 @@ export const customStyles = {
     control: (provided) => ({
       ...provided,
       borderRadius: '8px',
-      backgroundColor: 'white',
-      color: 'black', // Set the desired font color for selected option
-      backgroundColor: 'white',
+      color: 'white', // Set the desired font color for selected option
+      backgroundColor: 'black',
+      width: 'fit-content',
+      margin: 'auto',
     }),
 
     singleValue: (provided) => ({
       ...provided,
-      color: 'black', // Set the desired font color for selected option
-      backgroundColor: 'white',
+      color: 'white', // Set the desired font color for selected option
+      backgroundColor: 'black',
     }),
 
     placeholder: (provided) => ({
       ...provided,
-      color: 'lightgrey', // Set the desired font color for placeholder text
-      backgroundColor: 'white',
+      color: 'white', // Set the desired font color for placeholder text
+      backgroundColor: 'black',
     }),
 
     menu: (provided, state) => ({

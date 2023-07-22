@@ -1,19 +1,26 @@
-import Layout, { siteTitle } from '../components/layout';
+import Layout, { siteTitle } from '../components/Layout/layout';
 import ParagensVizinhas from '../components/ParagensVizinhas/ParagensVizinhas';
+import PDFDownloadButton from '../components/PDFDownloadButton/PDFDownloadButton';
 
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
 import Head from 'next/head';
-import Script from 'next/script';
 import Mapa from '../components/Mapa/Mapa';
+
+import axios from 'axios';
+import dynamic from 'next/dynamic'; // Import dynamic from next/dynamic
+
+
+const PDFDownloadButton = dynamic(() => import('../components/PDFDownloadButton'), {
+  ssr: false, // Disable server-side rendering for this component
+});
 
 
 export default function Escola() {
 
   const router = useRouter();
   const { escola } = router.query;
-
 
   /* não uso pois o JSON está a dar problemas */
   const [escolaInfo, setEscolaInfo] = useState({});
@@ -35,6 +42,9 @@ export default function Escola() {
 
   }, [escola]);
 
+
+  const componentRef = useRef();
+  const htmlContent = componentRef.current?.innerHTML || '';
 
 
   return (
@@ -64,16 +74,19 @@ export default function Escola() {
         }}>
           <b> {municipio} </b>
         </div>
-        
-        <div style={{ backgroundColor: 'black', color: 'white', fontWeight: 'bold', padding: '10px', borderRadius: '10px', marginBottom:'10px'}}><b> {escolaInfo.nome} </b></div>
+
+        <div style={{ backgroundColor: 'black', color: 'white', fontWeight: 'bold', padding: '10px', borderRadius: '10px', marginBottom: '10px' }}><b> {escolaInfo.nome} </b></div>
 
         <Mapa latitude='38.754244' longitude='-8.959557' text={escolaInfo.nome} paragens={paragens} />
 
-        <ParagensVizinhas paragens={paragens} escola={escolaInfo.nome} />
+        <div ref={componentRef}>
+          <ParagensVizinhas paragens={paragens} escola={escolaInfo.nome} />
+        </div>
 
+        <PDFDownloadButton html={htmlContent} />
         
-
       </main>
+
 
     </Layout>
   )

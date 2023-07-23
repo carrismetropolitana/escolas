@@ -53,7 +53,7 @@ export default function Layout({ children, home }) {
 
             {!home && (
                 <div className={styles.backToHome}>
-                    <Link href="/">← Voltar ao início</Link>
+                    <Link href="/" style={{color:'black', fontWeight:'normal'}}>← Voltar ao início</Link>
                 </div>
             )}
             </main>

@@ -25,7 +25,7 @@ const ParagensVizinhas = ({ paragens, escola }) => {
             border: '1px solid black', padding:'20px',  borderRadius:'20px', background:'white', 
             display:'flex', flexDirection:'column', gap:'10px', flexWrap: 'wrap', alignitems:'flex-start'}}>
                 {paragens.map((paragem, index) => (
-                    <div key={index} style={{width: 'calc(50% - 5px)' }}>
+                    <div key={paragem._id} style={{width: 'calc(50% - 5px)' }}>
                         <div style={{ fontWeight: 'bold', marginBottom: '10px' }}>{paragem.stop_name} 
                         <br></br>
                         <span class={styles.bolhaCinza}>#{paragem.stop_id}</span>                        

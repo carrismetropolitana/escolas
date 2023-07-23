@@ -1,0 +1,57 @@
+.body, .main, .footer {
+    background: white;
+}
+
+.body {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+.header {
+    background: #ffdd01;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem 2.5rem 1rem 2.5rem;
+}
+
+.textoGrande {
+    font-size:1.9rem;
+    line-height: 1.9rem;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+.textoPequeno {
+    font-size:1.5rem;
+    line-height: 1.7rem;
+}
+
+.main {
+}
+
+.footer {
+    padding: 2.5rem 2.5rem 1rem 2.5rem;
+}
+
+.footer > img {
+    float:right;
+    height: 40px;
+}
+
+.container > div {
+    margin-bottom: 1rem;
+    font-size:10px;
+    /* background-color: white!important; */
+}
+
+.bolhaCinza {
+    background-color: whitesmoke;
+    font-family: 'Courier New', Courier, monospace;
+    color: grey;
+    margin-right: 5px;
+    padding: 2.5px 5px;
+    border-radius: 10px;
+    font-weight: normal;
+    font-size: 8px;
+}

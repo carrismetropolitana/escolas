@@ -4,21 +4,21 @@ export const customStyles = {
       ...provided,
       borderRadius: '8px',
       backgroundColor: 'black',
-      color: 'white', // Set the desired font color for selected option
+      color: 'white', 
       backgroundColor: 'black',
-      width: '25ch',
+      width: '35ch',
       margin: 'auto',
     }),
 
     singleValue: (provided) => ({
       ...provided,
-      color: 'white', // Set the desired font color for selected option
+      color: 'white', 
       backgroundColor: 'black',
     }),
 
     placeholder: (provided) => ({
       ...provided,
-      color: 'white', // Set the desired font color for placeholder text
+      color: 'white', 
       backgroundColor: 'black',
     }),
 

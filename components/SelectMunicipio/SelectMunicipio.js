@@ -14,16 +14,29 @@ const SelectMunicipio = ({ selectedMunicipio, handleMunicipioChange, handleEscol
         const fetchMunicipios = async () => {
             try {
                 const response = await fetch(
-                    'https://cmescola.pythonanywhere.com/municipios',
+                    'https://api.carrismetropolitana.pt/facilities',
                 );
 
                 const data = await response.json();
-                const formattedOptions = data.municipios.map((item) => ({
-                    label: item.nome,
-                    value: item.id
-                }));
-                setMunicipios(formattedOptions);
 
+                const municipalityNamesSet = new Set();
+
+                // Loop through the data and add each municipality_name to the Set
+                data.forEach(item => {
+                  if (item.municipality_name) {
+                    municipalityNamesSet.add(item.municipality_name);
+                  }
+                });
+                
+                // Convert the Set to an array to get the list of unique municipality_names
+                const municipalityNamesArray = Array.from(municipalityNamesSet);
+                
+                const formattedOptions = municipalityNamesArray.map((item) => ({
+                    label: item,
+                    value: item,
+                }));
+
+                setMunicipios(formattedOptions);
             } catch (error) {
                 console.log('Error fetching data:', error);
             }
@@ -38,17 +51,20 @@ const SelectMunicipio = ({ selectedMunicipio, handleMunicipioChange, handleEscol
 
         const fetchEscolas = async () => {
             try {
-                console.log('municipio', municipio)
                 const response = await fetch(
-                    `https://cmescola.pythonanywhere.com/escolas/${municipio.value}`
+                    `https://api.carrismetropolitana.pt/facilities`
                 );
                 const data = await response.json();
-                const formattedOptions = data.escolas.map((item) => ({
-                    label: item.nome,
-                    value: item.id
-                }));
-                handleEscolasChange(formattedOptions);
                 
+                const schools = data.filter((item) => item.type === 'school' && item.municipality_name === municipio.value);
+                
+                const formattedOptions = schools.map((item) => ({
+                    label: item.name,
+                    value: item.name
+                }));
+
+                handleEscolasChange(formattedOptions);
+
             } catch (error) {
                 console.log('Error fetching sub-options:', error);
             }
@@ -62,7 +78,6 @@ const SelectMunicipio = ({ selectedMunicipio, handleMunicipioChange, handleEscol
     const handleClickMunicipio = () => {
         handleMunicipioChange(null);
     };
-
 
     return (
         <div className={styles.container}>

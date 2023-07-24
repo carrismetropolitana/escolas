@@ -4,7 +4,7 @@ import styles from './layout.module.css';
 import Link from 'next/link';
 
 const name = 'Carris Metropolitana';
-export const siteTitle = 'Portal das Escolas';
+export const siteTitle = 'Escolas';
 
 export default function Layout({ children, home }) {
     return (
@@ -58,9 +58,9 @@ export default function Layout({ children, home }) {
             )}
             </main>
 
-            <footer  className={styles.footer}>
+            {/* <footer  className={styles.footer}>
                 <p>Carris Metropolitana</p> 
-            </footer>
+            </footer> */}
 
         </div>
 

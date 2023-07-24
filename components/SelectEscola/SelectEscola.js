@@ -11,9 +11,6 @@ const SelectEscola = ({ selectedMunicipio, escolas }) => {
 
     const handleOptionEscolaChange = (escola) => {
 
-        console.log('escola',escola);
-        console.log('escola value: ',escola.value);
-
         router.push(`escola?municipio=${selectedMunicipio.value}&escola=${escola.value}`)
     };
 

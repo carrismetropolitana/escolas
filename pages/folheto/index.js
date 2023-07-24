@@ -23,15 +23,13 @@ function toTitleCase(str) {
 export default function Folheto() {
 
   const router = useRouter();
-  const { escola } = router.query;
+  const { municipio, escola } = router.query;
 
-  /* não uso pois o JSON está a dar problemas */
   const [escolaInfo, setEscolaInfo] = useState({});
-  // const [municipio, setMunicipio] = useState({});
 
   const paragens_str = '[{"_id": "6474e051155a72200ee0dda0", "stop_id": "010001", "__v": 0, "createdAt": "2023-05-29T17:26:41.264Z", "routes": [{"route_id": "4001_0", "route_short_name": "4001", "route_long_name": "Alcochete | Circular", "route_color": "#3D85C6", "route_text_color": "#FFFFFF", "_id": "6474e02e155a72200ee0dad9"}, {"route_id": "4002_0", "route_short_name": "4002", "route_long_name": "São Francisco | Circular", "route_color": "#ED1944", "route_text_color": "#FFFFFF", "_id": "6474e02d155a72200ee0d827"}], "stop_lat": "38.754244", "stop_lon": "-8.959557", "stop_name": "ALCOCHETE (R C M R FRANC 229)ESC MT NOVO", "updatedAt": "2023-06-18T12:21:39.504Z"}, {"_id": "6474e051155a72200ee0dda4", "stop_id": "010002", "__v": 0, "createdAt": "2023-05-29T17:26:41.268Z", "routes": [{"route_id": "4001_0", "route_short_name": "4001", "route_long_name": "Alcochete | Circular", "route_color": "#3D85C6", "route_text_color": "#FFFFFF", "_id": "6474e02e155a72200ee0dad9"}, {"route_id": "4002_0", "route_short_name": "4002", "route_long_name": "São Francisco | Circular", "route_color": "#ED1944", "route_text_color": "#FFFFFF", "_id": "6474e02d155a72200ee0d827"}], "stop_lat": "38.754572", "stop_lon": "-8.959615", "stop_name": "ALCOCHETE (R C M R FRANC 229)ESC MT NOVO", "updatedAt": "2023-06-18T12:21:39.508Z"}, {"_id": "6474e051155a72200ee0dea3", "stop_id": "010080", "__v": 0, "createdAt": "2023-05-29T17:26:41.523Z", "routes": [{"route_id": "4501_0", "route_short_name": "4501", "route_long_name": "Alcochete - Montijo (Terminal Fluvial)", "route_color": "#ED1944", "route_text_color": "#FFFFFF", "_id": "6474e02e155a72200ee0dd71"}, {"route_id": "4502_0", "route_short_name": "4502", "route_long_name": "Alcochete - Passil", "route_color": "#ED1944", "route_text_color": "#FFFFFF", "_id": "6474e02e155a72200ee0dd53"}, {"route_id": "4510_0", "route_short_name": "4510", "route_long_name": "Alcochete (Freeport) - Montijo (Terminal Rodoviário)", "route_color": "#ED1944", "route_text_color": "#FFFFFF", "_id": "6474e02e155a72200ee0d95b"}, {"route_id": "4511_0", "route_short_name": "4511", "route_long_name": "Alcochete (Freeport) - Montijo (Terminal Rodoviário)", "route_color": "#ED1944", "route_text_color": "#FFFFFF", "_id": "6474e02d155a72200ee0d86b"}, {"route_id": "4512_0", "route_short_name": "4512", "route_long_name": "Alcochete (Freeport) - Setúbal (ITS) via Alto Estanqueiro", "route_color": "#ED1944", "route_text_color": "#FFFFFF", "_id": "6474e02d155a72200ee0d87b"}, {"route_id": "4513_0", "route_short_name": "4513", "route_long_name": "Alcochete (Freeport) - Pinhal Novo", "route_color": "#ED1944", "route_text_color": "#FFFFFF", "_id": "6474e02d155a72200ee0d7f9"}, {"route_id": "4600_0", "route_short_name": "4600", "route_long_name": "Alcochete (Freeport) - Barreiro (Terminal)", "route_color": "#ED1944", "route_text_color": "#FFFFFF", "_id": "6474e02e155a72200ee0da25"}, {"route_id": "4702_0", "route_short_name": "4702", "route_long_name": "Lisboa (Oriente) - Valbom", "route_color": "#FDB71A", "route_text_color": "#FFFFFF", "_id": "6474e02e155a72200ee0d993"}, {"route_id": "4703_0", "route_short_name": "4703", "route_long_name": "Lisboa (Oriente) - Montijo (Terminal Rodoviário) via Alcochete e Samouco", "route_color": "#FDB71A", "route_text_color": "#FFFFFF", "_id": "6474e02e155a72200ee0daeb"}, {"route_id": "4704_0", "route_short_name": "4704", "route_long_name": "Atalaia - Lisboa (Oriente)", "route_color": "#FDB71A", "route_text_color": "#FFFFFF", "_id": "6474e02e155a72200ee0da73"}], "stop_lat": "38.753388", "stop_lon": "-8.959593", "stop_name": "ALCOCHETE (AV REVOLUÇÃO 86)", "updatedAt": "2023-06-18T12:21:39.771Z"}]';
   const paragens = JSON.parse(paragens_str);
-  const municipio = 'Almada'
+
 
 
   // descarrega da API a info da escola 
@@ -66,7 +64,7 @@ export default function Folheto() {
       <header className={styles.header}>
         <div className={styles.esquerda}>
           <div className={styles.textoGrande}>Sabias que tens <br></br>autocarro à porta?</div>
-          <div className={styles.textoPequeno}>A Carris Metropolitana <br></br>passa na {escolaInfo.nome}</div>
+          <div className={styles.textoPequeno}>A Carris Metropolitana <br></br>passa na {escola}</div>
         </div>
         <div className={styles.direita}>
           <img src="/folheto/logoCMEscola.png" height="150px"/>

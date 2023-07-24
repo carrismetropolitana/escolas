@@ -8,51 +8,96 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 
+// cálculo da distancia entre duas posições geográficas
+function haversineDistance(lat1, lon1, lat2, lon2) {
+
+  const toRadians = (degree) => (degree * Math.PI) / 180;
+  lat1 = toRadians(lat1);
+  lon1 = toRadians(lon1);
+  lat2 = toRadians(lat2);
+  lon2 = toRadians(lon2);
+
+  const dlon = lon2 - lon1;
+  const dlat = lat2 - lat1;
+  const a = Math.sin(dlat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dlon / 2) ** 2;
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const radius = 6371;
+  const distance = radius * c;
+  return distance;
+}
+
+
 export default function Escola() {
 
   const router = useRouter();
   const { municipio, escola } = router.query;
-
-  const [loading, setLoading] = useState(false);
+  
+  const componentRef = useRef();
 
   const [escolaInfo, setEscolaInfo] = useState({});
-  const [municipioInfo, setMunicipio] = useState({});
+  const [paragensInfo, setParagensInfo] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const paragens_str = '[{"_id": "6474e051155a72200ee0dda0", "stop_id": "010001", "__v": 0, "createdAt": "2023-05-29T17:26:41.264Z", "routes": [{"route_id": "4001_0", "route_short_name": "4001", "route_long_name": "Alcochete | Circular", "route_color": "#3D85C6", "route_text_color": "#FFFFFF", "_id": "6474e02e155a72200ee0dad9"}, {"route_id": "4002_0", "route_short_name": "4002", "route_long_name": "São Francisco | Circular", "route_color": "#ED1944", "route_text_color": "#FFFFFF", "_id": "6474e02d155a72200ee0d827"}], "stop_lat": "38.754244", "stop_lon": "-8.959557", "stop_name": "ALCOCHETE (R C M R FRANC 229)ESC MT NOVO", "updatedAt": "2023-06-18T12:21:39.504Z"}, {"_id": "6474e051155a72200ee0dda4", "stop_id": "010002", "__v": 0, "createdAt": "2023-05-29T17:26:41.268Z", "routes": [{"route_id": "4001_0", "route_short_name": "4001", "route_long_name": "Alcochete | Circular", "route_color": "#3D85C6", "route_text_color": "#FFFFFF", "_id": "6474e02e155a72200ee0dad9"}, {"route_id": "4002_0", "route_short_name": "4002", "route_long_name": "São Francisco | Circular", "route_color": "#ED1944", "route_text_color": "#FFFFFF", "_id": "6474e02d155a72200ee0d827"}], "stop_lat": "38.754572", "stop_lon": "-8.959615", "stop_name": "ALCOCHETE (R C M R FRANC 229)ESC MT NOVO", "updatedAt": "2023-06-18T12:21:39.508Z"}, {"_id": "6474e051155a72200ee0dea3", "stop_id": "010080", "__v": 0, "createdAt": "2023-05-29T17:26:41.523Z", "routes": [{"route_id": "4501_0", "route_short_name": "4501", "route_long_name": "Alcochete - Montijo (Terminal Fluvial)", "route_color": "#ED1944", "route_text_color": "#FFFFFF", "_id": "6474e02e155a72200ee0dd71"}, {"route_id": "4502_0", "route_short_name": "4502", "route_long_name": "Alcochete - Passil", "route_color": "#ED1944", "route_text_color": "#FFFFFF", "_id": "6474e02e155a72200ee0dd53"}, {"route_id": "4510_0", "route_short_name": "4510", "route_long_name": "Alcochete (Freeport) - Montijo (Terminal Rodoviário)", "route_color": "#ED1944", "route_text_color": "#FFFFFF", "_id": "6474e02e155a72200ee0d95b"}, {"route_id": "4511_0", "route_short_name": "4511", "route_long_name": "Alcochete (Freeport) - Montijo (Terminal Rodoviário)", "route_color": "#ED1944", "route_text_color": "#FFFFFF", "_id": "6474e02d155a72200ee0d86b"}, {"route_id": "4512_0", "route_short_name": "4512", "route_long_name": "Alcochete (Freeport) - Setúbal (ITS) via Alto Estanqueiro", "route_color": "#ED1944", "route_text_color": "#FFFFFF", "_id": "6474e02d155a72200ee0d87b"}, {"route_id": "4513_0", "route_short_name": "4513", "route_long_name": "Alcochete (Freeport) - Pinhal Novo", "route_color": "#ED1944", "route_text_color": "#FFFFFF", "_id": "6474e02d155a72200ee0d7f9"}, {"route_id": "4600_0", "route_short_name": "4600", "route_long_name": "Alcochete (Freeport) - Barreiro (Terminal)", "route_color": "#ED1944", "route_text_color": "#FFFFFF", "_id": "6474e02e155a72200ee0da25"}, {"route_id": "4702_0", "route_short_name": "4702", "route_long_name": "Lisboa (Oriente) - Valbom", "route_color": "#FDB71A", "route_text_color": "#FFFFFF", "_id": "6474e02e155a72200ee0d993"}, {"route_id": "4703_0", "route_short_name": "4703", "route_long_name": "Lisboa (Oriente) - Montijo (Terminal Rodoviário) via Alcochete e Samouco", "route_color": "#FDB71A", "route_text_color": "#FFFFFF", "_id": "6474e02e155a72200ee0daeb"}, {"route_id": "4704_0", "route_short_name": "4704", "route_long_name": "Atalaia - Lisboa (Oriente)", "route_color": "#FDB71A", "route_text_color": "#FFFFFF", "_id": "6474e02e155a72200ee0da73"}], "stop_lat": "38.753388", "stop_lon": "-8.959593", "stop_name": "ALCOCHETE (AV REVOLUÇÃO 86)", "updatedAt": "2023-06-18T12:21:39.771Z"}]';
-  const paragens = JSON.parse(paragens_str);
+  // ativação de spinner
+  const handleDownload = () => {
+    setLoading(true);
+    setTimeout(() => { setLoading(false); }, 2000); // após 2s, volta a por o loading a false  
+  };
 
-  
-  // descarrega da API a info da escola 
+
+  // melhorar, usar redux ou variavel local para nao descarregar tantas vezes stops
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        
+        const responseEscola = await fetch(
+          `https://api.carrismetropolitana.pt/facilities`
+        );
+        const escolaData = await responseEscola.json();
+        const escolaInfoData = escolaData.find((item) => item.name === escola);
+        setEscolaInfo(escolaInfoData);
 
-    fetch(`https://cmescola.pythonanywhere.com/escola/${escola}`)
-      .then(response => response.json())
-      .then(data => {
-        setEscolaInfo(data.escola);
-      });
 
+        const responseParagens = await fetch(
+          `https://schedules.carrismetropolitana.pt/api/stops`
+        );
+        const paragensData = await responseParagens.json();
+        const filteredParagens = paragensData.filter(
+          (stop) =>
+            haversineDistance(
+              escolaInfoData.lat,
+              escolaInfoData.lon,
+              stop.stop_lat,
+              stop.stop_lon
+            ) < 0.5
+        );
+
+        // ordenação pelo nome
+        const sortedParagens = filteredParagens.sort((a, b) => {
+          const nameA = a.stop_name.toLowerCase();
+          const nameB = b.stop_name.toLowerCase();
+          return nameA.localeCompare(nameB);
+        });
+
+        setParagensInfo(sortedParagens);
+      } catch (error) {
+        console.log('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
   }, [escola]);
 
 
-  // Cria link para descarregar folheto da escola
+  // Constroi pdfUrl, URL para descarregar PDF
   const baseUrl = 'http://localhost:5051/generate-pdf';
   const urlParams = new URLSearchParams({
+    // url: `http://localhost:3000/folheto?escola=${escola}&paragens=${paragensInfo}`,
     url: `http://localhost:3000/folheto?municipio=${municipio}&escola=${escola}`,
-    escola: escolaInfo.nome,
+    escola: escola,
   });
   const pdfUrl = `${baseUrl}?${urlParams.toString()}`;
 
-
-  const componentRef = useRef();
-
-  const handleDownload = () => {
-    setLoading(true); // Set loading to true before starting the PDF generation process
-
-    // simula o tempo de geração do FDF Simulate PDF generation delay
-    setTimeout(() => {
-      setLoading(false); // volta a por o loading a false
-    }, 2000); // espera 2s 
-  };
 
   return (
     <Layout>
@@ -85,13 +130,13 @@ export default function Escola() {
         </div>
 
         <div style={{ backgroundColor: 'black', color: 'white', fontWeight: 'bold', padding: '10px', borderRadius: '10px', marginBottom: '10px' }}>
-          <b> {escolaInfo.nome} </b>
+          <b> {escola} </b>
         </div>
 
-        <Mapa latitude='38.754244' longitude='-8.959557' text={escolaInfo.nome} paragens={paragens} />
+        <Mapa latitude={escolaInfo.lat} longitude={escolaInfo.lon} escolaNome={escolaInfo.name} paragens={paragensInfo} />
 
         <div ref={componentRef}>
-          <ParagensVizinhas paragens={paragens} escola={escolaInfo.nome} />
+          <ParagensVizinhas paragens={paragensInfo} escola={escolaInfo.name} />
         </div>
 
         <a

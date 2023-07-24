@@ -5,7 +5,6 @@ import Layout, { siteTitle } from '../components/Layout/layout';
 import SelectMunicipio from '../components/SelectMunicipio/SelectMunicipio'
 import SelectEscola from '../components/SelectEscola/SelectEscola'
 
-
 export default function Home() {
 
   const [municipios, setMunicipios] = useState([]);

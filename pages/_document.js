@@ -10,7 +10,7 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           {/* Add Font Awesome script */}
-          <script src="https://kit.fontawesome.com/5d1319edfb.js" crossorigin="anonymous" />
+          <script src="https://kit.fontawesome.com/5d1319edfb.js" crossOrigin="anonymous" />
         </Head>
         <body>
           <Main />

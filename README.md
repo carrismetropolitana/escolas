@@ -4,16 +4,15 @@ Based on starter template for [Learn Next.js](https://nextjs.org/learn).
 
 1. instalar npm: `install npm`
 2. lançar app: `npm run dev`. Eventualmente correr noutro porto para não entrar em conflito com o index do pdf_generator, `npm run dev -- -p 3005`
+3. em /utils lançar app gerador pdfs `node pdfGenerator.js`
 
 futuros passos:
 3. deploy in docker container, https://blog.tericcabrel.com/create-docker-image-nextjs-application/
 
 
-# Generate pdf
+# A integrar
 
-em /pdf_generator executar:
-* node index.js
-* node pdf_generator.js
+* SWR: https://swr.vercel.app/docs/with-nextjs
 
 
 # API cmescola
@@ -50,8 +49,71 @@ em /pdf_generator executar:
 * **exemplo**: `{"escola": {"id": 1, "nome": "EB1 Almada", "municipio_id": 1, "morada": "Rua da Escola, 1, Almada"}}`
 
 
-# schedules API 
+
+# Fonte
+
+Inter
+
+
+# Magnet
+
+
+
+# Mapa
+https://github.com/joao-vasconcelos/go/tree/production/dashboard/components/OSMMap
+
+
+```
+<OSMMap id='allStops' mapStyle={mapStyle} onClick={handleMapClick} interactiveLayerIds={['all-stops']}>
+        <Source id='all-stops' type='geojson' data={mapData}>
+          <Layer id='all-stops' type='circle' source='all-stops' paint={{ 'circle-color': '#ffdd01', 'circle-radius': 6, 'circle-stroke-width': 2, 'circle-stroke-color': '#000000' }} />
+        </Source>
+      </OSMMap>
+      ```
+
+``````
+const mapData = useMemo(() => {
+    // Create a GeoJSON object
+    const geoJSON = {
+      type: 'FeatureCollection',
+      features: [],
+    };
+
+    // Loop through each stop in the collection and setup the feature to the GeoJSON object.
+    if (allStopsData) {
+      for (const stop of allStopsData) {
+        geoJSON.features.push({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [parseFloat(stop.longitude), parseFloat(stop.latitude)],
+          },
+          properties: {
+            _id: stop._id,
+            code: stop.code,
+            name: stop.name,
+            latitude: stop.latitude,
+            longitude: stop.longitude,
+          },
+        });
+      }
+    }
+    // Return parsed data
+    return geoJSON;
+    // Only run if allStopsData changes
+  }, [allStopsData]);
+``````
+
+# APIs
 
 * [https://github.com/carrismetropolitana/schedules-api](https://github.com/carrismetropolitana/schedules-api)
+* https://schedules.carrismetropolitana.pt/api/stops
+* https://api.carrismetropolitana.pt/facilities
 
-get routes
+
+* api.carrismetropolitana.pt/facilities
+* api.carrismetropolitana.pt/stops
+* api.carrismetropolitana.pt/stops/{stop_id}
+* api.carrismetropolitana.pt/lines
+* api.carrismetropolitana.pt/municipalities
+* api.carrismetropolitana.pt/patterns/{pattern_id}

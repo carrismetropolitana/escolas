@@ -49,14 +49,14 @@ export default function Escola() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        
         const responseEscola = await fetch(
           `https://api.carrismetropolitana.pt/facilities`
         );
         const escolaData = await responseEscola.json();
-        const escolaInfoData = escolaData.find((item) => item.name === escola);
+        const escolaInfoData = escolaData.find((item) => item.code === escola);
         setEscolaInfo(escolaInfoData);
 
+        console.log(escolaInfo)
 
         const responseParagens = await fetch(
           `https://schedules.carrismetropolitana.pt/api/stops`

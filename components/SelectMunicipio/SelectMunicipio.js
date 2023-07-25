@@ -14,29 +14,17 @@ const SelectMunicipio = ({ selectedMunicipio, handleMunicipioChange, handleEscol
         const fetchMunicipios = async () => {
             try {
                 const response = await fetch(
-                    'https://api.carrismetropolitana.pt/facilities',
+                    'https://api.carrismetropolitana.pt/municipalities',
                 );
 
                 const data = await response.json();
 
-                const municipalityNamesSet = new Set();
-
-                // Loop through the data and add each municipality_name to the Set
-                data.forEach(item => {
-                  if (item.municipality_name) {
-                    municipalityNamesSet.add(item.municipality_name);
-                  }
-                });
-                
-                // Convert the Set to an array to get the list of unique municipality_names
-                const municipalityNamesArray = Array.from(municipalityNamesSet);
-                
-                const formattedOptions = municipalityNamesArray.map((item) => ({
-                    label: item,
-                    value: item,
+                const municipalityOptions = data.map((item) => ({
+                    label: item.name,
+                    value: item.code,
                 }));
 
-                setMunicipios(formattedOptions);
+                setMunicipios(municipalityOptions);
             } catch (error) {
                 console.log('Error fetching data:', error);
             }
@@ -54,16 +42,17 @@ const SelectMunicipio = ({ selectedMunicipio, handleMunicipioChange, handleEscol
                 const response = await fetch(
                     `https://api.carrismetropolitana.pt/facilities`
                 );
-                const data = await response.json();
+                const facilities = await response.json();
                 
-                const schools = data.filter((item) => item.type === 'school' && item.municipality_name === municipio.value);
+                const schools = facilities.filter((facility) => facility.type === 'school' && facility.municipality_name == municipio.label);
                 
-                const formattedOptions = schools.map((item) => ({
+                console.log(schools)
+                const schoolOptions = schools.map((item) => ({
                     label: item.name,
-                    value: item.name
+                    value: item.code
                 }));
 
-                handleEscolasChange(formattedOptions);
+                handleEscolasChange(schoolOptions);
 
             } catch (error) {
                 console.log('Error fetching sub-options:', error);

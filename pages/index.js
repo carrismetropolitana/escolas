@@ -7,8 +7,6 @@ import SelectEscola from '../components/SelectEscola/SelectEscola'
 
 export default function Home() {
 
-  const [municipios, setMunicipios] = useState([]);
-
   const [selectedMunicipio, setSelectedMunicipio] = useState(null);
   const handleMunicipioChange = (newMunicipio) => {
     setSelectedMunicipio(newMunicipio);

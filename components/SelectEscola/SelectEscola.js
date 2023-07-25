@@ -11,7 +11,7 @@ const SelectEscola = ({ selectedMunicipio, escolas }) => {
 
     const handleOptionEscolaChange = (escola) => {
 
-        router.push(`escola?municipio=${selectedMunicipio.value}&escola=${escola.value}`)
+        router.push(`escola?municipio=${selectedMunicipio}&escola=${escola.value}`)
     };
 
     return (
@@ -26,7 +26,7 @@ const SelectEscola = ({ selectedMunicipio, escolas }) => {
                         menuPlacement="auto" // Adjust the menu placement (top, bottom, auto)
                         menuPosition="fixed" // Adjust the menu position (fixed, absolute, relative)
                         styles={customStyles}
-                        placeholder={`selecione ou digite...`}  //  selecione uma instituição em ${selectedOption.value}
+                        placeholder={`selecione uma instituição em ${selectedMunicipio.label}`}  //  selecione uma instituição em ${selectedOption.value}
                         onChange={handleOptionEscolaChange} />
                     <div id='escola'></div>
                 </>

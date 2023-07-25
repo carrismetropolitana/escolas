@@ -49,13 +49,9 @@ futuros passos:
 * **exemplo**: `{"escola": {"id": 1, "nome": "EB1 Almada", "municipio_id": 1, "morada": "Rua da Escola, 1, Almada"}}`
 
 
-
 # Fonte
 
 Inter
-
-
-# Magnet
 
 
 
@@ -69,9 +65,9 @@ https://github.com/joao-vasconcelos/go/tree/production/dashboard/components/OSMM
           <Layer id='all-stops' type='circle' source='all-stops' paint={{ 'circle-color': '#ffdd01', 'circle-radius': 6, 'circle-stroke-width': 2, 'circle-stroke-color': '#000000' }} />
         </Source>
       </OSMMap>
-      ```
+```
 
-``````
+```
 const mapData = useMemo(() => {
     // Create a GeoJSON object
     const geoJSON = {
@@ -102,7 +98,7 @@ const mapData = useMemo(() => {
     return geoJSON;
     // Only run if allStopsData changes
   }, [allStopsData]);
-``````
+```
 
 # APIs
 
@@ -117,3 +113,20 @@ const mapData = useMemo(() => {
 * api.carrismetropolitana.pt/lines
 * api.carrismetropolitana.pt/municipalities
 * api.carrismetropolitana.pt/patterns/{pattern_id}
+
+### escolhe municipio
+* api.carrismetropolitana.pt/municipalities
+
+### escolhe escola
+de api.carrismetropolitana.pt/facilities
+* filtrar facilities por school e municipio
+* listar escolas obtidas
+
+### escola
+da escola escolhida, extrair objeto
+* info da paragem
+* lista de stops
+
+de api.carrismetropolitana.pt/stops/{stop_id}
+* extrair info de cada um dos stop
+

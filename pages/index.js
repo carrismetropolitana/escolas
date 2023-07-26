@@ -2,20 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 
 import Layout, { siteTitle } from '../components/Layout/layout';
-import SelectMunicipio from '../components/SelectMunicipio/SelectMunicipio'
-import SelectEscola from '../components/SelectEscola/SelectEscola'
+import SelectMunicipality from '../components/SelectMunicipality/SelectMunicipality'
+import SelectSchool from '../components/SelectSchool/SelectSchool'
 
 export default function Home() {
 
-  const [selectedMunicipio, setSelectedMunicipio] = useState(null);
-  const handleMunicipioChange = (newMunicipio) => {
-    setSelectedMunicipio(newMunicipio);
-  }
-
-  const [escolas, setEscolas] = useState([]);
-  const handleEscolasChange = (newEscolas) => {
-    setEscolas(newEscolas);
-  }
+  const [municipality, setMunicipality] = useState(null);
+  const [school, setSchool] = useState(null);
 
   return (
     <Layout home>
@@ -26,21 +19,18 @@ export default function Home() {
       </Head>
 
       <main >
-
-        <div>
-
-          <SelectMunicipio 
-            selectedMunicipio={selectedMunicipio} 
-            handleMunicipioChange={handleMunicipioChange} 
-            handleEscolasChange={handleEscolasChange} 
+          <SelectMunicipality 
+            municipality={municipality} 
+            setMunicipality={setMunicipality} 
           />
 
-          <SelectEscola 
-            selectedMunicipio={selectedMunicipio} 
-            escolas={escolas} 
+          {/* para renderizar no HTML o nome do municipality */}
+          {/* {municipality ? municipality.label : '' }  */}
+          
+          <SelectSchool 
+            municipality={municipality} 
+            setSchool={setSchool}
           />
-
-        </div>
 
       </main>
 

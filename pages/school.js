@@ -27,15 +27,14 @@ function haversineDistance(lat1, lon1, lat2, lon2) {
 }
 
 
-export default function Escola() {
+const School = () => {
 
   const router = useRouter();
   const { municipio, escola } = router.query;
   
   const componentRef = useRef();
 
-  const [escolaInfo, setEscolaInfo] = useState({});
-  const [paragensInfo, setParagensInfo] = useState([]);
+  const [escolaInfo, setEscolaInfo] = useState(escola);
   const [loading, setLoading] = useState(false);
 
   // ativação de spinner
@@ -43,50 +42,6 @@ export default function Escola() {
     setLoading(true);
     setTimeout(() => { setLoading(false); }, 2000); // após 2s, volta a por o loading a false  
   };
-
-
-  // melhorar, usar redux ou variavel local para nao descarregar tantas vezes stops
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const responseEscola = await fetch(
-          `https://api.carrismetropolitana.pt/facilities`
-        );
-        const escolaData = await responseEscola.json();
-        const escolaInfoData = escolaData.find((item) => item.code === escola);
-        setEscolaInfo(escolaInfoData);
-
-        console.log(escolaInfo)
-
-        const responseParagens = await fetch(
-          `https://schedules.carrismetropolitana.pt/api/stops`
-        );
-        const paragensData = await responseParagens.json();
-        const filteredParagens = paragensData.filter(
-          (stop) =>
-            haversineDistance(
-              escolaInfoData.lat,
-              escolaInfoData.lon,
-              stop.stop_lat,
-              stop.stop_lon
-            ) < 0.5
-        );
-
-        // ordenação pelo nome
-        const sortedParagens = filteredParagens.sort((a, b) => {
-          const nameA = a.stop_name.toLowerCase();
-          const nameB = b.stop_name.toLowerCase();
-          return nameA.localeCompare(nameB);
-        });
-
-        setParagensInfo(sortedParagens);
-      } catch (error) {
-        console.log('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, [escola]);
 
 
   // Constroi pdfUrl, URL para descarregar PDF
@@ -133,10 +88,10 @@ export default function Escola() {
           <b> {escola} </b>
         </div>
 
-        <Mapa latitude={escolaInfo.lat} longitude={escolaInfo.lon} escolaNome={escolaInfo.name} paragens={paragensInfo} />
+        {/* <Mapa latitude={escolaInfo.lat} longitude={escolaInfo.lon} escolaNome={escolaInfo.name} paragens={paragensInfo} /> */}
 
         <div ref={componentRef}>
-          <ParagensVizinhas paragens={paragensInfo} escola={escolaInfo.name} />
+          {/* <ParagensVizinhas paragens={paragensInfo} escola={escolaInfo.name} /> */}
         </div>
 
         <a
@@ -171,3 +126,4 @@ export default function Escola() {
   )
 }
 
+export default School;

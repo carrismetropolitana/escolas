@@ -2,9 +2,8 @@
     margin-bottom: 3rem;
 }
 
-.municipioSelecionado {
-    border-radius: 8px;
-    padding: 0.5rem;
+.select {
+    border-radius: 4px;
     background-color: white;
     width: 35ch;
     margin: auto;

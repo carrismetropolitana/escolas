@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from './layout.module.css';
-import Link from 'next/link';
+
 
 const name = 'Carris Metropolitana';
 export const siteTitle = 'Escolas';
@@ -20,48 +20,30 @@ export default function Layout({ children, home }) {
                 <meta name="og:title" content={siteTitle} />
             </Head>
 
+            <div className={styles.bar}></div>
+
             <header className={styles.header}>
-                {home ? (
-                    <>
-                        <Image
-                            priority
-                            src="/images/carris-metropolitana-fundo-amarelo.svg"
-                            height={78}
-                            width={220}
-                            alt="Logotipo Carris Metropolitana"
-                        />
-                    </>
-                ) : (
-                    <>
-                        <Link href="/">
-                            <Image
-                                priority
-                                src="/images/carris-metropolitana-fundo-amarelo.svg"
-                                height={78}
-                                width={220}
-                                alt="Logotipo Carris Metropolitana"
-                            />
-                        </Link>
-                        
-                    </>
-                )}
+                <Image
+                    priority
+                    src="/images/logo.png"
+                    height={80}
+                    width={80}
+                    alt="Logotipo Carris Metropolitana"
+                />
+                <Image
+                    priority
+                    src="/images/carris-metropolitana.svg"
+                    height={58}
+                    width={180}
+                    alt="Logotipo Carris Metropolitana"
+                />
             </header>
 
             <main className={styles.main}>
+
                 {children}
-            
 
-            {!home && (
-                <div className={styles.backToHome}>
-                    <Link href="/" style={{color:'black', fontWeight:'normal'}}>← Voltar ao início</Link>
-                </div>
-            )}
             </main>
-
-            {/* <footer  className={styles.footer}>
-                <p>Carris Metropolitana</p> 
-            </footer> */}
-
         </div>
 
 

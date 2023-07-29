@@ -3,11 +3,28 @@ import styles from './Paragem.module.css';
 
 
 function toTitleCase(str) {
-    return str.replace(/\b\w+/g, function (match) {
-        return match.charAt(0).toUpperCase() + match.substr(1).toLowerCase();
+    const upperCaseExceptions = ['EB', 'ITS'];
+    const lowerCaseExceptions = ['VIA', 'E'];
+  
+    return str.replace(/\b[\w()çÇãÃáÁàÀõÕúÚéÉíÍóÓ]+/g, function (match) {
+      if (upperCaseExceptions.includes(match.toUpperCase())) {
+        return match.toUpperCase();
+      } 
+      else 
+      {
+        return match.replace(/\w\S*/g, function (innerMatch) {
+          if (/^ç/i.test(innerMatch)) {
+            return innerMatch.charAt(0).toUpperCase() + innerMatch.substr(1).toLowerCase();
+          } else {
+            return lowerCaseExceptions.includes(innerMatch.toUpperCase())
+              ? innerMatch.toLowerCase()
+              : innerMatch.charAt(0).toUpperCase() + innerMatch.substr(1).toLowerCase();
+          }
+        });
+      }
     });
-}
-
+  }
+  
 
 const Paragem = ({ paragem }) => {
 

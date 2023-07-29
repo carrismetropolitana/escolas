@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Head from 'next/head';
+
 
 import Layout, { siteTitle } from '../components/Layout/layout';
-import SelectMunicipality from '../components/SelectMunicipality/SelectMunicipality'
-import SelectSchool from '../components/SelectSchool/SelectSchool'
+import SelectMunicipalityAndSchool from '../components/SelectMunicipalityAndSchool/SelectMunicipalityAndSchool';
+import ShowSchool from '../components/ShowSchool/ShowSchool';
+
+
 
 export default function Home() {
 
@@ -12,27 +14,25 @@ export default function Home() {
 
   return (
     <Layout home>
+      
+      {!school ?
 
-      <Head>
-        <title>{siteTitle}</title>
-        <link rel="icon" href="/cm.png" />
-      </Head>
+        < SelectMunicipalityAndSchool
+          municipality={municipality}
+          setMunicipality={setMunicipality}
+          school={school}
+          setSchool={setSchool}
+        />
 
-      <main >
-          <SelectMunicipality 
-            municipality={municipality} 
-            setMunicipality={setMunicipality} 
-          />
+        :
 
-          {/* para renderizar no HTML o nome do municipality */}
-          {/* {municipality ? municipality.label : '' }  */}
-          
-          <SelectSchool 
-            municipality={municipality} 
-            setSchool={setSchool}
-          />
+        <ShowSchool
+          municipality={municipality}
+          school={school}
+          setSchool={setSchool}
+        />
 
-      </main>
+      }
 
     </Layout>
   )

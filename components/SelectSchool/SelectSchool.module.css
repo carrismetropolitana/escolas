@@ -1,9 +1,14 @@
-.container > div {
-    margin-bottom: 3rem;
+.container {
+    text-align: left;
+    width: 30ch;
+    font-size: 0.75rem;
+    color: black;
 }
 
-.municipioSelecionado {
-    border-radius: 1rem;
-    padding: 0.5rem;
-    background-color: white;
+.select {
+    text-align: left;
+    font-size: 0.65rem;
+    color: black;
+    width: 30ch;
+    margin: auto;
 }

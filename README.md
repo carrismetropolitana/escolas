@@ -6,9 +6,14 @@ Based on starter template for [Learn Next.js](https://nextjs.org/learn).
 2. lançar app: `npm run dev`. Eventualmente correr noutro porto para não entrar em conflito com o index do pdf_generator, `npm run dev -- -p 3005`
 3. em /utils lançar app gerador pdfs `node pdfGenerator.js`
 
+
 futuros passos:
 3. deploy in docker container, https://blog.tericcabrel.com/create-docker-image-nextjs-application/
 
+
+
+# Pacotes a instalar
+* npm i react-map-gl maplibre-gl
 
 # A integrar
 

@@ -1,10 +1,6 @@
-.container > div {
-    margin-bottom: 3rem;
-}
-
-.select {
-    border-radius: 4px;
-    background-color: white;
-    width: 35ch;
-    margin: auto;
+.container  {
+    text-align: left;
+    width: 30ch;
+    font-size: 0.75rem;
+    color: black;
 }

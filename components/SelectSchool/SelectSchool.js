@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 
 import styles from './SelectSchool.module.css';
-import { customStyles } from './selectStyles';
+import selectStyles from './selectStyles'; 
+
 import { useRouter } from 'next/router';
 import useSchools from './useSchools';
 
@@ -10,19 +11,8 @@ import useSchools from './useSchools';
 const SelectSchool = ({ municipality, setSchool }) => {
 
     const schools = useSchools(municipality);
-
-    const router = useRouter();
-
-    const handleOptionSchoolChange = (school) => {
-        router.push(
-            `school?municipality=${municipality}&school=${school.value}`
-        );
-    };
-
-
-    const municipalityPlaceholder = municipality
-        ? `em ${municipality.label}`
-        : ''
+    
+    const customNoOptionsMessage = () => `${municipality.label} não tem escolas`;
 
     return (
         <div className={styles.container}>
@@ -30,11 +20,12 @@ const SelectSchool = ({ municipality, setSchool }) => {
 
             <Select
                 options={schools}
-                menuPlacement="auto"
-                menuPosition="fixed" 
-                styles={customStyles}
-                placeholder={`selecione uma instituição ${municipalityPlaceholder}`} 
-                onChange={handleOptionSchoolChange}
+                noOptionsMessage={customNoOptionsMessage}
+                menuPlacement="bottom"
+                menuPosition="auto" 
+                styles={selectStyles} 
+                placeholder={`escolha ou digite a instituição`} 
+                onChange={setSchool}
             />
 
         </div >

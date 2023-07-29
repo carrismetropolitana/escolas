@@ -1,6 +1,8 @@
 import Select from 'react-select';
 import useMunicipalities from './useMunicipalities';
+
 import styles from './SelectMunicipality.module.css';
+import selectStyles from './selectStyles'; // Adjust the path based on the location of your customStyles.js file.
 
 
 const SelectMunicipality = ({ municipality, setMunicipality }) => {
@@ -9,16 +11,19 @@ const SelectMunicipality = ({ municipality, setMunicipality }) => {
 
     return (
         <div className={styles.container}>
-            <p>Saiba mais como chegar, com a Carris Metropolitana, <br></br> à sua escola ou universidade</p>
+            <p>Selecione um município:</p>
             
             {municipalities && (   // renders only with municipalities
                 <Select
                     options={municipalities}
-                    onChange={setMunicipality}  // will use as argument the value of the selected municipality: setMunicipality(value)
-                    menuPlacement="auto"
+                    
+                    // executes setMunicipality(value), where value is the selected municipality 
+                    onChange={setMunicipality}  
+                    
+                    menuPlacement="bottom"
                     menuPosition="auto"
-                    className={styles.select}
-                    placeholder="selecione um município"
+                    styles={selectStyles}
+                    placeholder="escolha ou digite o município"
                     value={municipality}
                 />
             )}

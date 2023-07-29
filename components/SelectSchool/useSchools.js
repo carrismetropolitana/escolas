@@ -4,7 +4,7 @@ const useSchools = (municipality) => {
 
   const [schools, setSchools] = useState([]);
 
-  
+
   useEffect(() => {
     const fetchSchools = async () => {
       try {
@@ -16,13 +16,13 @@ const useSchools = (municipality) => {
             ['school', 'university'].includes(facility.type) &&       // (facility.type === 'school' || facility.type === 'university') 
             (!municipality || facility.municipality_name == municipality.label)
         );
-  
+
         const schoolOptions = schools.map((item) => ({
           label: item.name,
           value: item.code
         }));
-
         setSchools(schoolOptions);
+
       } catch (error) {
         console.log('Error fetching schools:', error);
       }

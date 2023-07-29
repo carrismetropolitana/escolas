@@ -1,20 +1,26 @@
 .container {
     text-align:left;
-    margin-top: 40px;
+    margin: auto;
+    width: 90vw;
 }
 
 .container > div {
-    margin-bottom: 1rem;
     width:100%;
-    border: 1px solid black; 
     padding: 20px;  
-    border-radius: 20px; 
     background: white; 
     display: grid; 
     grid-template-columns:1fr; 
     gap: 10px; 
     align-items:flex-start;
 }
+
+.nomeParagem {
+    background-color: black!important;
+    font-size: 0.85rem;
+    color: white;
+    border-radius: 20px 20px 0 0;
+}
+
 
 .container > div > div {
     margin-bottom: 15px;

@@ -9,7 +9,7 @@ function toTitleCase(str) {
 }
 
 
-const ParagensVizinhas = ({ paragens, escola }) => {
+const ParagensVizinhas = ({ escola, paragens }) => {
     
     if (!paragens || paragens.length === 0) {
         return <p>Sem paragens.</p>;
@@ -17,7 +17,8 @@ const ParagensVizinhas = ({ paragens, escola }) => {
 
     return (
         <div className={styles.container} >
-            Linhas que servem {escola}:
+            
+            <div  className={styles.nomeParagem}>Paragens que servem a instituição de ensino: {escola.name}</div>
             <div>
                 {paragens.map((paragem, index) => (            
                     <Paragem paragem={paragem} />

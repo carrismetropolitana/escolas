@@ -1,0 +1,42 @@
+.main > *:nth-child(1) {
+    grid-area: titles; 
+}
+
+.main > *:nth-child(2) {
+    grid-area: map; 
+}
+
+.main > *:nth-child(3) {
+    grid-area: stops; 
+}
+
+.main > *:nth-child(4) {
+    grid-area: planner; 
+}
+ 
+.main > *:nth-child(5) {
+    grid-area: download; 
+}
+
+.main > *:nth-child(6) {
+    grid-area: pass; 
+}
+
+.main > *:nth-child(7) {
+    grid-area: back; 
+}
+
+.main {
+    display: grid;
+    grid-template-areas: 
+    'titles titles'
+    'map    map'
+    'stops  planner'
+    'stops  download'
+    'stops  pass'
+    'back   back';
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: auto 300px 1fr auto;
+    gap:20px;
+}
+

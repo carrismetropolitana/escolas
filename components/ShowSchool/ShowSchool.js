@@ -1,10 +1,15 @@
 import Select from 'react-select';
 import Titles from '../Titles/Titles'
+import Planner from '../Planner/Planner'
 import BackHome from '../BackHome/BackHome'
 import getStops from './getStops'
 import getSchoolInfo from './getSchoolInfo'
-import ParagensVizinhas from '../ParagensVizinhas/ParagensVizinhas';
+import Stops from '../Stops/Stops';
+import DownloadStops from '../DownloadStops/DownloadStops'
+import Pass from '../Pass/Pass'
+
 // import Mapa from '../Mapa/Mapa';
+import styles from './ShowSchool.module.css'
 
 import React, { useEffect, useState, useRef } from 'react';
 
@@ -33,37 +38,38 @@ const ShowSchool = ({ municipality, school, setSchool }) => {
     // const pdfUrl = `${baseUrl}?${urlParams.toString()}`;
 
     return (
+        <div className={styles.main}>
 
-        <>
-            if (school) {
+            <Titles
+                municipality={municipality}
+                school={school}
+            />
 
-                <main >
-
-                    <Titles
-                        municipality={municipality}
-                        school={school}
-                    />
-
-                    {/* <Mapa
+            <div> Mapa </div>
+            {/* <Mapa
                         latitude={schoolInfo.lat}
                         longitude={schoolInfo.lon}
                         escolaNome={schoolInfo.name}
                         paragens={stops}
                     /> */}
 
-                    <ParagensVizinhas
-                        paragens={stops}
-                        escola={schoolInfo}
-                    />
 
-                    <BackHome
-                        setSchool={setSchool}
-                    />
-                </main>
+            <Stops
+                stops={stops}
+                school={schoolInfo}
+            />
 
-            }
-        </>
+            <Planner/>
 
+            <DownloadStops/>
+
+            <Pass/> 
+
+            <BackHome className={styles.back}
+                setSchool={setSchool}
+            />
+
+        </div>
 
     );
 };

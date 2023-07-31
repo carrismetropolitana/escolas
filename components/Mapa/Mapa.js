@@ -33,7 +33,7 @@ const Mapa = ({ latitude, longitude, escolaNome, paragens }) => {
     };
 
     return (
-        <>
+        <div>
             <MapContainer
                 center={[latitude, longitude]}
                 zoom={16}
@@ -62,7 +62,7 @@ const Mapa = ({ latitude, longitude, escolaNome, paragens }) => {
                 ))}
 
             </MapContainer>
-        </>
+        </div>
     );
 };
 

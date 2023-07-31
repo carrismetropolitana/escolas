@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-
 import Layout, { siteTitle } from '../components/Layout/layout';
 import SelectMunicipalityAndSchool from '../components/SelectMunicipalityAndSchool/SelectMunicipalityAndSchool';
 import ShowSchool from '../components/ShowSchool/ShowSchool';
-
 
 
 export default function Home() {

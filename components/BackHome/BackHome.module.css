@@ -1,10 +1,10 @@
 .backHome {
-    margin: 3rem auto 0;
+    margin: auto;
     background: white;
     width: fit-content;
-    padding: 10px 4ch;
+    padding: 0.5ch 4ch;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 20px;
     border: 1px solid black;
     font-size: 0.75rem;
   }

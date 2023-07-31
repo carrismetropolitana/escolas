@@ -1,12 +1,13 @@
 import React from 'react';
-import styles from './Paragem.module.css';
+import styles from './Stop.module.css';
 
 
 function toTitleCase(str) {
-    const upperCaseExceptions = ['EB', 'ITS'];
-    const lowerCaseExceptions = ['VIA', 'E'];
+    const upperCaseExceptions = ['EB', 'ITS', 'EN'];
+    const lowerCaseExceptions = ['VIA', 'E', 'DE', 'DA', 'DO'];
   
-    return str.replace(/\b[\w()çÇãÃáÁàÀõÕúÚéÉíÍóÓ]+/g, function (match) {
+    
+    return str.replace(/\b[\w()çÇãÃáÁàÀéÉíÍóÓõÕúÚ]+/g, function (match) {
       if (upperCaseExceptions.includes(match.toUpperCase())) {
         return match.toUpperCase();
       } 
@@ -26,18 +27,18 @@ function toTitleCase(str) {
   }
   
 
-const Paragem = ({ paragem }) => {
+const Stop = ({ stop }) => {
 
     return (
-        <div key={paragem.id}>
-            <div class={styles.stopName}>{toTitleCase(paragem.stop_name)} </div>
+        <div key={stop.id}>
+            <div class={styles.stopName}>{toTitleCase(stop.stop_name)} </div>
             <div>
-                <span class={styles.bolhaCinza}>#{paragem.stop_id}</span>
-                <span class={styles.bolhaCinza}> {paragem.stop_lat}, {paragem.stop_lon} </span>
+                <span class={styles.bolhaCinza}>#{stop.stop_id}</span>
+                <span class={styles.bolhaCinza}> {stop.stop_lat}, {stop.stop_lon} </span>
             </div>
             <div class={styles.linha}></div>
 
-            { paragem.routes.map((route, route_index) => (
+            { stop.routes.map((route, route_index) => (
 
                 <div key={ route_index } class={ styles.caixa }>
 
@@ -54,4 +55,4 @@ const Paragem = ({ paragem }) => {
         </div>
     );
 }
-export default Paragem;
+export default Stop;

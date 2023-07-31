@@ -1,0 +1,21 @@
+.text {
+    margin-top: 1ch; 
+    line-height: 1.7ch;
+}
+
+
+.button {
+    margin: auto;
+    background: #ffdd01;
+    color: black;
+    width: fit-content;
+    padding: 0.5ch 2ch;
+    margin-top: 1ch; 
+    cursor: pointer;
+    border-radius: 20px;
+  }
+  
+  .button:hover {
+    background: #d6ba00;
+    font-weight: bold;
+  }

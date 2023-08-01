@@ -2,7 +2,7 @@ import Select from 'react-select';
 import useMunicipalities from './useMunicipalities';
 
 import styles from './SelectMunicipality.module.css';
-import selectStyles from './selectStyles'; // Adjust the path based on the location of your customStyles.js file.
+import selectStyles from './selectStyles'; 
 
 
 const SelectMunicipality = ({ municipality, setMunicipality }) => {
@@ -17,7 +17,8 @@ const SelectMunicipality = ({ municipality, setMunicipality }) => {
                 <Select
                     options={municipalities}
                     
-                    // executes setMunicipality(value), where value is the selected municipality 
+                    // executes function setMunicipality(value), 
+                    // where value is the selected municipality 
                     onChange={setMunicipality}  
                     
                     menuPlacement="bottom"

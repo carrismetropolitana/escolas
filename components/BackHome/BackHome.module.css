@@ -1,12 +1,11 @@
 .backHome {
-    margin: auto;
+    margin: 3ch auto;
     background: white;
     width: fit-content;
     padding: 0.5ch 4ch;
     cursor: pointer;
     border-radius: 20px;
     border: 1px solid black;
-    font-size: 0.75rem;
   }
   
   .backHome:hover {

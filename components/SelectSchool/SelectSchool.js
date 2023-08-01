@@ -4,7 +4,6 @@ import Select from 'react-select';
 import styles from './SelectSchool.module.css';
 import selectStyles from './selectStyles'; 
 
-import { useRouter } from 'next/router';
 import useSchools from './useSchools';
 
 

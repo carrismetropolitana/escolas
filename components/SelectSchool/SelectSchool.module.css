@@ -1,6 +1,5 @@
 .container {
     text-align: left;
-    width: 30ch;
     font-size: 0.75rem;
     color: black;
 }
@@ -9,6 +8,5 @@
     text-align: left;
     font-size: 0.65rem;
     color: black;
-    width: 30ch;
     margin: auto;
 }

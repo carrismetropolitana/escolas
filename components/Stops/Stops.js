@@ -20,7 +20,7 @@ const Stops = ({ school, stops }) => {
         <div className={styles.container} >
             
             <BlackHeader 
-            text={`Paragens que servem a instituição de ensino: ${school.name}`}
+            text={`Paragens que servem: ${school.name}`}
             />
             <div>
                 {stops.map((stop_, index) => (            

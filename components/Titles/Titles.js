@@ -6,11 +6,15 @@ const Titles = ({ municipality, school }) => {
         <header className={styles.header}>
 
             <div className={styles.municipality}>
-                {municipality ? municipality.label : 'Nenhum municipio selecionado'}
+                <div>
+                {municipality}
+                </div>
             </div>
 
             <div className={styles.school}>
+                <div>
                 {school.label}
+                </div>
             </div>
 
         </header>

@@ -20,7 +20,7 @@ const ShowSchool = ({ municipality, school, setSchool }) => {
 
     console.log('schoolInfo', schoolInfo)
     console.log('stops', stops)
-
+    
     // const [loading, setLoading] = useState(false);
     // // activate spinner while generating PDF
     // const handleDownload = () => {
@@ -40,35 +40,44 @@ const ShowSchool = ({ municipality, school, setSchool }) => {
     return (
         <div className={styles.main}>
 
-            <Titles
-                municipality={municipality}
-                school={school}
-            />
-
-            <div> Mapa </div>
-            {/* <Mapa
+            <div className={styles.titles}>
+                <Titles
+                    municipality={ schoolInfo? schoolInfo.municipality_name : schoolInfo }
+                    school={school}
+                />
+            </div>
+            
+            <div className={styles.map}>
+                Mapa 
+            
+                    {/* <Mapa
                         latitude={schoolInfo.lat}
                         longitude={schoolInfo.lon}
                         escolaNome={schoolInfo.name}
                         paragens={stops}
                     /> */}
+            </div>
 
+            <div className={styles.stops}>
+                <Stops
+                    stops={stops}
+                    school={schoolInfo}
+                />
+            </div>
 
-            <Stops
-                stops={stops}
-                school={schoolInfo}
-            />
+            <div className={styles.info}>
+                <Planner />
 
-            <Planner/>
+                <DownloadStops />
 
-            <DownloadStops/>
+                <Pass />
+            </div>
 
-            <Pass/> 
-
-            <BackHome className={styles.back}
-                setSchool={setSchool}
-            />
-
+            <div className={styles.back}>
+                <BackHome className={styles.back}
+                    setSchool={setSchool}
+                />
+            </div>
         </div>
 
     );

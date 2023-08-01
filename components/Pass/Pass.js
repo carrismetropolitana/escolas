@@ -15,7 +15,7 @@ const Pass = () => {
             >
                 <Image
                     priority
-                    src="/images/PasseNavegante.png"
+                    src="/images/PasseNavegante_.png"
                     alt="Passe navegante"
                     layout="responsive"
                     width={100}

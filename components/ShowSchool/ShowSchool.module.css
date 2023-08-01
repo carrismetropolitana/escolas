@@ -1,28 +1,21 @@
-.main > *:nth-child(1) {
+.titles {
     grid-area: titles; 
 }
 
-.main > *:nth-child(2) {
+.map {
     grid-area: map; 
+    background-color: purple;
 }
 
-.main > *:nth-child(3) {
+.stops {
     grid-area: stops; 
 }
 
-.main > *:nth-child(4) {
-    grid-area: planner; 
-}
- 
-.main > *:nth-child(5) {
-    grid-area: download; 
+.info {
+    grid-area: info; 
 }
 
-.main > *:nth-child(6) {
-    grid-area: pass; 
-}
-
-.main > *:nth-child(7) {
+.back {
     grid-area: back; 
 }
 
@@ -31,12 +24,10 @@
     grid-template-areas: 
     'titles titles'
     'map    map'
-    'stops  planner'
-    'stops  download'
-    'stops  pass'
+    'stops  info'
     'back   back';
     grid-template-columns: 3fr 1fr;
-    grid-template-rows: auto 300px 1fr auto;
+    grid-template-rows: auto 300px auto auto;
     gap:20px;
 }
 
@@ -48,12 +39,10 @@
         'titles'
         'map'
         'stops'
-        'download'
-        'planner'
-        'pass'
+        'info'
         'back';
         grid-template-columns: 1fr;
-        grid-template-rows: auto 300px 600px auto auto auto;
+        grid-template-rows: auto 300px auto auto auto auto;
         gap:20px;
     }
 

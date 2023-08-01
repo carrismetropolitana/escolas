@@ -1,3 +1,7 @@
+.item {
+  margin: 4ch auto;
+}
+
 .text {
     margin-top: 1ch; 
     line-height: 1.7ch;
@@ -5,16 +9,16 @@
 
 
 .button {
-    margin: auto;
+    margin: 1ch auto;
     background: #ffdd01;
     color: black;
     width: fit-content;
-    padding: 0.5ch 2ch;
-    margin-top: 1ch; 
+    padding: 0.5ch 2ch; 
     cursor: pointer;
     border-radius: 20px;
   }
   
+
   .button:hover {
     background: #d6ba00;
     font-weight: bold;

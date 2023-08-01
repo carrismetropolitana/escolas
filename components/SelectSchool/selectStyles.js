@@ -5,7 +5,7 @@ const selectStyles = {
     borderRadius: '8px',
     backgroundColor: 'black',
     color: 'white',
-    width: '30ch',
+    width: '35ch',
     margin: 'auto',
     cursor: 'pointer',
     border: '1px solid black',
@@ -22,7 +22,7 @@ const selectStyles = {
   placeholder: (provided) => ({
     ...provided,
     color: 'white',
-    backgroundColor: 'black',
+    backgroundColor: 'grey',
   }),
 
   menu: (provided, state) => ({

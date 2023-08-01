@@ -3,7 +3,7 @@ import styles from './DownloadStops.module.css'
 const DownloadStops = () => {
 
     return (
-        <div>
+        <div className={styles.item}>
 
             <div className={styles.text}>
                 Descarregue a lista de paragens e linhas aqui:
@@ -14,7 +14,6 @@ const DownloadStops = () => {
                     Download
                 </div>
             </a>
-            ´
         </div>
     );
 }

@@ -40,3 +40,22 @@
     gap:20px;
 }
 
+@media (max-width: 800px) {
+    .main {
+        display: grid;
+        margin: 0 5vw;
+        grid-template-areas: 
+        'titles'
+        'map'
+        'stops'
+        'download'
+        'planner'
+        'pass'
+        'back';
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 300px 600px auto auto auto;
+        gap:20px;
+    }
+
+}
+

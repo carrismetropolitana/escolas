@@ -1,29 +1,26 @@
 import Image from 'next/image';
-import BlackHeader from '../BlackHeader/BlackHeader'
-
+import BlackHeader from '../BlackHeader/BlackHeader';
+import styles from './Planner.module.css';
 
 const Planner = () => {
+  return (
+    <div>
+      <BlackHeader text='Planeador de Viagem' />
 
-    return (
-        <div>
-            <BlackHeader
-                text='Planeador de Viagem'
+      <a href="https://www.carrismetropolitana.pt/planeador/" target="_blank" rel="noopener noreferrer">
+        <div className={styles.imageContainer}>
+          <div className={styles.imageWrapper}>
+            <Image
+              src="/images/planner.png"
+              alt="Planeador de viagem"
+              width={100}
+              height={100} 
             />
-
-            <a href="https://www.carrismetropolitana.pt/planeador/" target="_blank">
-                <Image
-                    priority
-                    src="/images/planner.png"
-                    alt="Planeador de viagem"
-                    layout="responsive"
-                    width={100}
-                    height={100} // This value doesn't really matter for the 'responsive' layout
-
-                    styles={{ padding: '5px' }}
-                />
-            </a>
+          </div>
         </div>
-    );
-}
+      </a>
+    </div>
+  );
+};
 
 export default Planner;

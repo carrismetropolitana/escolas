@@ -22,7 +22,6 @@ const selectStyles = {
   placeholder: (provided) => ({
     ...provided,
     color: 'white',
-    backgroundColor: 'grey',
   }),
 
   menu: (provided, state) => ({

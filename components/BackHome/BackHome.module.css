@@ -9,6 +9,6 @@
   }
   
   .backHome:hover {
-    background: whitesmoke;
-    font-weight: bold;
+    background: rgb(175, 175, 175);
+    /* font-weight: bold; */
   }

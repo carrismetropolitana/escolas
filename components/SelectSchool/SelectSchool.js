@@ -18,6 +18,7 @@ const SelectSchool = ({ municipality, setSchool }) => {
             <p>Selecione uma instituição de ensino:</p>
 
             <Select
+                key="schools-key"
                 options={schools}
                 noOptionsMessage={customNoOptionsMessage}
                 menuPlacement="bottom"

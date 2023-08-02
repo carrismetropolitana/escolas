@@ -23,8 +23,8 @@ const Stops = ({ school, stops }) => {
             text={`Paragens que servem: ${school.name}`}
             />
             <div>
-                {stops.map((stop_, index) => (            
-                    <Stop stop={stop_} />
+                {stops.map((stop, index) => (            
+                    <Stop key={index} stop={stop} />
                 ))}
             </div>
         </div>

@@ -31,22 +31,22 @@ const Stop = ({ stop }) => {
 
     return (
         <div key={stop.id}>
-            <div class={styles.stopName}>{toTitleCase(stop.stop_name)} </div>
+            <div className={styles.stopName}>{toTitleCase(stop.stop_name)} </div>
             <div>
-                <span class={styles.bolhaCinza}>#{stop.stop_id}</span>
-                <span class={styles.bolhaCinza}> {stop.stop_lat}, {stop.stop_lon} </span>
+                <span className={styles.bolhaCinza}>#{stop.stop_id}</span>
+                <span className={styles.bolhaCinza}> {stop.stop_lat}, {stop.stop_lon} </span>
             </div>
-            <div class={styles.linha}></div>
+            <div className={styles.linha}></div>
 
             { stop.routes.map((route, route_index) => (
 
-                <div key={ route_index } class={ styles.caixa }>
+                <div key={ route_index } className={ styles.caixa }>
 
-                    <span class={ styles.numero } style={{ backgroundColor: route.route_color }}>
+                    <span className={ styles.numero } style={{ backgroundColor: route.route_color }}>
                         { route.route_short_name }
                     </span>
 
-                    <span class={ styles.routeName }>
+                    <span className={ styles.routeName }>
                         { toTitleCase(route.route_long_name) }
                     </span>
 

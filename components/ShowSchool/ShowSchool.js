@@ -18,39 +18,26 @@ const ShowSchool = ({ municipality, school, setSchool }) => {
     const schoolInfo = getSchoolInfo(school);
     const stops = getStops(schoolInfo);
 
-    console.log('schoolInfo', schoolInfo)
-    console.log('stops', stops)
-    
-    // const [loading, setLoading] = useState(false);
-    // // activate spinner while generating PDF
-    // const handleDownload = () => {
-    //     setLoading(true);
-    //     setTimeout(() => { setLoading(false); }, 2000); // after 2s, sets loading to false  
-    // }
-
-    // // Constroi pdfUrl, URL para descarregar PDF
-    // const baseUrl = 'http://localhost:5051/generate-pdf';
-    // const urlParams = new URLSearchParams({
-    //     // url: `http://localhost:3000/folheto?escola=${escola}&paragens=${paragensInfo}`,
-    //     url: `http://localhost:3000/folheto?municipio=${municipality.value}&escola=${school.value}`,
-    //     school: school,
-    // });
-    // const pdfUrl = `${baseUrl}?${urlParams.toString()}`;
+    // console.log('schoolInfo', schoolInfo)
+    // console.log('stops', stops)
+    // console.log('municipality', municipality)
+    // console.log('school', school)
 
     return (
         <div className={styles.main}>
 
             <div className={styles.titles}>
                 <Titles
-                    municipality={ schoolInfo? schoolInfo.municipality_name : schoolInfo }
+                    municipality={schoolInfo ? schoolInfo.municipality_name : schoolInfo}
                     school={school}
+                    setSchool={setSchool}
                 />
             </div>
-            
+
             <div className={styles.map}>
-                Mapa 
-            
-                    {/* <Mapa
+                Mapa
+
+                {/* <Mapa
                         latitude={schoolInfo.lat}
                         longitude={schoolInfo.lon}
                         escolaNome={schoolInfo.name}
@@ -68,7 +55,12 @@ const ShowSchool = ({ municipality, school, setSchool }) => {
             <div className={styles.info}>
                 <Planner />
 
-                <DownloadStops />
+                <DownloadStops
+                    schoolInfo={schoolInfo}
+                    municipality={schoolInfo ? schoolInfo.municipality_name : schoolInfo}
+                    school={school}
+                    stops={stops}
+                />
 
                 <Pass />
             </div>

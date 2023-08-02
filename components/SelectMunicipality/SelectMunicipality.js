@@ -15,6 +15,7 @@ const SelectMunicipality = ({ municipality, setMunicipality }) => {
             
             {municipalities && (   // renders only with municipalities
                 <Select
+                    key="municipalities-key"
                     options={municipalities}
                     
                     // executes function setMunicipality(value), 

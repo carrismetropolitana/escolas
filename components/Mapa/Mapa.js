@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSchool } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState } from 'react';
 import styles from './styles.module.css';
-import Paragem from '../Paragem/Paragem';
+import Stop from '../Stop/Stop';
 
 const Mapa = ({ latitude, longitude, escolaNome, paragens }) => {
 
@@ -56,7 +56,7 @@ const Mapa = ({ latitude, longitude, escolaNome, paragens }) => {
                         
                     >
                         <Popup>
-                            <Paragem paragem={paragem} />
+                            <Stop paragem={paragem} />
                         </Popup>
                     </CircleMarker>
                 ))}

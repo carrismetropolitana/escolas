@@ -1,7 +1,7 @@
 .imageContainer {
     position: relative;
     width: 100%;
-    padding-top: 100%; /* Maintain aspect ratio: 1:1 (100% width and height) */
+    padding-top: 50%; /* Maintain aspect ratio: 1:1 (100% width and height) */
   }
   
   .imageWrapper {

@@ -11,7 +11,7 @@ const DownloadStops = ({ schoolInfo, municipality, school, stops }) => {
     const [loading, setLoading] = useState(false);
     const handleDownload = () => {
         setLoading(true);
-        setTimeout(() => { setLoading(false); }, 1000); // volta a por o loading a false após 1s 
+        setTimeout(() => { setLoading(false); }, 2000); // volta a por o loading a false após 1s 
     };
 
 

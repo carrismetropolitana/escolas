@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import BlackHeader from '../BlackHeader/BlackHeader';
 import styles from './Planner.module.css';
 

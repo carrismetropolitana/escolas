@@ -4,7 +4,7 @@
 
 .map {
     grid-area: map; 
-    background-color: purple;
+    background-color: rgb(243, 241, 199);
 }
 
 .stops {

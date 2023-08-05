@@ -5,14 +5,17 @@ const getStops = (school) => {
   const baseUrl = 'https://schedules.carrismetropolitana.pt/api/stops/';
   const [stops, setStops] = useState([]);
 
+  console.log("getStops!!\n\n")
+  console.log('school', school)
   useEffect(() => {
     const fetchStopsData = async () => {
       if (school?.stops) {
-        
+        console.log("fetched stops",school.stops)
         try {
           const axios = require('axios');
           const fetchPromises = school.stops.map(async (stop) => {
             const response = await axios.get(`${baseUrl}/${stop}`);
+            console.log('stop do fetch:', `${baseUrl}/${stop}`)
             return response.data;
           });
 

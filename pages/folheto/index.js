@@ -71,7 +71,7 @@ export default function Folheto() {
             Sabias que tens <br></br>autocarro à porta?
           </div>
           <div className={styles.textoPequeno}>
-            A Carris Metropolitana <br></br>passa na {schoolInfo.name}
+            A Carris Metropolitana passa na <br></br>{schoolInfo.name}
           </div>
 
         </div>

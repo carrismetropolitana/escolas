@@ -25,7 +25,9 @@ const DownloadStops = ({ schoolInfo, municipality, school, stops }) => {
 
     const pdfUrl = `${urlBase}?${urlParams.toString()}`;
 
-    // console.log('pdfUrl', pdfUrl)
+    console.log('pdfUrl', pdfUrl)
+    console.log('urlFolheto', urlFolheto)
+
 
     return (
         <div className={styles.item}>

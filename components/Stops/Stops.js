@@ -17,17 +17,18 @@ const Stops = ({ school, stops }) => {
     }
 
     return (
-        <div className={styles.container} >
+        <> 
+        {/* <div className={styles.container} > */}
             
             <BlackHeader 
             text={`Paragens que servem: ${school.name}`}
             />
-            <div>
+            <>
                 {stops.map((stop, index) => (            
                     <Stop key={index} stop={stop} />
                 ))}
-            </div>
-        </div>
+            </>
+        </>
     );
 };
 

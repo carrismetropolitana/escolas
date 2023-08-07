@@ -1,4 +1,6 @@
-.body, .main, .footer {
+.body,
+.main,
+.footer {
     background: white;
 }
 
@@ -7,6 +9,7 @@
     display: grid;
     grid-template-rows: auto 1fr auto;
 }
+
 .header {
     background: #ffdd01;
     display: flex;
@@ -17,31 +20,31 @@
 }
 
 .textoGrande {
-    font-size:1.9rem;
+    font-size: 1.9rem;
     line-height: 1.9rem;
     font-weight: bold;
     padding-bottom: 10px;
 }
+
 .textoPequeno {
-    font-size:1.5rem;
+    font-size: 1.5rem;
     line-height: 1.7rem;
 }
 
-.main {
-}
+.main {}
 
 .footer {
     padding: 2.5rem 2.5rem 1rem 2.5rem;
 }
 
-.footer > img {
-    float:right;
+.footer>img {
+    float: right;
     height: 40px;
 }
 
-.container > div {
+.container>div {
     margin-bottom: 1rem;
-    font-size:10px;
+    font-size: 10px;
     /* background-color: white!important; */
 }
 
@@ -54,4 +57,44 @@
     border-radius: 10px;
     font-weight: normal;
     font-size: 8px;
+}
+
+.stops>div:first-child {
+    display: none;
+}
+
+.stops {
+
+    display:block;
+    width: 700px !important;
+    height: 700px !important;
+    padding: 40px;
+
+    column-count: 2;
+    column-gap: 20px;
+
+    /* Display content in two columns */
+
+    /* Adjust the gap between columns as per your preference */
+
+    /* display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: flex-start;   
+    gap: 40px;
+    */
+
+
+
+
+    /* 
+    alternativa com grid:
+    display: grid;
+    grid-template-columns:1fr 1fr;
+    height: 700px; 
+    padding: 40px;
+    gap: 40px;
+
+     */
 }

@@ -22,7 +22,7 @@ app.get('/generate-pdf', async (req, res) => {
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 2000 });
 
     // Espera 1s para ter tempo de carregar toda a pagina antes de a gravar em PDF
-    await page.waitForTimeout(1000); 
+    await page.waitForTimeout(2000); 
     
     // use screen CSS instead of print
     await page.emulateMediaType('screen');

@@ -5,11 +5,11 @@ import React from 'react';
 const PDFDownloadButton = ({ url }) => {
 
 
-    // Check if the window object is available (client-side)
-    if (typeof window === 'undefined') {
-      return null;
-    }
-  
+  // Check if the window object is available (client-side)
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
   const handleDownload = async () => {
     try {
       console.log('PDF Download button clicked with URL:', url);

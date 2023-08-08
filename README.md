@@ -18,19 +18,6 @@ Based on starter template for [Learn Next.js](https://nextjs.org/learn).
 
 ## APIs da TML usadas
 
-* [https://github.com/carrismetropolitana/schedules-api](https://github.com/carrismetropolitana/schedules-api)
-* https://schedules.carrismetropolitana.pt/api/stops
-* https://api.carrismetropolitana.pt/facilities
-
-
-* api.carrismetropolitana.pt/municipalities
-* api.carrismetropolitana.pt/facilities
-* api.carrismetropolitana.pt/facilities/{facilities_id}
-* api.carrismetropolitana.pt/stops
-* api.carrismetropolitana.pt/stops/{stop_id}
-* api.carrismetropolitana.pt/patterns/{pattern_id}
-* api.carrismetropolitana.pt/lines
-
 ### listagem de municipios
 `api.carrismetropolitana.pt/municipalities`
 
@@ -50,7 +37,23 @@ extrair info de uma paragem:
 * nome da paragem, numero, coordenadas, 
 * linhas que passam
 
+### Lista de APIs
+existem duas APIs:
+* schedules.carrismetropolitana.pt
+* api.carrismetropolitana.pt
 
+tem semelhanças, mas nalgumas teem coisas q não existem noutras.
+verificar qual será a final. 
+
+* [https://github.com/carrismetropolitana/schedules-api](https://github.com/carrismetropolitana/schedules-api)
+* https://schedules.carrismetropolitana.pt/api/stops
+* api.carrismetropolitana.pt/municipalities
+* api.carrismetropolitana.pt/facilities
+* api.carrismetropolitana.pt/facilities/{facilities_id}
+* api.carrismetropolitana.pt/stops
+* api.carrismetropolitana.pt/stops/{stop_id}
+* api.carrismetropolitana.pt/patterns/{pattern_id}
+* api.carrismetropolitana.pt/lines
 
 
 # API cmescola no PYthonAnyWhere

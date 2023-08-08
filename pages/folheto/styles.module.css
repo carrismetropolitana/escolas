@@ -31,8 +31,6 @@
     line-height: 1.7rem;
 }
 
-.main {}
-
 .footer {
     padding: 2.5rem 2.5rem 1rem 2.5rem;
 }
@@ -45,7 +43,7 @@
 .container>div {
     margin-bottom: 1rem;
     font-size: 10px;
-    /* background-color: white!important; */
+    background-color: white!important;
 }
 
 .bolhaCinza {
@@ -63,38 +61,28 @@
     display: none;
 }
 
+.stops>div:nth-child(2) div {
+    padding-top: 0px !important;
+}
+
 .stops {
-
-    display:block;
-    width: 700px !important;
-    height: 700px !important;
     padding: 40px;
-
+    display:block;
     column-count: 2;
     column-gap: 20px;
+    background-color: white;
+}
 
-    /* Display content in two columns */
+@media print {
+    .content-container:first-of-type {
+        page-break-before: auto; /* Reset page break for the first content container */
+    }
 
-    /* Adjust the gap between columns as per your preference */
-
-    /* display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex-wrap: wrap;
-    align-items: flex-start;   
-    gap: 40px;
-    */
-
-
-
-
-    /* 
-    alternativa com grid:
-    display: grid;
-    grid-template-columns:1fr 1fr;
-    height: 700px; 
-    padding: 40px;
-    gap: 40px;
-
-     */
+    .content-container:not(:first-of-type) {
+        margin-top: 40mm; /* Set top margin for content containers from the second page onward */
+    }
+}
+@page {
+    size: A4; /* Set the paper size for printing (e.g., A4, letter) */
+    margin: 20mm; /* Set page margins (top, right, bottom, left) */
 }

@@ -7,7 +7,7 @@ function toTitleCase(str) {
   const lowerCaseExceptions = ['VIA', 'E', 'DE', 'DA', 'DO'];
 
 
-  return str.replace(/\b[\w()çÇãÃáÁàÀéÉíÍóÓõÕúÚ]+/g, function (match) {
+  return str.replace(/\b[\w()çÇãÃáÁàÀéÉêÊíÍóÓõÕúÚ]+/g, function (match) {
     if (upperCaseExceptions.includes(match.toUpperCase())) {
       return match.toUpperCase();
     }
@@ -30,7 +30,7 @@ const Stop = ({ stop }) => {
 
   return (
     <>
-      <div>
+      <div className={styles.stopHeader}>
         <div className={styles.stopName}>{toTitleCase(stop.stop_name)} </div>
         <div>
           <span className={styles.bolhaCinza}>#{stop.stop_id}</span>

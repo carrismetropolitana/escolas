@@ -53,15 +53,7 @@ export default function Folheto() {
       <Head>
         <title>Folheto Informativo</title>
         <link rel="icon" href="/cm.png" />
-
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/leaflet/dist/leaflet.css"
-          integrity="leaflet-css-integrity"
-          crossorigin=""
-        />
       </Head>
-
 
       <header className={styles.header}>
 

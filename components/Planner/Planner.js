@@ -4,7 +4,7 @@ import styles from './Planner.module.css';
 
 const Planner = () => {
   return (
-    <div>
+    <div className={styles.caixa}>
       <BlackHeader text='Planeador de Viagem' />
 
       <a href="https://www.carrismetropolitana.pt/planeador/" target="_blank" rel="noopener noreferrer">

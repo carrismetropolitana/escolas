@@ -13,7 +13,7 @@ function toTitleCase(str) {
 const Stops = ({ school, stops }) => {
     
     if (!stops || stops.length === 0) {
-        return <p>Sem paragens.</p>;
+        return <p></p>;
     }
 
     return (
@@ -21,7 +21,7 @@ const Stops = ({ school, stops }) => {
         {/* <div className={styles.container} > */}
             
             <BlackHeader 
-            text={`Paragens que servem: ${school.name}`}
+            text={`Paragens que servem a instituição: ${school.name}`}
             />
             <>
                 {stops.map((stop, index) => (            

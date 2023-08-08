@@ -9,6 +9,12 @@
 
 .stops {
     grid-area: stops; 
+    background-color: white;
+    border-radius: 20px;
+}
+
+.stops > div:first-child ~ div {
+    padding: 0 20px 20px 20px;
 }
 
 .info {

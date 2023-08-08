@@ -8,25 +8,56 @@ Based on starter template for [Learn Next.js](https://nextjs.org/learn).
 3. na pasta /utils lançar app gerador pdfs `node pdfGenerator.js`
 
 
+### Proximos passos
 
-futuros passos:
-3. deploy in docker container, https://blog.tericcabrel.com/create-docker-image-nextjs-application/
-
-
-
-# Pacotes a instalar
-* npm i react-map-gl maplibre-gl
-
-# A integrar
-
-* SWR: https://swr.vercel.app/docs/with-nextjs
+* deploy in docker container: https://blog.tericcabrel.com/create-docker-image-nextjs-application/
+* usar SWR: https://swr.vercel.app/docs/with-nextjs
+* integrar fonte Inter
+* 
 
 
-# API cmescola
+## APIs da TML usadas
+
+* [https://github.com/carrismetropolitana/schedules-api](https://github.com/carrismetropolitana/schedules-api)
+* https://schedules.carrismetropolitana.pt/api/stops
+* https://api.carrismetropolitana.pt/facilities
+
+
+* api.carrismetropolitana.pt/municipalities
+* api.carrismetropolitana.pt/facilities
+* api.carrismetropolitana.pt/facilities/{facilities_id}
+* api.carrismetropolitana.pt/stops
+* api.carrismetropolitana.pt/stops/{stop_id}
+* api.carrismetropolitana.pt/patterns/{pattern_id}
+* api.carrismetropolitana.pt/lines
+
+### listagem de municipios
+`api.carrismetropolitana.pt/municipalities`
+
+### listagem de escolas e universidades de um município
+`api.carrismetropolitana.pt/facilities`
+* filtrar facilities por school ou university e municipio
+
+### informação da escola 
+`api.carrismetropolitana.pt/facilities/{facilities_id}`
+da escola escolhida, extrair objeto que tem:
+* nome da escola, coordenadas
+* lista de paragens vizinhas
+
+### informação de cada paragem 
+`https://schedules.carrismetropolitana.pt/api/stops/{stop_id}`
+extrair info de uma paragem:
+* nome da paragem, numero, coordenadas, 
+* linhas que passam
+
+
+
+
+# API cmescola no PYthonAnyWhere
+foi desenvolvida uma API teste, antes de estarem disponiveis as APIs da TML:
 * `https://cmescola.pythonanywhere.com/` 
-* cmescola
-* cmescola
-
+* username: cmescola
+* pwd: cmescola
 
 ###  **enpoint: municípios**
 
@@ -56,13 +87,10 @@ futuros passos:
 * **exemplo**: `{"escola": {"id": 1, "nome": "EB1 Almada", "municipio_id": 1, "morada": "Rua da Escola, 1, Almada"}}`
 
 
-# Fonte
-
-Inter
-
-
-
 # Mapa
+
+* Pacotes a instalar:  `npm i react-map-gl maplibre-gl`
+
 https://github.com/joao-vasconcelos/go/tree/production/dashboard/components/OSMMap
 
 
@@ -106,34 +134,3 @@ const mapData = useMemo(() => {
     // Only run if allStopsData changes
   }, [allStopsData]);
 ```
-
-# APIs
-
-* [https://github.com/carrismetropolitana/schedules-api](https://github.com/carrismetropolitana/schedules-api)
-* https://schedules.carrismetropolitana.pt/api/stops
-* https://api.carrismetropolitana.pt/facilities
-
-
-* api.carrismetropolitana.pt/facilities
-* api.carrismetropolitana.pt/stops
-* api.carrismetropolitana.pt/stops/{stop_id}
-* api.carrismetropolitana.pt/lines
-* api.carrismetropolitana.pt/municipalities
-* api.carrismetropolitana.pt/patterns/{pattern_id}
-
-### escolhe municipio
-* api.carrismetropolitana.pt/municipalities
-
-### escolhe escola
-de api.carrismetropolitana.pt/facilities
-* filtrar facilities por school e municipio
-* listar escolas obtidas
-
-### escola
-da escola escolhida, extrair objeto
-* info da paragem
-* lista de stops
-
-de api.carrismetropolitana.pt/stops/{stop_id}
-* extrair info de cada um dos stop
-

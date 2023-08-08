@@ -4,7 +4,7 @@ import styles from './Pass.module.css';
 
 const Pass = () => {
   return (
-    <div>
+    <div className={styles.caixa}>
       <BlackHeader text='Passe navegante' />
 
       <a href="https://www.carrismetropolitana.pt/cartoes/" target="_blank" rel="noopener noreferrer">

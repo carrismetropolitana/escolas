@@ -4,9 +4,8 @@
 
 .text {
     margin-top: 1ch; 
-    line-height: 1.7ch;
+    line-height: 2ch;
 }
-
 
 .button {
     margin: 1ch auto;
@@ -18,8 +17,17 @@
     border-radius: 20px;
   }
   
-
   .button:hover {
     background: #d6ba00;
     font-weight: bold;
+  }
+
+  .button div {
+    display: 'flex'; 
+    align-items: 'center';
+    justify-content: 'center';
+  }
+
+  .button a {
+    color: black !important;
   }

@@ -10,11 +10,11 @@ const Pass = () => {
       <a href="https://www.carrismetropolitana.pt/cartoes/" target="_blank" rel="noopener noreferrer">
         <div className={styles.imageContainer}>
           <div className={styles.imageWrapper}>
-            <Image
+            <img
               src="/images/PasseNavegante_.png"
               alt="Passe navegante"
-              width={100}
-              height={100} 
+              width='100%'
+              height='auto'
             />
           </div>
         </div>

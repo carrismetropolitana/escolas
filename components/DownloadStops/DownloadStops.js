@@ -36,13 +36,13 @@ const DownloadStops = ({ schoolInfo, municipality, school, stops }) => {
                 Descarregue a lista de paragens e linhas aqui:
             </div>
 
+            
+                <div className={styles.button}>
             <a
                 href={pdfUrl}
                 onClick={handleDownload}
                 download
-            >
-                <div className={styles.button}>
-                    {loading ? (
+            >        {loading ? (
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
                             <FontAwesomeIcon icon={faSpinner} style={{ fontSize: '1rem', height: '1rem' }} spin />
@@ -50,12 +50,13 @@ const DownloadStops = ({ schoolInfo, municipality, school, stops }) => {
                         </div>
                     ) : (
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <FontAwesomeIcon icon={faDownload} /> 
+                            <FontAwesomeIcon icon={faDownload}  style={{ fontSize: '1rem', height: '1rem' }} /> 
                             <span style={{ marginLeft: '10px' }}>Download</span>
                         </div>
                     )}
-                </div>
-            </a>
+            </a> 
+               </div>
+            
         </div>
     );
 }

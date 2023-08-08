@@ -22,9 +22,11 @@
 } 
 
 .frase {
-    font-size: 1.2em; 
+    font-size: 1.4em; 
     line-height: 1.3em; 
     padding: 0 1ch;
+    font-weight: bold;
+    margin-top: 10ch;
 }
 
 .main .css-1ampo3n-control {

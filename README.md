@@ -2,9 +2,11 @@ Based on starter template for [Learn Next.js](https://nextjs.org/learn).
 
 # Passos
 
-1. instalar npm: `install npm`
-2. lançar app: `npm run dev`. Eventualmente correr noutro porto para não entrar em conflito com o index do pdf_generator, `npm run dev -- -p 3005`
-3. em /utils lançar app gerador pdfs `node pdfGenerator.js`
+1. descarregar do repo
+1. instalar npm: `npm install`
+2. lançar app: `npm run dev`
+3. na pasta /utils lançar app gerador pdfs `node pdfGenerator.js`
+
 
 
 futuros passos:

@@ -23,11 +23,13 @@ const Stops = ({ school, stops }) => {
             <BlackHeader 
             text={`Paragens que servem a instituição: ${school.name}`}
             />
+
             <>
                 {stops.map((stop, index) => (            
                     <Stop key={index} stop={stop} />
                 ))}
             </>
+            
         </>
     );
 };

@@ -9,6 +9,10 @@
     width: fit-content;
 }
 
+.main input {
+    padding: 10px !important;
+}
+
 @media (max-width: 800px) {
     .main {
         flex-direction: column;
@@ -26,7 +30,7 @@
     line-height: 1.3em; 
     padding: 0 1ch;
     font-weight: bold;
-    margin-top: 10ch;
+    margin-top: 4ch;
 }
 
 .main .css-1ampo3n-control {

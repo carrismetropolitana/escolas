@@ -1,33 +1,40 @@
 .item {
-  margin: 4ch auto;
+  margin: 0 auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
 }
 
 .text {
-    margin-top: 1ch; 
-    line-height: 2ch;
+  margin-top: 1ch;
+  line-height: 2ch;
 }
 
 .button {
-    margin: 1ch auto;
-    background: #ffdd01;
-    color: black;
-    width: fit-content;
-    padding: 0.5ch 2ch; 
-    cursor: pointer;
-    border-radius: 20px;
-  }
-  
-  .button:hover {
-    background: #d6ba00;
-    font-weight: bold;
-  }
+  margin: 1ch auto;
+  background: #ffdd01;
+  color: black;
+  width: fit-content;
+  padding: 0.5ch 2ch;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: filter 0.3s ease;
+}
 
-  .button div {
-    display: 'flex'; 
-    align-items: 'center';
-    justify-content: 'center';
-  }
+.button:hover {
+  filter: brightness(0.8);
+}
 
-  .button a {
-    color: black !important;
-  }
+.button a {
+  text-decoration: none;
+}
+
+.button div {
+  display: 'flex';
+  align-items: 'center';
+  justify-content: 'center';
+}
+
+.button a {
+  color: black !important;
+}

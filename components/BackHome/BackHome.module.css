@@ -5,10 +5,12 @@
     padding: 0.5ch 4ch;
     cursor: pointer;
     border-radius: 20px;
-    border: 1px solid black;
+    border: 1px solid lightgrey;
+    font-weight: bold;
+    transition: filter 0.3s ease;
   }
   
   .backHome:hover {
-    background: rgb(175, 175, 175);
-    /* font-weight: bold; */
+    /* background: rgb(175, 175, 175); */
+    filter: brightness(0.9);
   }

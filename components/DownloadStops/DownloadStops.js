@@ -6,12 +6,11 @@ import styles from './DownloadStops.module.css'
 
 const DownloadStops = ({ schoolInfo, municipality, school, stops }) => {
 
-
     // spinner while loading
     const [loading, setLoading] = useState(false);
     const handleDownload = () => {
         setLoading(true);
-        setTimeout(() => { setLoading(false); }, 2000); // volta a por o loading a false após 1s 
+        setTimeout(() => { setLoading(false); }, 6000); // volta a por o loading a false após 4s 
     };
 
 
@@ -36,27 +35,27 @@ const DownloadStops = ({ schoolInfo, municipality, school, stops }) => {
                 Descarregue a lista de paragens e linhas aqui:
             </div>
 
-            
-                <div className={styles.button}>
-            <a
-                href={pdfUrl}
-                onClick={handleDownload}
-                download
-            >        {loading ? (
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
-                            <FontAwesomeIcon icon={faSpinner} style={{ fontSize: '1rem', height: '1rem' }} spin />
-                            <span style={{ marginLeft: '10px' }}>a gerar o PDF...</span>
-                        </div>
-                    ) : (
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <FontAwesomeIcon icon={faDownload}  style={{ fontSize: '1rem', height: '1rem' }} /> 
-                            <span style={{ marginLeft: '10px' }}>Download</span>
-                        </div>
-                    )}
-            </a> 
-               </div>
-            
+            <div className={styles.button}>
+                <a
+                    href={pdfUrl}
+                    onClick={handleDownload}
+                    download
+                >        {loading ? (
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+
+                        <FontAwesomeIcon icon={faSpinner} style={{ fontSize: '1rem', height: '1rem' }} spin />
+                        <span style={{ marginLeft: '10px' }}>a gerar o PDF...</span>
+                    </div>
+                ) : (
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <FontAwesomeIcon icon={faDownload} style={{ fontSize: '1rem', height: '1rem' }} />
+                        <span style={{ marginLeft: '10px' }}>Download</span>
+                    </div>
+                )}
+                </a>
+            </div>
+
         </div>
     );
 }

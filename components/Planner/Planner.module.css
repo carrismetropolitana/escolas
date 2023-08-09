@@ -1,6 +1,7 @@
 .caixa {
     background-color: white;
     border-radius: 20px;
+    margin: 4ch auto;
 }
 
 .caixa img {

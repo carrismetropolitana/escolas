@@ -54,7 +54,6 @@ const ShowSchool = ({ municipality, school, setSchool }) => {
             </div>
 
             <div className={styles.info}>
-                <Planner />
 
                 <DownloadStops
                     schoolInfo={schoolInfo}
@@ -62,6 +61,8 @@ const ShowSchool = ({ municipality, school, setSchool }) => {
                     school={school}
                     stops={stops}
                 />
+
+                <Planner />
 
                 <Pass />
             </div>

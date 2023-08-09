@@ -66,12 +66,16 @@
 }
 
 .stops {
-    padding: 40px;
+    padding: 40px 0px;
     display:block;
     column-count: 2;
-    column-gap: 20px;
+    column-gap: 30px;
     background-color: white;
-    height: 70vh;
+}
+
+.stops > div {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 @media print {
@@ -82,8 +86,12 @@
     .content-container:not(:first-of-type) {
         margin-top: 40mm; /* Set top margin for content containers from the second page onward */
     }
+
+    .body::before {
+        content: "Página " counter(page) " de " counter(pages);
+    }
 }
 @page {
     size: A4; /* Set the paper size for printing (e.g., A4, letter) */
-    margin: 20mm; /* Set page margins (top, right, bottom, left) */
+    margin: 10mm; /* Set page margins (top, right, bottom, left) */
 }

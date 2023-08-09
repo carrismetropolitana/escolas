@@ -46,6 +46,27 @@ export default function Folheto() {
 
   const componentRef = useRef();
 
+  useEffect(() => {
+    window.onload = function () {
+      // Update page count on each printed page
+      window.onbeforeprint = function () {
+        var pageCount = document.querySelectorAll('.page-number');
+        for (var i = 0; i < pageCount.length; i++) {
+          pageCount[i].setAttribute('style', 'counter-increment: page;');
+        }
+      };
+
+      // Reset page count after printing is canceled or completed
+      window.onafterprint = function () {
+        var pageCount = document.querySelectorAll('.page-number');
+        for (var i = 0; i < pageCount.length; i++) {
+          pageCount[i].setAttribute('style', 'counter-reset: page;');
+        }
+      };
+    };
+  }, []);
+
+
   return (
 
     <div className={styles.body}>

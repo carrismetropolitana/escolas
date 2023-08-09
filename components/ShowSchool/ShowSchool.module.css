@@ -13,8 +13,12 @@
     border-radius: 20px;
 }
 
-.stops > div:first-child ~ div {
-    padding: 0 20px 20px 20px;
+.stops > div {
+    padding: 0 20px;
+}
+
+.stops >div:last-child {
+    padding-bottom: 20px;
 }
 
 .info {

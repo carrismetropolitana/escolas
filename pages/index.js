@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import Layout, { siteTitle } from '../components/Layout/layout';
+import Layout from '../components/Layout/layout';
 import SelectMunicipalityAndSchool from '../components/SelectMunicipalityAndSchool/SelectMunicipalityAndSchool';
 import ShowSchool from '../components/ShowSchool/ShowSchool';
 
@@ -11,7 +11,7 @@ export default function Home() {
   const [school, setSchool] = useState(null);
 
   return (
-    <Layout home>
+    <Layout>
       
       {!school ?
 

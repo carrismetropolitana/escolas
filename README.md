@@ -18,51 +18,46 @@ Based on starter template for [Learn Next.js](https://nextjs.org/learn).
 
 ## APIs da TML usadas
 
-### listagem de municipios
+existem duas APIs:
+* `api.carrismetropolitana.pt`
+* `schedules.carrismetropolitana.pt`. Esta API é usada apenas para obter info duma paragem (stop) relativa às suas routes (numero e nome). A API api apenas fornece o numero da linha, e não seu nome. 
+
+
+### endpoint para listagem de municipios
 `api.carrismetropolitana.pt/municipalities`
 
-### listagem de escolas e universidades de um município
+### endpoint para listagem de escolas e universidades de um município
 `api.carrismetropolitana.pt/facilities`
 * filtrar facilities por school ou university e municipio
 
-### informação da escola 
+### endpoint para informação da escola 
 `api.carrismetropolitana.pt/facilities/{facilities_id}`
-da escola escolhida, extrair objeto que tem:
+permite extrair da escola escolhida, um objeto que tem:
 * nome da escola, coordenadas
-* lista de paragens vizinhas
+* lista de paragens vizinhas (stops)
 
-### informação de cada paragem 
+### endpoint para informação de cada paragem (usa api schedules)
 `https://schedules.carrismetropolitana.pt/api/stops/{stop_id}`
-extrair info de uma paragem:
-* nome da paragem, numero, coordenadas, 
-* linhas que passam
+permite extrair info de uma paragem:
+* nome da paragem (stop_name), stop_id, coordenadas (stop_lon, stop_lat) 
+* info das routes que passam na paragem: numero (route_short_name) e nome (route_long_name)
 
-### Lista de APIs
-existem duas APIs:
-* schedules.carrismetropolitana.pt
-* api.carrismetropolitana.pt
-
-tem semelhanças, mas nalgumas teem coisas q não existem noutras.
-verificar qual será a final. 
+## Outras APIs
 
 * [https://github.com/carrismetropolitana/schedules-api](https://github.com/carrismetropolitana/schedules-api)
-* https://schedules.carrismetropolitana.pt/api/stops
-* api.carrismetropolitana.pt/municipalities
-* api.carrismetropolitana.pt/facilities
-* api.carrismetropolitana.pt/facilities/{facilities_id}
-* api.carrismetropolitana.pt/stops
+* api.carrismetropolitana.pt/stops, que so indica numer das linhas, não seu nome. 
 * api.carrismetropolitana.pt/stops/{stop_id}
 * api.carrismetropolitana.pt/patterns/{pattern_id}
 * api.carrismetropolitana.pt/lines
 
 
-# API cmescola no PYthonAnyWhere
+# API cmescola no PythonAnyWhere
 foi desenvolvida uma API teste, antes de estarem disponiveis as APIs da TML:
 * `https://cmescola.pythonanywhere.com/` 
 * username: cmescola
 * pwd: cmescola
 
-###  **enpoint: municípios**
+###  **enpoint: /municipios**
 
 * [https://cmescola.pythonanywhere.com/municipios](https://cmescola.pythonanywhere.com/municipios)
 * **exemplo**: `{"municipios": [{"id": 4, "nome": "Alcochete"}, {"id": 1, "nome": "Almada"}, {"id": 13, "nome": "Amadora"}, {"id": 14, "nome": "Cascais"}, {"id": 15, "nome": "Lisboa"}, {"id": 9, "nome": "Loures"}, {"id": 11, "nome": "Mafra"}, {"id": 5, "nome": "Moita"}, {"id": 6, "nome": "Montijo"}, {"id": 10, "nome": "Odivelas"}, {"id": 16, "nome": "Oeiras"}, {"id": 7, "nome": "Palmela"}, {"id": 2, "nome": "Seixal"}, {"id": 3, "nome": "Sesimbra"}, {"id": 8, "nome": "Set\u00fabal"}, {"id": 17, "nome": "Sintra"}, {"id": 12, "nome": "Vila Franca de Xira"}]}`

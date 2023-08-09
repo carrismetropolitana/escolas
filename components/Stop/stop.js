@@ -41,7 +41,10 @@ const Stop = ({ stop }) => {
 
       {stop.routes.map((route, route_index) => (
 
-        <div key={route_index} className={styles.caixa}>
+        <div 
+          key={route_index} 
+          className={styles.caixa}   
+        >
 
           <span className={styles.numero} style={{ backgroundColor: route.route_color }}>
             {route.route_short_name}

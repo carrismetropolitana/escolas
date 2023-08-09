@@ -41,20 +41,25 @@ const Stop = ({ stop }) => {
 
       {stop.routes.map((route, route_index) => (
 
-        <div 
-          key={route_index} 
-          className={styles.caixa}   
+        <div
+          key={route_index}
+          className={styles.caixa}
         >
-
-          <span className={styles.numero} style={{ backgroundColor: route.route_color }}>
-            {route.route_short_name}
-          </span>
-
+          <a
+            href={`https://www.carrismetropolitana.pt/horarios/?route_short_name=${route.route_short_name}&date=&route_id=${route.route_id}&stop_id=${stop.stop_id}`}
+            target="_blank"
+          >
+            <span className={styles.numero} style={{ backgroundColor: route.route_color }}>
+              {route.route_short_name}
+            </span>
+          </a>
+          
           <span className={styles.routeName}>
             {toTitleCase(route.route_long_name)}
           </span>
 
         </div>
+
       ))}
     </>
   );

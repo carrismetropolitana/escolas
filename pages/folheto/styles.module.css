@@ -71,6 +71,7 @@
     column-count: 2;
     column-gap: 20px;
     background-color: white;
+    height: 70vh;
 }
 
 @media print {

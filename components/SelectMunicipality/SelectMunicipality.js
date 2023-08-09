@@ -11,7 +11,7 @@ const SelectMunicipality = ({ municipality, setMunicipality }) => {
 
     return (
         <div className={styles.container}>
-            <p>Selecione um município:</p>
+            {/* <div>Selecione um município:</div> */}
             
             {municipalities && (   // renders only with municipalities
                 <Select
@@ -25,7 +25,7 @@ const SelectMunicipality = ({ municipality, setMunicipality }) => {
                     menuPlacement="bottom"
                     menuPosition="auto"
                     styles={selectStyles}
-                    placeholder="escolha ou digite o município"
+                    placeholder="Escolha ou digite um Município"
                     value={municipality}
                 />
             )}

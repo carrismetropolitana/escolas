@@ -18,7 +18,7 @@ const SelectMunicipalityAndSchool = ({ municipality, setMunicipality, school, se
   return (
     <>
       <p className={styles.frase}>
-        Saiba mais como chegar, com a Carris Metropolitana, <br></br> à sua escola ou universidade
+        Saiba como chegar, com a Carris Metropolitana, <br></br> à sua escola ou universidade
       </p>
 
       <main className={styles.main}>

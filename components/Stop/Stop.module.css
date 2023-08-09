@@ -1,10 +1,10 @@
 .caixa {
     border-radius: 20px;
     margin: 5px 0; 
-    padding: 0; 
+    padding: 0 20px;
     display: flex;
     justify-content: flex-start; 
-    align-items: flex-start;
+    align-items:center;
 }
 
 .linha {
@@ -44,7 +44,7 @@
     font-weight: bold;
     border-radius: 20px;
     padding: 0 11px; 
-    width: 6.2ch;
+    /* width: 6.2ch; */
     color: white;
     font-size: 13px;
 }
@@ -54,5 +54,6 @@
     padding-left: 5px;
     font-size:13px;
     text-align: left;
+    color: black;
 }
 

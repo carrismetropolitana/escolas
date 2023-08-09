@@ -15,7 +15,7 @@ const SelectSchool = ({ municipality, setSchool }) => {
 
     return (
         <div className={styles.container}>
-            <p>Selecione uma instituição de ensino:</p>
+            {/* <div>Selecione uma instituição de ensino:</div> */}
 
             <Select
                 key="schools-key"
@@ -24,7 +24,7 @@ const SelectSchool = ({ municipality, setSchool }) => {
                 menuPlacement="bottom"
                 menuPosition="auto" 
                 styles={selectStyles} 
-                placeholder={`escolha ou digite a instituição`} 
+                placeholder={`Escolha ou digite a instituição`} 
                 onChange={setSchool}
             />
 

@@ -1,4 +1,3 @@
-import Select from 'react-select';
 import Titles from '../Titles/Titles'
 import Planner from '../Planner/Planner'
 import BackHome from '../BackHome/BackHome'
@@ -11,17 +10,17 @@ import Pass from '../Pass/Pass'
 
 import styles from './ShowSchool.module.css'
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect } from 'react';
 
 const ShowSchool = ({ municipality, school, setSchool }) => {
 
     const schoolInfo = getSchoolInfo(school);
     const stops = getStops(schoolInfo);
 
-    console.log('schoolInfo', schoolInfo)
-    console.log('stops', stops)
-    console.log('municipality', municipality)
-    console.log('school', school)
+    console.log('municipality:', municipality)
+    console.log('school:', school)
+    console.log('schoolInfo:', schoolInfo)
+    console.log('stops:', stops)
 
     return (
         <div className={styles.main}>

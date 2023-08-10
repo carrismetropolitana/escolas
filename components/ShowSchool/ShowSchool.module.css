@@ -5,6 +5,7 @@
 .map {
     grid-area: map; 
     background-color: rgb(243, 241, 199);
+    margin-bottom: 3rem;
 }
 
 .stops {
@@ -37,7 +38,7 @@
     'stops  info'
     'back   back';
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: auto 300px auto auto;
+    grid-template-rows: auto 500px auto auto;
     gap:20px;
 }
 
@@ -52,7 +53,7 @@
         'info'
         'back';
         grid-template-columns: 1fr;
-        grid-template-rows: auto 300px auto auto auto auto;
+        grid-template-rows: auto 500px auto auto auto auto;
         gap:20px;
     }
 

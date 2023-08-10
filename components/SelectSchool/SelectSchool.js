@@ -11,6 +11,9 @@ const SelectSchool = ({ municipality, setSchool }) => {
 
     const schools = useSchools(municipality);
     
+    if(schools == [] || schools.length == 0) 
+        return null;
+
     const customNoOptionsMessage = () => `${municipality.label} não tem escolas`;
 
     return (

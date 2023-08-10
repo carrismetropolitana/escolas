@@ -24,8 +24,8 @@ const DownloadStops = ({ schoolInfo, municipality, school, stops }) => {
 
     const pdfUrl = `${urlBase}?${urlParams.toString()}`;
 
-    console.log('pdfUrl', pdfUrl)
-    console.log('urlFolheto', urlFolheto)
+    // console.log('pdfUrl', pdfUrl)
+    // console.log('urlFolheto', urlFolheto)
 
 
     return (

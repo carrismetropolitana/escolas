@@ -1,71 +1,155 @@
-import { MapContainer, Marker, TileLayer, Popup, CircleMarker } from 'react-leaflet';
-import { icon } from 'leaflet';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSchool } from '@fortawesome/free-solid-svg-icons';
-import React, { useEffect, useState } from 'react';
-import styles from './styles.module.css';
+import { useState } from 'react';
+import styles from './Mapa.module.css';
+import Map, { NavigationControl, FullscreenControl, ScaleControl, Marker, Popup } from 'react-map-gl/maplibre';
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
+import { Divider } from '@mantine/core';
 import Stop from '../Stop/Stop';
 
-const Mapa = ({ latitude, longitude, escolaNome, paragens }) => {
-    useEffect(() => {
 
-        function toTitleCase(str) {
-            return str.replace(/\b\w+/g, function (match) {
-                return match.charAt(0).toUpperCase() + match.substr(1).toLowerCase();
-            });
-        }
+export default function Mapa({ id, mapStyle, width, height, scrollZoom = true, onClick = () => { }, interactiveLayerIds = [], children, toolbar, latitude, longitude, escolaNome, paragens }) {
 
-        if (!latitude) {
-            return;
-        }
+  // DEFAULTS FOR OSM MAP
+
+  // Bearing, Pitch and Zoom
+  const defaultBearing = 0;
+  const defaultPicth = 0;
+  const defaultZoom = 15;
+
+  // Min and Max Zoom
+  const minZoom = 5;
+  const maxZoom = 18;
+
+  // MAP STYLES
+
+  const styleMap = 'https://maps.carrismetropolitana.pt/styles/default/style.json';
+
+  const styleSatellite = {
+    version: 8,
+    sources: {
+      'raster-tiles': {
+        type: 'raster',
+        tiles: ['https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+        tileSize: 256,
+        attribution:
+          'Map tiles by <a target="_top" rel="noopener" href="http://stamen.com">Stamen Design</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a target="_top" rel="noopener" href="http://openstreetmap.org">OpenStreetMap</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>',
+      },
+    },
+    layers: [
+      {
+        id: 'simple-tiles',
+        type: 'raster',
+        source: 'raster-tiles',
+      },
+    ],
+  };
+
+  //
+  // EXPORT SINGLE OBJECT
+
+  const osmMapDefaults = {
+    center: [longitude, latitude],
+    initialViewState: { longitude: longitude, latitude: latitude, bearing: defaultBearing, pitch: defaultPicth, zoom: defaultZoom },
+    viewport: { center: [longitude, latitude], bearing: defaultBearing, pitch: defaultPicth, zoom: defaultZoom },
+    styles: { default: styleMap, map: styleMap, satellite: styleSatellite },
+    minZoom: minZoom,
+    maxZoom: maxZoom,
+  };
+
+  // variables to toggle the popup
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const handleMarkerClick = () => {
+    setIsPopupOpen(!isPopupOpen); // Toggle the popup state
+  };
+
+  const [selectedStop, setSelectedStop] = useState(null);
+  const handleStopMarkerClick = (paragem) => {
+    setSelectedStop(paragem);
+  };
 
 
-        const schoolIcon = L.divIcon({
-            className: 'custom-icon',
-            html: '<svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M337.8 5.4C327-1.8 313-1.8 302.2 5.4L166.3 96H48C21.5 96 0 117.5 0 144V464c0 26.5 21.5 48 48 48H592c26.5 0 48-21.5 48-48V144c0-26.5-21.5-48-48-48H473.7L337.8 5.4zM256 416c0-35.3 28.7-64 64-64s64 28.7 64 64v96H256V416zM96 192h32c8.8 0 16 7.2 16 16v64c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16V208c0-8.8 7.2-16 16-16zm400 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v64c0 8.8-7.2 16-16 16H512c-8.8 0-16-7.2-16-16V208zM96 320h32c8.8 0 16 7.2 16 16v64c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16V336c0-8.8 7.2-16 16-16zm400 16c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v64c0 8.8-7.2 16-16 16H512c-8.8 0-16-7.2-16-16V336zM232 176a88 88 0 1 1 176 0 88 88 0 1 1 -176 0zm88-48c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H336V144c0-8.8-7.2-16-16-16z"/></svg>',
-        });
+  //
+  // rendered content
 
-        const stopIcon = {
-            radius: 6,
-            fillColor: '#ffdd01',
-            color: 'black',
-            weight: 1,
-            fillOpacity: 1,
-        };
+  return (
+    <div className={styles.container} style={{ width: width || '100%', height: height || '100%' }}>
+      <Map
+        id={`${id}Map`}
+        mapLib={maplibregl}
+        initialViewState={osmMapDefaults.initialViewState}
+        minZoom={osmMapDefaults.minZoom}
+        maxZoom={osmMapDefaults.maxZoom}
+        scrollZoom={scrollZoom}
+        mapStyle={osmMapDefaults.styles[mapStyle] || osmMapDefaults.styles.default}
+        style={{ width: width || '100%', height: height || '100%' }}
+        onClick={onClick}
+        interactive={interactiveLayerIds ? true : false}
+        interactiveLayerIds={interactiveLayerIds}
+        attributionControl={false}
+      >
 
-        return (
-            <div>
-                <MapContainer
-                    center={[latitude, longitude]}
-                    zoom={16}
-                    style={{ height: '600px' }}
-                >
-                    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <Marker latitude={latitude} longitude={longitude}>
 
-                    <Marker position={[parseFloat(latitude), parseFloat(longitude)]} icon={schoolIcon}>
-                        <Popup>
-                            {escolaNome}
-                        </Popup>
-                    </Marker>
+          <div
+            className={styles.customMarker}
+            onMouseOver={handleMarkerClick}
+            onMouseOut={handleMarkerClick}
+          >
+            <img src="/images/escola.png" alt="escola" className={styles.markerImage} />
+          </div>
 
-                    {paragens.map((paragem, index) => (
-                        <CircleMarker
-                            key={index}
-                            center={[parseFloat(paragem.stop_lat), parseFloat(paragem.stop_lon)]}
-                            pathOptions={stopIcon}
-                        >
-                            <Popup>
-                                <Stop paragem={paragem} />
-                            </Popup>
-                        </CircleMarker>
-                    ))}
+          {isPopupOpen && (
+            <Popup
+              latitude={latitude}
+              longitude={longitude}
+              closeButton={true}
+              closeOnClick={false}
+              onClose={() => setIsPopupOpen(false)}
+            >
+              <div>
+                <h3>{escolaNome}</h3>
+              </div>
+            </Popup>
+          )}
 
-                </MapContainer>
+        </Marker>
+
+        {paragens.map((paragem, index) => (
+          <Marker
+            key={index}
+            latitude={parseFloat(paragem.stop_lat)}
+            longitude={parseFloat(paragem.stop_lon)}
+          >
+            <div
+              className={styles.circleMarker}
+              onMouseOver={() => handleStopMarkerClick(paragem)}
+            >
             </div>
-        );
-    }, []);
-};
+          </Marker>
+        ))}
 
+        {selectedStop && (
+          <Popup
+            latitude={parseFloat(selectedStop.stop_lat)}
+            longitude={parseFloat(selectedStop.stop_lon)}
+            onClose={() => setSelectedStop(null)}
+            closeOnClick={true}
+            className={styles.popup}
+          >
+           <Stop stop={selectedStop} />
+          </Popup>
+        )}
 
+        <NavigationControl />
+        <FullscreenControl />
+        {children}
 
-export default Mapa;
+        <ScaleControl maxWidth={200} unit="metric" />
+
+      </Map>
+      <Divider />
+      {toolbar && <div className={styles.toolbar}>{toolbar}</div>}
+    </div>
+  );
+}

@@ -1,28 +1,27 @@
 import Titles from '../Titles/Titles'
 import Planner from '../Planner/Planner'
 import BackHome from '../BackHome/BackHome'
-// import Mapa from '../Mapa/Mapa'
+import Mapa from '../Mapa/Mapa'
 import getStops from './getStops'
 import getSchoolInfo from './getSchoolInfo'
 import Stops from '../Stops/Stops';
 import DownloadStops from '../DownloadStops/DownloadStops'
 import Pass from '../Pass/Pass'
 
+import { Switch, SegmentedControl } from '@mantine/core';
+
 import styles from './ShowSchool.module.css'
 
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 
 const ShowSchool = ({ municipality, school, setSchool }) => {
 
     const schoolInfo = getSchoolInfo(school);
     const stops = getStops(schoolInfo);
 
-    console.log('municipality:', municipality)
-    console.log('school:', school)
-    console.log('schoolInfo:', schoolInfo)
-    console.log('stops:', stops)
+    const [mapStyle, setMapStyle] = useState('map');
 
-    return (
+    return (schoolInfo && (
         <div className={styles.main}>
 
             <div className={styles.titles}>
@@ -34,15 +33,32 @@ const ShowSchool = ({ municipality, school, setSchool }) => {
             </div>
 
             <div className={styles.map}>
-                Mapa
-                {/* {schoolInfo && (
+
                 <Mapa
-                        latitude={schoolInfo.lat}
-                        longitude={schoolInfo.lon}
-                        escolaNome={schoolInfo.name}
-                        paragens={stops}
-                    />
-                )} */}
+                    id='patternShape'
+                    height={500}
+                    scrollZoom={false}
+                    mapStyle={mapStyle}
+                    toolbar={
+                        <>
+                            <SegmentedControl
+                                value={mapStyle}
+                                onChange={setMapStyle}
+                                size='xs'
+                                data={[
+                                    { label: 'Map', value: 'map' },
+                                    { label: 'Satellite', value: 'satellite' },
+                                ]}
+                            />
+                        </>
+                    }
+                    latitude={schoolInfo.lat}
+                    longitude={schoolInfo.lon}
+                    escolaNome={schoolInfo.name}
+                    paragens={stops}
+                >
+                </Mapa>
+
             </div>
 
             <div className={styles.stops}>
@@ -72,7 +88,7 @@ const ShowSchool = ({ municipality, school, setSchool }) => {
                 />
             </div>
         </div>
-
+    )
     );
 };
 

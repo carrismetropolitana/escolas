@@ -9,19 +9,18 @@ const SelectMunicipality = ({ municipality, setMunicipality }) => {
 
     const municipalities = useMunicipalities();
 
+    const customNoOptionsMessage = () =>  `Município inexistente`;
+
     return (
         <div className={styles.container}>
             {/* <div>Selecione um município:</div> */}
             
-            {municipalities && (   // renders only with municipalities
+            {municipalities && (
                 <Select
                     key="municipalities-key"
-                    options={municipalities}
-                    
-                    // executes function setMunicipality(value), 
-                    // where value is the selected municipality 
+                    options={municipalities}                    
                     onChange={setMunicipality}  
-                    
+                    noOptionsMessage={customNoOptionsMessage}
                     menuPlacement="bottom"
                     menuPosition="auto"
                     styles={selectStyles}

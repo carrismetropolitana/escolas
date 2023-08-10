@@ -7,30 +7,35 @@ import selectStyles from './selectStyles';
 import useSchools from './useSchools';
 
 
-const SelectSchool = ({ municipality, setSchool }) => {
+const SelectSchool = ({ municipality, school, setSchool }) => {
 
     const schools = useSchools(municipality);
+
+    const customNoOptionsMessage = () => municipality ? `${municipality.label} não tem escolas` :  `Escola inexistente`;
+
+    // const [error, setError] = useState(false);
+
+    // const handleInputChange = (inputValue) => {
+    //     const exists = schools.some(option => option.value === inputValue);
+    //     setError(!exists);
+    //   };
     
-    if(schools == [] || schools.length == 0) 
-        return null;
-
-    const customNoOptionsMessage = () => `${municipality.label} não tem escolas`;
-
     return (
         <div className={styles.container}>
             {/* <div>Selecione uma instituição de ensino:</div> */}
 
             <Select
                 key="schools-key"
-                options={schools}
+                placeholder={`Escolha ou digite a instituição`}
                 noOptionsMessage={customNoOptionsMessage}
+                options={schools}
+                // onInputChange={handleInputChange} 
+                onChange={setSchool}
                 menuPlacement="bottom"
                 menuPosition="auto" 
                 styles={selectStyles} 
-                placeholder={`Escolha ou digite a instituição`} 
-                onChange={setSchool}
+                value={school}
             />
-
         </div >
     );
 };

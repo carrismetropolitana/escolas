@@ -29,6 +29,7 @@ const SelectMunicipalityAndSchool = ({ municipality, setMunicipality, school, se
 
         <DynamicSelectSchool
           municipality={municipality}
+          school={school}
           setSchool={setSchool}
         />
       </main>

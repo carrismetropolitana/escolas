@@ -1,16 +1,16 @@
 const selectStyles = {
 
-  control: (provided) => ({
+  control: (provided, state) => ({
     ...provided,
     borderRadius: '8px',
     backgroundColor: 'black',
     color: 'white',
     width: '35ch',
     margin: 'auto',
+    marginBottom: '10px',
+    boxShadow: state.isFocused ? '0 0 0 2px #007bff' : 'none', 
     cursor: 'pointer',
     border: '1px solid black',
-    // outline: 'none !important', // not managing to remove the blue border :-( !!!
-    // boxShadow: 'none !important',
   }),
 
   singleValue: (provided) => ({
@@ -40,6 +40,7 @@ const selectStyles = {
   input: (provided) => ({
     ...provided,
     color: 'white', // Set the color of the typed text
+    zIndex: 3,
     // Add other custom styles for the input class if needed.
   }),
 

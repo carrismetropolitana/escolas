@@ -13,7 +13,6 @@ const DownloadStops = ({ schoolInfo, municipality, school, stops }) => {
         setTimeout(() => { setLoading(false); }, 6000); // volta a por o loading a false após 4s 
     };
 
-
     // URL para descarregar PDF
     const urlBase = 'http://localhost:5052/generate-pdf';
     const urlFolheto = `http://localhost:3000/folheto?schoolCode=${schoolInfo?.code}`;

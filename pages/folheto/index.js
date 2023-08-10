@@ -1,27 +1,10 @@
-import Layout, { siteTitle } from '../../components/Layout/layout';
-import Stops from '../../components/Stops/Stops';
-// import PDFDownloadButton from '../components/PDFDownloadButton/PDFDownloadButton';
-import styles from './styles.module.css';
-
-import { useRouter } from 'next/router';
 import React, { useEffect, useState, useRef } from 'react';
+import { useRouter } from 'next/router';
 
 import Head from 'next/head';
-
-import dynamic from 'next/dynamic'; // Import dynamic from next/dynamic
+import Stops from '../../components/Stops/Stops';
 import getStops from './getStops'
-
-
-const PDFDownloadButton = dynamic(() => import('../../components/PDFDownloadButton/PDFDownloadButton'), {
-  ssr: false, // Disable server-side rendering for this component
-});
-
-
-function toTitleCase(str) {
-  return str.replace(/\b\w+/g, function (match) {
-    return match.charAt(0).toUpperCase() + match.substr(1).toLowerCase();
-  });
-}
+import styles from './styles.module.css';
 
 
 export default function Folheto() {
@@ -29,8 +12,8 @@ export default function Folheto() {
   const router = useRouter();
   const { schoolCode } = router.query;
 
+  // descarrega info da escola 
   const [schoolInfo, setschoolInfo] = useState({});
-  // descarrega da API a info da escola 
   useEffect(() => {
 
     fetch(`https://api.carrismetropolitana.pt/facilities/${schoolCode}`)
@@ -41,31 +24,11 @@ export default function Folheto() {
 
   }, [schoolCode]);
 
-
+  // obtem info das paragens 
   const stops = schoolInfo ? getStops(schoolInfo) : '';
 
-  const componentRef = useRef();
-
-  useEffect(() => {
-    window.onload = function () {
-      // Update page count on each printed page
-      window.onbeforeprint = function () {
-        var pageCount = document.querySelectorAll('.page-number');
-        for (var i = 0; i < pageCount.length; i++) {
-          pageCount[i].setAttribute('style', 'counter-increment: page;');
-        }
-      };
-
-      // Reset page count after printing is canceled or completed
-      window.onafterprint = function () {
-        var pageCount = document.querySelectorAll('.page-number');
-        for (var i = 0; i < pageCount.length; i++) {
-          pageCount[i].setAttribute('style', 'counter-reset: page;');
-        }
-      };
-    };
-  }, []);
-
+  //
+  // renderização
 
   return (
 
@@ -95,6 +58,7 @@ export default function Folheto() {
 
       </header>
 
+      <h2>Paragens na proximidade e suas linhas</h2>
 
       <div className={styles.stops}>
         <Stops
@@ -107,7 +71,9 @@ export default function Folheto() {
       <footer className={styles.footer}>
         <img src="/folheto/carris-metropolitana.svg" />
       </footer>
+
     </div>
+
   )
 }
 

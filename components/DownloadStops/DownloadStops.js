@@ -1,3 +1,5 @@
+import BlackHeader from '../BlackHeader/BlackHeader';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner, faDownload } from '@fortawesome/free-solid-svg-icons';
 import React, { useState } from 'react';
@@ -28,33 +30,35 @@ const DownloadStops = ({ schoolInfo, municipality, school, stops }) => {
 
 
     return (
-        <div className={styles.item}>
+        <>
+            <BlackHeader text='Passe navegante' />
+            <div className={styles.item}>
+                <div className={styles.text}>
+                    Descarregue a lista de paragens e linhas aqui:
+                </div>
 
-            <div className={styles.text}>
-                Descarregue a lista de paragens e linhas aqui:
+                <div className={styles.button}>
+                    <a
+                        href={pdfUrl}
+                        onClick={handleDownload}
+                        download
+                    >        {loading ? (
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+
+                            <FontAwesomeIcon icon={faSpinner} style={{ fontSize: '1rem', height: '1rem' }} spin />
+                            <span style={{ marginLeft: '10px' }}>a gerar o PDF...</span>
+                        </div>
+                    ) : (
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <FontAwesomeIcon icon={faDownload} style={{ fontSize: '1rem', height: '1rem' }} />
+                            <span style={{ marginLeft: '10px' }}>Download</span>
+                        </div>
+                    )}
+                    </a>
+                </div>
+
             </div>
-
-            <div className={styles.button}>
-                <a
-                    href={pdfUrl}
-                    onClick={handleDownload}
-                    download
-                >        {loading ? (
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-
-                        <FontAwesomeIcon icon={faSpinner} style={{ fontSize: '1rem', height: '1rem' }} spin />
-                        <span style={{ marginLeft: '10px' }}>a gerar o PDF...</span>
-                    </div>
-                ) : (
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <FontAwesomeIcon icon={faDownload} style={{ fontSize: '1rem', height: '1rem' }} />
-                        <span style={{ marginLeft: '10px' }}>Download</span>
-                    </div>
-                )}
-                </a>
-            </div>
-
-        </div>
+        </>
     );
 }
 

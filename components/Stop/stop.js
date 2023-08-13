@@ -25,7 +25,7 @@ function toTitleCase(str) {
   });
 }
 
-const Stop = ({ stop }) => {
+const Stop = ({ stop, isMap }) => {
 
   return (
     <>
@@ -34,8 +34,10 @@ const Stop = ({ stop }) => {
         <div className={styles.stopHeader}>
           <div className={styles.stopName}>{toTitleCase(stop.stop_name)} </div>
           <div>
-            <span className={styles.bolhaCinza}>#{stop.stop_id}</span>
-            <span className={styles.bolhaCinza}> {stop.stop_lat}, {stop.stop_lon} </span>
+            <span className={styles.bolhaCinza}>
+              <span>#{stop.stop_id}</span>
+            </span>
+            <span className={styles.bolhaCinza}>{stop.stop_lat}, {stop.stop_lon}</span>
           </div>
           <div className={styles.linha}></div>
         </div>
@@ -46,7 +48,10 @@ const Stop = ({ stop }) => {
 
           <div
             key={route_index}
-            className={styles.caixa}
+            className={`
+              ${styles.caixa} 
+              ${!isMap && stop.routes.length - 1 === route_index ? styles.lastLineOfStop : ''}
+            `}
           >
             <a
               href={`https://www.carrismetropolitana.pt/horarios/?route_short_name=${route.route_short_name}&date=&route_id=${route.route_id}&stop_id=${stop.stop_id}`}

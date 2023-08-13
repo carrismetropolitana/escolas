@@ -18,7 +18,7 @@ const SelectMunicipalityAndSchool = ({ municipality, setMunicipality, school, se
   return (
     <>
       <p className={styles.frase}>
-        Saiba como chegar, com a Carris Metropolitana, <br></br> à sua escola ou universidade
+      Pesquise as linhas que servem a sua escola ou universidade.
       </p>
 
       <main className={styles.main}>
@@ -34,7 +34,7 @@ const SelectMunicipalityAndSchool = ({ municipality, setMunicipality, school, se
         />
       </main>
     </>
-  );
+  )
 }
 
 export default SelectMunicipalityAndSchool;

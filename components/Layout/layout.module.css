@@ -5,18 +5,53 @@
 }
 
 .header {
-  margin-top:1rem;
+  margin-top: 1rem;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   gap: 30px;
 }
 
 .bar {
   background: black;
-  height: 2rem;
+  color: #fff;
+  display: flex;
+  color: inherit;
+  text-decoration: none;
 }
+
+
+.bar a {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 0.5rem 5rem 0.5rem 1.6rem;
+  border-right: 1px solid #4b4b4b;
+  text-decoration: none;
+  background: url(/images/menu-circle.svg) no-repeat center right 15px;
+}
+
+@media screen and (max-width: 800px) {
+  .bar a {
+    padding: 0.5rem 3rem 0.5rem 1rem;
+  }
+}
+
+
+.bar a,
+.bar a:hover,
+.bar a:active,
+.bar a:focus,
+.bar button:focus {
+  outline: none;
+}
+
+.bar .active,
+.bar a:hover {
+  background: #2b2b2b url(/images/menu-circle-active.svg) no-repeat center right 15px;
+}
+
 
 .backToHome {
   margin: 3rem auto 0;
@@ -26,7 +61,92 @@
   border-radius: 1rem;
 }
 
-.main{
+@font-face {
+  font-family: 'Greycliff CF';
+  src: url('/fonts/GreycliffCF-ExtraLight.woff') format('woff');
+  /* Add more formats if available */
+  font-weight: 200;
+  /* Adjust as needed */
+  font-style: light;
+  /* Adjust as needed */
+}
+
+@font-face {
+  font-family: 'Greycliff CF';
+  src: url('/fonts/GreycliffCF-Light.woff') format('woff');
+  /* Add more formats if available */
+  font-weight: 300;
+  /* Adjust as needed */
+  font-style: light;
+  /* Adjust as needed */
+}
+
+@font-face {
+  font-family: 'Greycliff CF';
+  src: url('/fonts/GreycliffCF-LightOblique.woff') format('woff');
+  /* Add more formats if available */
+  font-weight: 300;
+  /* Adjust as needed */
+  font-style: oblique;
+  /* Adjust as needed */
+}
+
+@font-face {
+  font-family: 'Greycliff CF';
+  src: url('/fonts/GreycliffCF-Regular.woff') format('woff');
+  /* Add more formats if available */
+  font-weight: 400;
+  /* Adjust as needed */
+  font-style: normal;
+  /* Adjust as needed */
+}
+
+@font-face {
+  font-family: 'Greycliff CF';
+  src: url('/fonts/GreycliffCF-RegularOblique.woff') format('woff');
+  /* Add more formats if available */
+  font-weight: 400;
+  /* Adjust as needed */
+  font-style: oblique;
+  /* Adjust as needed */
+}
+
+@font-face {
+  font-family: 'Greycliff CF';
+  src: url('/fonts/GreycliffCF-DemiBold.woff') format('woff');
+  /* Add more formats if available */
+  font-weight: 500;
+  /* Adjust as needed */
+  font-style: normal;
+  /* Adjust as needed */
+}
+
+
+@font-face {
+  font-family: 'Greycliff CF';
+  src: url('/fonts/GreycliffCF-Bold.woff') format('woff');
+  /* Add more formats if available */
+  font-weight: 700;
+  /* Adjust as needed */
+  font-style: normal;
+  /* Adjust as needed */
+}
+
+@font-face {
+  font-family: 'Greycliff CF';
+  src: url('/fonts/GreycliffCF-Heavy.woff') format('woff');
+  /* Add more formats if available */
+  font-weight: 800;
+  /* Adjust as needed */
+  font-style: normal;
+  /* Adjust as needed */
+}
+
+.main {
   text-align: center;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Greycliff CF', sans-serif;
+}
+
+.bar {
+   font-family: 'Greycliff CF', sans-serif;
 }

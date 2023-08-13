@@ -7,7 +7,7 @@ import { Divider } from '@mantine/core';
 import Stop from '../Stop/Stop';
 
 
-export default function Mapa({ id, mapStyle, width, height, scrollZoom = true, onClick = () => { }, interactiveLayerIds = [], children, toolbar, latitude, longitude, escolaNome, paragens }) {
+export default function Mapa({ id, mapStyle, width, height, scrollZoom = true, onClick = () => { }, interactiveLayerIds = [], children, toolbar, latitude, longitude, schoolInfo, stops }) {
 
   // DEFAULTS FOR OSM MAP
 
@@ -64,8 +64,8 @@ export default function Mapa({ id, mapStyle, width, height, scrollZoom = true, o
   };
 
   const [selectedStop, setSelectedStop] = useState(null);
-  const handleStopMarkerClick = (paragem) => {
-    setSelectedStop(paragem);
+  const handleStopMarkerClick = (stop) => {
+    setSelectedStop(stop);
   };
 
 
@@ -108,22 +108,23 @@ export default function Mapa({ id, mapStyle, width, height, scrollZoom = true, o
               onClose={() => setIsPopupOpen(false)}
             >
               <div>
-                <h3>{escolaNome}</h3>
+                <h3>{schoolInfo.name}</h3>
+                <p>{schoolInfo.address}</p>
               </div>
             </Popup>
           )}
 
         </Marker>
 
-        {paragens.map((paragem, index) => (
+        {stops.map((stop, index) => (
           <Marker
             key={index}
-            latitude={parseFloat(paragem.stop_lat)}
-            longitude={parseFloat(paragem.stop_lon)}
+            latitude={parseFloat(stop.stop_lat)}
+            longitude={parseFloat(stop.stop_lon)}
           >
             <div
               className={styles.circleMarker}
-              onMouseOver={() => handleStopMarkerClick(paragem)}
+              onMouseOver={() => handleStopMarkerClick(stop)}
             >
             </div>
           </Marker>
@@ -137,7 +138,7 @@ export default function Mapa({ id, mapStyle, width, height, scrollZoom = true, o
             closeOnClick={true}
             className={styles.popup}
           >
-           <Stop stop={selectedStop} />
+           <Stop stop={selectedStop} isMap={true} />
           </Popup>
         )}
 

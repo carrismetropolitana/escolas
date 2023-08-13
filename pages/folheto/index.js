@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 
 import Head from 'next/head';
+import Titles from '../../components/Titles/Titles';
 import Stops from '../../components/Stops/Stops';
 import getStops from './getStops'
 import styles from './styles.module.css';
@@ -42,23 +43,33 @@ export default function Folheto() {
       <header className={styles.header}>
 
         <div className={styles.esquerda}>
-
-          <div className={styles.textoGrande}>
-            Sabias que tens <br></br>autocarro à porta?
-          </div>
-          <div className={styles.textoPequeno}>
-            A Carris Metropolitana passa na <br></br>{schoolInfo.name}
-          </div>
-
+          <img src="/images/logo.png" />
         </div>
 
         <div className={styles.direita}>
-          <img src="/images/logo.png" height="150px" />
+
+          <div className={styles.textoGrande}>
+            Carris Metropolitana mais próxima das escolas
+          </div>
+          <div className={styles.textoPequeno}>
+            O teu regresso às aulas vai correr sobre rodas
+          </div>
+
         </div>
 
       </header>
 
-      <h2>Paragens na proximidade e suas linhas</h2>
+      <div className={styles.info}>
+
+        <div className={styles.municipio}>
+          <div> {schoolInfo.municipality_name} </div>
+        </div>
+        <div className={styles.escola}>
+          <div> {schoolInfo.name} </div>
+        </div>
+
+      </div>
+
 
       <div className={styles.stops}>
         <Stops
@@ -66,11 +77,11 @@ export default function Folheto() {
           stops={stops}
         />
       </div>
-
+{/* 
 
       <footer className={styles.footer}>
         <img src="/folheto/carris-metropolitana.svg" />
-      </footer>
+      </footer> */}
 
     </div>
 

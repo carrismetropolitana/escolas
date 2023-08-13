@@ -11,25 +11,29 @@ function toTitleCase(str) {
 
 
 const Stops = ({ school, stops }) => {
-    
+
     if (!stops || stops.length === 0) {
         return <p></p>;
     }
 
     return (
-        <> 
-        {/* <div className={styles.container} > */}
-            
-            <BlackHeader 
-            text={`Paragens que servem a instituição: ${school.name}`}
+        <>
+            {/* <div className={styles.container} > */}
+
+            <BlackHeader
+                text={`Paragens que servem a ${school.name}`}
             />
 
-            <>
-                {stops.map((stop, index) => (            
-                    <Stop key={index} stop={stop} />
+            <div className={styles.listOfStops}>
+                {stops.map((stop, index) => (
+                    <Stop
+                        key={index}
+                        stop={stop}
+                        isMap={false}
+                    />
                 ))}
-            </>
-            
+            </div>
+
         </>
     );
 };

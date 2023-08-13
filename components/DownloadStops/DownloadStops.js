@@ -23,8 +23,8 @@ const DownloadStops = ({ schoolInfo, municipality, school, stops }) => {
 
     const pdfUrl = `${urlBase}?${urlParams.toString()}`;
 
-    // console.log('pdfUrl', pdfUrl)
-    // console.log('urlFolheto', urlFolheto)
+    console.log('pdfUrl', pdfUrl)
+    console.log('urlFolheto', urlFolheto)
 
 
     return (
@@ -33,7 +33,6 @@ const DownloadStops = ({ schoolInfo, municipality, school, stops }) => {
             <div className={styles.text}>
                 Descarregue a lista de paragens e linhas aqui:
             </div>
-
 
             <div className={styles.button}>
                 <a

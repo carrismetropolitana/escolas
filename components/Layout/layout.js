@@ -8,11 +8,11 @@ export const siteTitle = 'Escolas';
 
 export default function Layout({ children, home }) {
     return (
-        <div className={styles.container}>
+        <div>
 
             <Head>
                 <title>CM Escolas</title>
-                <link rel="icon" href="/cm.png" />
+                <link rel="icon" href="/images/cm.png" />
                 <meta
                     name="description"
                     content="Saiba as linhas que existem perto duma escola"
@@ -20,34 +20,39 @@ export default function Layout({ children, home }) {
                 <meta name="og:title" content={siteTitle} />
             </Head>
 
-            <div className={styles.bar}></div>
+            <div className={styles.bar}>
+                <a href="//www.tmlmobilidade.pt/">TML</a>
+                <a href="//www.carrismetropolitana.pt/" className={styles.active}>Carris Metropolitana</a>
+                <a href="//www.navegante.pt/">navegante</a>
+            </div>
 
-            <header className={styles.header}>
+            <div className={styles.container}>
+                <header className={styles.header}>
 
-            <Image
-                    priority
-                    src="/images/logo.png"
-                    height={180}
-                    width={180}
-                    alt="Logotipo Carris Metropolitana"
-                />
-                <Image
-                    priority
-                    src="/images/carris-metropolitana.svg"
-                    height={58}
-                    width={180}
-                    alt="Logotipo Carris Metropolitana"
-                />
+                    <Image
+                        priority
+                        src="/images/logo.png"
+                        height={100}
+                        width={100}
+                        alt="Logotipo Carris Metropolitana próxima das escolas"
+                    />
+                    <Image
+                        priority
+                        src="/images/carris-metropolitana.svg"
+                        height={58}
+                        width={180}
+                        alt="Logotipo Carris Metropolitana"
+                    />
 
-            </header>
+                </header>
 
-            <main className={styles.main}>
+                <main className={styles.main}>
 
-                {children}
+                    {children}
 
-            </main>
+                </main>
+            </div>
+
         </div>
-
-
-    );
+    )
 }

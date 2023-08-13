@@ -4,15 +4,15 @@ import BackHome from '../BackHome/BackHome'
 import Mapa from '../Mapa/Mapa'
 import getStops from './getStops'
 import getSchoolInfo from './getSchoolInfo'
-import Stops from '../Stops/Stops';
+import Stops from '../Stops/Stops'
 import DownloadStops from '../DownloadStops/DownloadStops'
 import Pass from '../Pass/Pass'
 
-import { Switch, SegmentedControl } from '@mantine/core';
+import { Switch, SegmentedControl } from '@mantine/core'
 
 import styles from './ShowSchool.module.css'
 
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 const ShowSchool = ({ municipality, school, setSchool }) => {
 
@@ -54,8 +54,8 @@ const ShowSchool = ({ municipality, school, setSchool }) => {
                     }
                     latitude={schoolInfo.lat}
                     longitude={schoolInfo.lon}
-                    escolaNome={schoolInfo.name}
-                    paragens={stops}
+                    schoolInfo={schoolInfo}
+                    stops={stops}
                 >
                 </Mapa>
 
@@ -89,7 +89,7 @@ const ShowSchool = ({ municipality, school, setSchool }) => {
             </div>
         </div>
     )
-    );
-};
+    )
+}
 
 export default ShowSchool;

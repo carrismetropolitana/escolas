@@ -28,8 +28,9 @@ function toTitleCase(str) {
 const Stop = ({ stop, isMap }) => {
 
   return (
-          // <div className={styles.stop}>
-    <> 
+
+    <div className={`styles.stop ${stop.routes.length < 5 ? styles.stopPoucasLinhas : '' }`}> 
+    {/* <div className={styles.stop}>  */}
       {stop && stop.stop_name ? (
 
         <div className={styles.stopHeader}>
@@ -51,7 +52,7 @@ const Stop = ({ stop, isMap }) => {
             key={route_index}
             className={`
               ${styles.caixa} 
-              ${!isMap && stop.routes.length - 1 === route_index ? styles.lastLineOfStop : ''}
+              // ${!isMap && stop.routes.length - 1 === route_index ? styles.lastLineOfStop : ''}
             `}
           >
             <a
@@ -71,8 +72,7 @@ const Stop = ({ stop, isMap }) => {
 
         ))
       ) : null}
-    </>
-      // </div>
+    </div>
   );
 }
 export default Stop;

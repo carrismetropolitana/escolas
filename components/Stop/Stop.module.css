@@ -1,4 +1,8 @@
-.stop{
+.stop {
+    margin-bottom: 2rem;
+}
+
+.stopPoucasLinhas {
     break-inside: avoid;
 }
 
@@ -9,6 +13,7 @@
     display: flex;
     justify-content: flex-start; 
     align-items:center;
+    break-inside: avoid;
 }
 
 .caixa a {

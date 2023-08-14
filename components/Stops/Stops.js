@@ -21,7 +21,7 @@ const Stops = ({ school, stops }) => {
             {/* <div className={styles.container} > */}
 
             <BlackHeader
-                text={`Paragens que servem a ${school.name}`}
+                text={`Paragens e linhas que servem a ${school.name}`}
             />
 
             <div className={styles.listOfStops}>

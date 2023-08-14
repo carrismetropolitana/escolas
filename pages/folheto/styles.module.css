@@ -128,27 +128,15 @@
     padding-right: 60px;
 }
 
-@media print {
-    .content-container:first-of-type {
-        page-break-before: auto; /* Reset page break for the first content container */
-    }
-
-    .content-container:not(:first-of-type) {
-        margin-top: 40mm; /* Set top margin for content containers from the second page onward */
-    }
-
-    .body::before {
-        content: "Página " counter(page) " de " counter(pages);
-    }
-}
 @page {
-    size: A4; /* Set the paper size for printing (e.g., A4, letter) */
-    margin: 20mm 0 20mm 0; /* Set page margins (top, right, bottom, left) */
+    size: A4; 
+    margin: 20mm 0 20mm 0; 
 }
 
-@page :first {
-    margin: 0 0 20mm 0; /* Adjust margins as needed */
-}
+/* @page:first {
+    size: A4; 
+    margin: 0 0 20mm 0; 
+} */
 
 @font-face {
     font-family: 'Greycliff CF';

@@ -31,10 +31,10 @@ const DownloadStops = ({ schoolInfo, municipality, school, stops }) => {
 
     return (
         <>
-            <BlackHeader text='Passe navegante' />
+            <BlackHeader text='Descarregue PDF' />
             <div className={styles.item}>
                 <div className={styles.text}>
-                    Descarregue a lista de paragens e linhas aqui:
+                    Descarregue um PDF com a lista de paragens e linhas:
                 </div>
 
                 <div className={styles.button}>
@@ -51,7 +51,7 @@ const DownloadStops = ({ schoolInfo, municipality, school, stops }) => {
                     ) : (
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             <FontAwesomeIcon icon={faDownload} style={{ fontSize: '1rem', height: '1rem' }} />
-                            <span style={{ marginLeft: '10px' }}>Download</span>
+                            <span style={{ marginLeft: '10px' }}>Descarregar PDF</span>
                         </div>
                     )}
                     </a>

@@ -38,6 +38,10 @@
     text-align: center;
 }
 
+
+/*               
+      ${!isMap && stop.routes.length - 1 === route_index ? styles.lastLineOfStop : ''} 
+*/
 .lastLineOfStop {
     margin-bottom: 2rem;
 }

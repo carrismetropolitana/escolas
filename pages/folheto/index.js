@@ -13,7 +13,7 @@ export default function Folheto() {
   const router = useRouter();
   const { schoolCode } = router.query;
 
-  // descarrega info da escola 
+  // descarrega info da escola
   const [schoolInfo, setschoolInfo] = useState({});
   useEffect(() => {
 
@@ -25,7 +25,7 @@ export default function Folheto() {
 
   }, [schoolCode]);
 
-  // obtem info das paragens 
+  // obtem info das paragens
   const stops = schoolInfo ? getStops(schoolInfo) : '';
 
   //
@@ -38,6 +38,9 @@ export default function Folheto() {
       <Head>
         <title>Folheto Informativo</title>
         <link rel="icon" href="/cm.png" />
+        <style jsx>{`
+          body {background: white;}
+        `}</style>
       </Head>
 
       <header className={styles.header}>
@@ -76,12 +79,10 @@ export default function Folheto() {
           school={schoolInfo}
           stops={stops}
         />
-      </div>
-{/* 
 
-      <footer className={styles.footer}>
-        <img src="/folheto/carris-metropolitana.svg" />
-      </footer> */}
+      </div>
+
+      {/* <div className={styles.pageNumber}></div> */}
 
     </div>
 

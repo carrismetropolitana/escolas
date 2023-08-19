@@ -1,3 +1,12 @@
+@page {
+    size: A4;
+    margin: 20mm 0;
+}
+
+/* @page:first {
+    margin-top: 0mm; 
+} */
+
 .body,
 .main,
 .footer {
@@ -18,7 +27,6 @@
     align-items: center;
     gap: 1rem;
     padding: 2.5rem;
-    /* margin-top: -20mm; */
 }
 
 .esquerda img {
@@ -43,7 +51,7 @@
     font-weight: 500;
 }
 
-.info { 
+.info {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
@@ -51,7 +59,8 @@
 
 }
 
-.municipio, .escola {
+.municipio,
+.escola {
     border-radius: 0.3rem;
     border: 1px solid black;
     display: flex;
@@ -84,7 +93,7 @@
 .container>div {
     margin-bottom: 1rem;
     font-size: 10px;
-    background-color: white!important;
+    background-color: white !important;
 }
 
 .bolhaCinza {
@@ -108,13 +117,13 @@
 
 .stops {
     padding: 20px 0px 40px;
-    display:block;
+    display: block;
     column-count: 2;
     column-gap: 30px;
     background-color: white;
 }
 
-.stops > div {
+.stops>div {
     padding-left: 0;
     padding-right: 0;
 }
@@ -123,79 +132,89 @@
     padding-top: 0 !important;
 }
 
-.info, .stops {
+.info,
+.stops {
     padding-left: 60px;
     padding-right: 60px;
 }
 
-@page {
-    size: A4; 
-    margin: 20mm 0 20mm 0; 
-}
-
-/* @page:first {
-    size: A4; 
-    margin: 0 0 20mm 0; 
-} */
 
 @font-face {
     font-family: 'Greycliff CF';
     src: url('/fonts/GreycliffCF-ExtraLight.woff') format('woff');
-    font-weight: 200; 
-    font-style: light; 
-  }
+    font-weight: 200;
+    font-style: light;
+}
 
-  @font-face {
+@font-face {
     font-family: 'Greycliff CF';
     src: url('/fonts/GreycliffCF-Light.woff') format('woff');
-    font-weight: 300; 
-    font-style: light; 
-  }
+    font-weight: 300;
+    font-style: light;
+}
 
-  @font-face {
+@font-face {
     font-family: 'Greycliff CF';
     src: url('/fonts/GreycliffCF-LightOblique.woff') format('woff');
-    font-weight: 300; 
-    font-style: oblique; 
-  }
+    font-weight: 300;
+    font-style: oblique;
+}
 
-  @font-face {
+@font-face {
     font-family: 'Greycliff CF';
     src: url('/fonts/GreycliffCF-Regular.woff') format('woff');
-    font-weight: 400; 
-    font-style: normal; 
-  }
+    font-weight: 400;
+    font-style: normal;
+}
 
-  @font-face {
+@font-face {
     font-family: 'Greycliff CF';
     src: url('/fonts/GreycliffCF-RegularOblique.woff') format('woff');
-    font-weight: 400; 
-    font-style: oblique; 
-  }
+    font-weight: 400;
+    font-style: oblique;
+}
 
-  @font-face {
+@font-face {
     font-family: 'Greycliff CF';
     src: url('/fonts/GreycliffCF-DemiBold.woff') format('woff');
-    font-weight: 500; 
-    font-style: normal; 
-  }
+    font-weight: 500;
+    font-style: normal;
+}
 
 
-  @font-face {
+@font-face {
     font-family: 'Greycliff CF';
     src: url('/fonts/GreycliffCF-Bold.woff') format('woff');
-    font-weight: 700; 
-    font-style: normal; 
-  }
+    font-weight: 700;
+    font-style: normal;
+}
 
-  @font-face {
+@font-face {
     font-family: 'Greycliff CF';
     src: url('/fonts/GreycliffCF-Heavy.woff') format('woff');
-    font-weight: 800; 
-    font-style: normal; 
-  }
+    font-weight: 800;
+    font-style: normal;
+}
 
-  .body{
+.body {
     text-align: center;
     font-family: 'Greycliff CF', sans-serif;
-  }
+}
+
+
+
+.pageNumber::after {
+    content: "Página " counter(page);
+}
+
+
+@media print {
+    .pageNumber {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 10pt;
+    }
+}

@@ -3,7 +3,7 @@ import styles from './Stop.module.css';
 
 
 function toTitleCase(str) {
-  const upperCaseExceptions = ['EB', 'ITS', 'EN', 'EDP'];
+  const upperCaseExceptions = ['EB', 'ITS', '(ITS)', 'EN', 'EDP'];
   const lowerCaseExceptions = ['VIA', 'E', 'DE', 'DA', 'DO'];
 
 
@@ -29,8 +29,7 @@ const Stop = ({ stop, isMap }) => {
 
   return (
 
-    <div className={`styles.stop ${stop.routes.length < 5 ? styles.stopPoucasLinhas : '' }`}> 
-    {/* <div className={styles.stop}>  */}
+    <div className={`${!isMap ? styles.stop : ''} ${stop.routes.length < 5 ? styles.stopPoucasLinhas : ''}`}> 
       {stop && stop.stop_name ? (
 
         <div className={styles.stopHeader}>
@@ -52,7 +51,6 @@ const Stop = ({ stop, isMap }) => {
             key={route_index}
             className={`
               ${styles.caixa} 
-              // ${!isMap && stop.routes.length - 1 === route_index ? styles.lastLineOfStop : ''}
             `}
           >
             <a

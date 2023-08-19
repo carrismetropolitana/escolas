@@ -7,7 +7,7 @@ import { MapProvider } from 'react-map-gl/maplibre';
 export default function App({ Component, pageProps }) {
   return (
     <MapProvider>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </MapProvider>
   )
 }

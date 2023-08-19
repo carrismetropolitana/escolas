@@ -8,7 +8,7 @@ export const siteTitle = 'Escolas';
 
 export default function Layout({ children, home }) {
     return (
-        <div>
+        <div  className={styles.layout}>
 
             <Head>
                 <title>CM Escolas</title>

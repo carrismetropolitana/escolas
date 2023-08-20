@@ -3,18 +3,16 @@ https://github.com/ULHT-TML/escolas/assets/42048382/57134ec4-9608-4eb0-8643-c1c3
 
 # Passos
 
-1. descarregar do repo
+1. descarregar repositório: `git clone https://github.com/ULHT-TML/escolas`
 1. instalar npm: `npm install`
 2. lançar app: `npm run dev`
-3. na pasta /utils lançar app gerador pdfs `node pdfGenerator.js`
-
+3. na pasta `/utils` lançar microserviço para geração de pdfs: `node pdfGenerator.js`
+   
 
 ### Proximos passos
 
-* deploy in docker container: https://blog.tericcabrel.com/create-docker-image-nextjs-application/
-* usar SWR: https://swr.vercel.app/docs/with-nextjs
-* integrar fonte Inter
-* 
+* integrar SWR? talvez não vale a pena: https://swr.vercel.app/docs/with-nextjs
+* deploy num docker container: https://blog.tericcabrel.com/create-docker-image-nextjs-application/
 
 
 ## APIs da TML usadas

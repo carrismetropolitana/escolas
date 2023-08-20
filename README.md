@@ -1,5 +1,8 @@
 # Microsite Escolar
-https://github.com/ULHT-TML/escolas/assets/42048382/57134ec4-9608-4eb0-8643-c1c30bc50c4c
+visualização das funcionalidades do microsite escolar, aplicação que permite visualizar e imprimir, para uma instituição (escola ou universidade) à escolha, a lista de paragens e linhas que existem na proximidade da instituição.
+
+https://github.com/ULHT-TML/escolas/assets/42048382/6e31cd71-01c6-4261-82ef-9eab7bd88158
+
 
 # Passos
 

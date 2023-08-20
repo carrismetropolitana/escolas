@@ -16,7 +16,7 @@ const DownloadStops = ({ schoolInfo, municipality, school, stops }) => {
     };
 
     // URL para descarregar PDF
-    const urlBase = 'http://localhost:5052/generate-pdf';
+    const urlBase = 'http://localhost:5052/generate-pdf';  // middleware
     const urlFolheto = `http://localhost:3000/folheto?schoolCode=${schoolInfo?.code}`;
     const urlParams = new URLSearchParams({
         url: urlFolheto,

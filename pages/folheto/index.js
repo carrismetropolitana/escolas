@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 
 import Head from 'next/head';
-import Titles from '../../components/Titles/Titles';
 import Stops from '../../components/Stops/Stops';
 import getStops from './getStops'
 import styles from './styles.module.css';
@@ -13,7 +12,7 @@ export default function Folheto() {
   const router = useRouter();
   const { schoolCode } = router.query;
 
-  // descarrega info da escola
+  // download info from school (not working the funciton from ShowSchool)
   const [schoolInfo, setschoolInfo] = useState({});
   useEffect(() => {
 
@@ -25,12 +24,11 @@ export default function Folheto() {
 
   }, [schoolCode]);
 
-  // obtem info das paragens
+
   const stops = schoolInfo ? getStops(schoolInfo) : '';
 
   //
-  // renderização
-
+  // rendering
   return (
 
     <div className={styles.body}>

@@ -46,7 +46,7 @@ const DownloadStops = ({ schoolInfo, municipality, school, stops }) => {
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
                             <FontAwesomeIcon icon={faSpinner} style={{ fontSize: '1rem', height: '1rem' }} spin />
-                            <span style={{ marginLeft: '10px' }}>a gerar o PDF...</span>
+                            <span style={{ marginLeft: '10px' }}>A gerar o PDF...</span>
                         </div>
                     ) : (
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

@@ -1,5 +1,6 @@
 # Microsite Escolar
-visualização das funcionalidades do microsite escolar, aplicação que permite visualizar e imprimir, para uma instituição (escola ou universidade) à escolha, a lista de paragens e linhas que existem na proximidade da instituição.
+
+Micro site em Next.js para visualizar e imprimir, para uma instituição (escola ou universidade) à escolha, a lista de paragens e linhas que existem na proximidade da instituição. A geração de PDFs é feita recorrendo a um servidor que corre puppeteer, agindo como um middleware.
 
 https://github.com/ULHT-TML/escolas/assets/42048382/6e31cd71-01c6-4261-82ef-9eab7bd88158
 
@@ -9,12 +10,12 @@ https://github.com/ULHT-TML/escolas/assets/42048382/6e31cd71-01c6-4261-82ef-9eab
 1. descarregar repositório: `git clone https://github.com/ULHT-TML/escolas`
 1. instalar npm: `npm install`
 2. lançar app: `npm run dev`
-3. na pasta `/utils` lançar microserviço para geração de pdfs: `node pdfGenerator.js`
+3. na pasta `/utils` lançar servidor para geração de pdfs: `node pdfGenerator.js`
    
 
 ## APIs da TML usadas
 
-existem duas APIs:
+São usadas duas APIs:
 * `api.carrismetropolitana.pt`
 * `schedules.carrismetropolitana.pt`. Esta API é usada apenas para obter info duma paragem (stop) relativa às suas routes (numero e nome). A API api apenas fornece o numero da linha, e não seu nome. 
 

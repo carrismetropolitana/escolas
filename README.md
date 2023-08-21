@@ -12,12 +12,6 @@ https://github.com/ULHT-TML/escolas/assets/42048382/6e31cd71-01c6-4261-82ef-9eab
 3. na pasta `/utils` lançar microserviço para geração de pdfs: `node pdfGenerator.js`
    
 
-### Proximos passos
-
-* integrar SWR? talvez não vale a pena: https://swr.vercel.app/docs/with-nextjs
-* deploy num docker container: https://blog.tericcabrel.com/create-docker-image-nextjs-application/
-
-
 ## APIs da TML usadas
 
 existem duas APIs:
@@ -134,3 +128,9 @@ const mapData = useMemo(() => {
     // Only run if allStopsData changes
   }, [allStopsData]);
 ```
+
+### Outros aspectos
+
+* integrar SWR? talvez não vale a pena: https://swr.vercel.app/docs/with-nextjs
+* deploy num docker container: https://blog.tericcabrel.com/create-docker-image-nextjs-application/
+

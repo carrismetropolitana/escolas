@@ -1,6 +1,8 @@
 # Microsite Escolar
 
-Micro site em Next.js para visualizar e imprimir, para uma instituição (escola ou universidade) à escolha, a lista de paragens e linhas que existem na proximidade da instituição. A geração de PDFs é feita recorrendo a um servidor que corre puppeteer, agindo como um middleware.
+Micro site em Next.js para visualizar e imprimir, para uma instituição (escola ou universidade) à escolha, a lista de paragens e linhas que existem na proximidade da instituição. 
+
+A geração de PDFs é feita recorrendo a um servidor que corre o Puppeteer, agindo como um middleware. Puppeteer é um *headless browser* que permite fazer a capturas de ecrã de página web e gerar PDFs.
 
 https://github.com/ULHT-TML/escolas/assets/42048382/6e31cd71-01c6-4261-82ef-9eab7bd88158
 

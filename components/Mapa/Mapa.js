@@ -7,6 +7,13 @@ import { Divider } from '@mantine/core';
 import Stop from '../Stop/Stop';
 
 
+function toTitleCase(str) {
+  return str.replace(/\w\S*/g, function(text) {
+      return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();
+  });
+}
+
+
 export default function Mapa({ id, mapStyle, width, height, scrollZoom = true, onClick = () => { }, interactiveLayerIds = [], children, toolbar, latitude, longitude, schoolInfo, stops }) {
 
   // DEFAULTS FOR OSM MAP
@@ -106,11 +113,13 @@ export default function Mapa({ id, mapStyle, width, height, scrollZoom = true, o
               longitude={longitude}
               closeButton={true}
               closeOnClick={false}
-              onClose={() => setIsPopupOpen(false)}
+              onClose={() => setIsPopupOpen(false)}            
+              className={styles.popup}
             >
-              <div>
-                <h3>{schoolInfo.name}</h3>
-                <p>{schoolInfo.address}</p>
+              <div className={styles.school}>
+                <div className={styles.schoolName}>{schoolInfo.name}</div>
+                <div className={styles.schoolAddress}>{schoolInfo.address}</div>
+                <div className={styles.schoolPostalCode}>{toTitleCase(schoolInfo.postal_code)}</div>
               </div>
             </Popup>
           )}

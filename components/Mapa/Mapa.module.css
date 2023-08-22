@@ -42,6 +42,25 @@
     font-size: 10px;
 }
 
+.school {
+  font-family: 'Greycliff CF';
+}
+
+.schoolName {
+    font-size:1.2rem;
+    text-align:left;
+    font-weight: bold;
+    line-height: 1.6; 
+}
+
+.schoolAddress {
+
+}
+
+.schoolPostalCode {
+
+}
+
 .stopName {
     font-size:14px;
 }

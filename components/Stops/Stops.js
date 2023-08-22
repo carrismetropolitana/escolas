@@ -3,12 +3,6 @@ import Stop from '../Stop/Stop';
 import styles from './Stops.module.css';
 import BlackHeader from '../BlackHeader/BlackHeader'
 
-function toTitleCase(str) {
-    return str.replace(/\b\w+/g, function (match) {
-        return match.charAt(0).toUpperCase() + match.substr(1).toLowerCase();
-    });
-}
-
 
 const Stops = ({ school, stops }) => {
 

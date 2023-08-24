@@ -1,0 +1,10 @@
+.caixa {
+  background-color: white;
+  border-radius: 20px;
+  margin: 4ch auto;
+  box-shadow: 2px 3px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.caixa img {
+  padding: 20px;
+}

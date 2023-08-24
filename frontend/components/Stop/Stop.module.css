@@ -1,0 +1,90 @@
+.stop {
+  margin-bottom: 2rem;
+}
+
+.stopPoucasLinhas {
+  break-inside: avoid;
+}
+
+.caixa {
+  border-radius: 20px;
+  margin: 0.7rem 0;
+  /* padding: 0 20px; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  break-inside: avoid;
+}
+
+.caixa a {
+  text-decoration: none;
+}
+
+.linha {
+  height: 0;
+  margin-top: 5px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.bolhaCinza {
+  background-color: rgba(0, 0, 0, 0.08);
+  font-family: 'Courier New', Courier, monospace;
+  color: #505050;
+  margin-right: 10px;
+  padding: 3px 10px 1.5px 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 10px;
+  text-align: center;
+}
+
+/*               
+      ${!isMap && stop.routes.length - 1 === route_index ? styles.lastLineOfStop : ''} 
+*/
+.lastLineOfStop {
+  margin-bottom: 2rem;
+}
+
+.bolhaCinza * {
+  text-align: center;
+}
+
+.stopHeader {
+  break-inside: avoid;
+}
+
+.stopName {
+  font-size: 1.2rem;
+  text-align: left;
+  font-weight: bold;
+  line-height: 1.6;
+}
+
+.stopName + div {
+  text-align: left;
+}
+
+.numero {
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  border: 0;
+  border-radius: 20px;
+  color: white;
+  display: inline-block;
+  width: 6ch;
+  font-size: 1rem;
+  transition: filter 0.2s ease;
+}
+
+.numero:hover {
+  filter: brightness(0.7);
+}
+
+.routeName {
+  font-weight: 400;
+  padding-left: 5px;
+  font-size: 1rem;
+  text-align: left;
+  color: black;
+  line-height: 1.1rem;
+}

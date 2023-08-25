@@ -1,6 +1,6 @@
 {
     "name": "@carrismetropolitana/escolas",
-    "version": "2023.08.24-1428",
+    "version": "2023.08.25-0101",
     "private": true,
     "scripts": {
         "dev": "next dev",
@@ -25,27 +25,14 @@
         "@mantine/modals": "6.0.19",
         "@mantine/next": "6.0.19",
         "@mantine/notifications": "6.0.19",
-        "@react-pdf/renderer": "^3.1.12",
         "@tabler/icons-react": "2.32.0",
-        "axios": "^1.4.0",
-        "express": "^4.18.2",
-        "html-pdf": "^1.5.0",
-        "html-react-parser": "^4.0.0",
-        "html2pdf.js": "^0.10.1",
-        "jquery": "^3.7.0",
-        "jspdf": "^2.5.1",
-        "leaflet": "^1.9.4",
         "maplibre-gl": "^3.2.1",
         "next": "^13.4.6",
-        "pdfkit": "^0.13.0",
         "puppeteer": "^20.9.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-leaflet": "^4.2.1",
         "react-map-gl": "^7.1.3",
-        "react-pdf": "^7.1.3",
         "react-select": "^5.7.3",
-        "select2": "^4.1.0-rc.0",
         "swr": "2.2.1"
     }
 }

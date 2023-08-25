@@ -39,7 +39,7 @@ services:
       - ./letsencrypt:/etc/letsencrypt
       - certbotdata:/var/www/certbot
     networks:
-      - default
+      - website
     ports:
       - 80:80
       - 443:443
@@ -60,13 +60,13 @@ services:
   # # # # # # # # # # # # # # # # # # # # #
 
   frontend:
-    image: ghcr.io/carrismetropolitana/website-frontend:production
+    image: ghcr.io/carrismetropolitana/escolas-frontend:production
     restart: unless-stopped
     logging:
       options:
         max-size: '1m'
         max-file: '1'
     networks:
-      - default
+      - website
     env_file:
       - .env.production

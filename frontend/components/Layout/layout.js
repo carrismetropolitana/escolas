@@ -1,18 +1,15 @@
 import Head from 'next/head';
 import Image from 'next/legacy/image';
-import styles from './layout.module.css';
-
-const name = 'Carris Metropolitana';
-export const siteTitle = 'Escolas';
+import styles from './Layout.module.css';
 
 export default function Layout({ children, home }) {
   return (
     <div className={styles.layout}>
       <Head>
-        <title>CM Escolas</title>
+        <title>Escolas • Carris Metropolitana</title>
         <link rel="icon" href="/images/cm.png" />
         <meta name="description" content="Saiba as linhas que existem perto duma escola" />
-        <meta name="og:title" content={siteTitle} />
+        <meta name="og:title" content={'Escolas'} />
       </Head>
 
       <div className={styles.bar}>

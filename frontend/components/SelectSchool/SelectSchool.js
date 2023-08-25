@@ -1,41 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import Select from 'react-select';
+'use client';
 
+import useSWR from 'swr';
+import { useMemo } from 'react';
 import styles from './SelectSchool.module.css';
+import Select from 'react-select';
 import selectStyles from './selectStyles';
 
-import useSchools from './useSchools';
+export default function SelectSchool({ selectedMunicipality, selectedSchool, onSelectSchool }) {
+  //
 
-const SelectSchool = ({ municipality, school, setSchool }) => {
-  const schools = useSchools(municipality);
+  //
+  // A. Fetch data
 
-  const customNoOptionsMessage = () => (municipality ? `${municipality.label} não tem escolas` : `Escola inexistente`);
+  const { data: allSchoolsData } = useSWR('https://api.carrismetropolitana.pt/facilities/schools');
 
-  // const [error, setError] = useState(false);
+  //
+  // B. Transform data
 
-  // const handleInputChange = (inputValue) => {
-  //     const exists = schools.some(option => option.value === inputValue);
-  //     setError(!exists);
-  //   };
+  const allSchoolsData_asOptions = useMemo(() => {
+    // Return empty array if data is not available
+    if (!allSchoolsData) return [];
+    // If a municipality is selected, show schools only from that municipality
+    let schoolsFilteredByMunicipality = allSchoolsData;
+    if (selectedMunicipality) schoolsFilteredByMunicipality = allSchoolsData.filter((item) => item.municipality_code === selectedMunicipality.value);
+    // Return formatted array for select
+    return schoolsFilteredByMunicipality.map((item) => ({ label: item.name, value: item.code }));
+    //
+  }, [allSchoolsData, selectedMunicipality]);
+
+  //
+  // C. Render components
 
   return (
     <div className={styles.container}>
-      {/* <div>Selecione uma instituição de ensino:</div> */}
-
       <Select
         key="schools-key"
         placeholder={`Escolha ou digite a instituição`}
-        noOptionsMessage={customNoOptionsMessage}
-        options={schools}
-        // onInputChange={handleInputChange}
-        onChange={setSchool}
+        noOptionsMessage={() => (selectedMunicipality ? `${selectedMunicipality.label} não tem escolas` : `Escola inexistente`)}
+        options={allSchoolsData_asOptions}
+        onChange={onSelectSchool}
         menuPlacement="bottom"
         menuPosition="auto"
         styles={selectStyles}
-        value={school}
+        value={selectedSchool}
       />
     </div>
   );
-};
-
-export default SelectSchool;
+}

@@ -30,8 +30,10 @@ FROM base AS builder
 
 WORKDIR /app
 
+RUN ls -la /home
+
 COPY --from=dependencies /app/node_modules ./node_modules
-COPY --from=dependencies ~/.cache/puppeteer ./.cache/puppeteer
+COPY --from=dependencies /home/root/.cache/puppeteer ./.cache/puppeteer
 COPY . .
 
 RUN npm run build

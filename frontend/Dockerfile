@@ -19,6 +19,8 @@ COPY package.json ./
 
 RUN npm install --omit=dev
 
+RUN ls -la
+
 
 # # # # # # # # #
 

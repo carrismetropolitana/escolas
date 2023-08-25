@@ -58,7 +58,7 @@ COPY --from=builder /app/public ./public
 
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/.cache/puppeteer ./.cache/puppeteer
+COPY --from=builder --chown=nextjs:nodejs /app/.cache/puppeteer /home/nextjs/.cache/puppeteer
 
 USER nextjs
 

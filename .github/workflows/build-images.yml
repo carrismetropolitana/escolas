@@ -37,4 +37,4 @@ jobs:
           push: true
           context: ./frontend
           file: ./frontend/Dockerfile
-          tags: ghcr.io/carrismetropolitana/website-frontend:${{ github.ref_name }}
+          tags: ghcr.io/carrismetropolitana/escolas-frontend:${{ github.ref_name }}

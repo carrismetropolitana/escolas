@@ -19,8 +19,7 @@ COPY package.json ./
 
 RUN npm install --omit=dev
 
-RUN ls -la
-RUN ls -la /home/node/
+RUN ls -la /root
 
 
 # # # # # # # # #
@@ -33,8 +32,8 @@ FROM base AS builder
 
 WORKDIR /app
 
-COPY --from=dependencies /app/node_modules ./node_modules
 COPY --from=dependencies /app/.cache/puppeteer ./.cache/puppeteer
+COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 
 RUN npm run build

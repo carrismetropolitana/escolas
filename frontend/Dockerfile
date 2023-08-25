@@ -32,7 +32,7 @@ FROM base AS builder
 
 WORKDIR /app
 
-COPY --from=dependencies /app/.cache/puppeteer ./.cache/puppeteer
+COPY --from=dependencies /root/.cache/puppeteer ./.cache/puppeteer
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 

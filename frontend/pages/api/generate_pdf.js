@@ -56,8 +56,7 @@ export default async function handler(req, res) {
     // Visit the page where the PDF will be rendered
 
     const browserPage = await BROSWER_INSTANCE.newPage();
-    await browserPage.goto(`http://localhost:3000/${validatedSchoolCode}/render`, { waitUntil: 'networkidle0', timeout: 20000 });
-    // await browserPage.waitForTimeout(2000); // Waits 2s extra to have time to render the page
+    await browserPage.goto(`https://escolas.carrismetropolitana.pt/${validatedSchoolCode}/render`, { waitUntil: 'networkidle0', timeout: 20000 });
     await browserPage.emulateMediaType('screen');
 
     // 6.

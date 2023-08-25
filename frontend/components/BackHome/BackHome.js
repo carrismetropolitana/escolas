@@ -1,16 +1,31 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
 import styles from './BackHome.module.css';
 
-const BackHome = ({ setSchool }) => {
+export default function BackHome({ setSchool }) {
+  //
+
+  //
+  // A. Setup variables
+
+  const router = useRouter();
+
+  //
+  // B. Handle actions
+
+  const handleClick = () => {
+    router.push('/');
+  };
+
+  //
+  // C. Render components
+
   return (
-    <div
-      className={styles.backHome}
-      onClick={() => {
-        setSchool(null);
-      }}
-    >
+    <div className={styles.backHome} onClick={handleClick}>
       ← Voltar ao início
     </div>
   );
-};
 
-export default BackHome;
+  //
+}

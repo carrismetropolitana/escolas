@@ -11,15 +11,19 @@ FROM node:18-alpine AS base
 
 FROM base AS dependencies
 
-RUN apk add --no-cache libc6-compat
+RUN apk add --no-cache 
+
+# Installs latest Chromium package.
+RUN apk add --no-cache libc6-compat chromium nss freetype harfbuzz ca-certificates ttf-freefont nodejs yarn
+
+# Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 WORKDIR /app
 
 COPY package.json ./
 
 RUN npm install --omit=dev
-
-RUN ls -la /root
 
 
 # # # # # # # # #
@@ -32,7 +36,7 @@ FROM base AS builder
 
 WORKDIR /app
 
-COPY --from=dependencies /root/.cache/puppeteer ./.cache/puppeteer
+# COPY --from=dependencies /root/.cache/puppeteer ./.cache/puppeteer
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 
@@ -58,7 +62,7 @@ COPY --from=builder /app/public ./public
 
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/.cache/puppeteer /home/nextjs/.cache/puppeteer
+# COPY --from=builder --chown=nextjs:nodejs /app/.cache/puppeteer /home/nextjs/.cache/puppeteer
 
 USER nextjs
 

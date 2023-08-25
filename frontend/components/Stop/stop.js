@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Stop.module.css';
 
 function toTitleCase(str) {
@@ -20,7 +19,7 @@ function toTitleCase(str) {
   });
 }
 
-const Stop = ({ stop, isMap }) => {
+export default function Stop({ stop, isMap }) {
   return (
     <div className={`${!isMap ? styles.stop : ''} ${stop.routes.length < 5 ? styles.stopPoucasLinhas : ''}`}>
       {stop && stop.stop_name ? (
@@ -60,5 +59,4 @@ const Stop = ({ stop, isMap }) => {
         : null}
     </div>
   );
-};
-export default Stop;
+}

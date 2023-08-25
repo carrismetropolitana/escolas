@@ -1,7 +1,5 @@
 import styles from './BlackHeader.module.css';
 
-const BlackHeader = ({ text }) => {
+export default function BlackHeader({ text }) {
   return <div className={styles.header}>{text}</div>;
-};
-
-export default BlackHeader;
+}

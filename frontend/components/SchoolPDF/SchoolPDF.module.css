@@ -1,0 +1,215 @@
+@page {
+  size: A4;
+  margin: 20mm 0;
+}
+
+@page: first {
+  margin-top: 0mm;
+  margin-bottom: 40mm;
+}
+
+.body,
+.main,
+.footer {
+  background: white;
+}
+
+.body {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+}
+
+.header {
+  background: #ffdd01;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 2.5rem;
+}
+
+.esquerda img {
+  height: 5rem;
+  width: auto;
+}
+
+.direita {
+  text-align: left;
+}
+
+.textoGrande {
+  font-size: 1.9rem;
+  line-height: 1rem;
+  font-weight: 800;
+  padding-bottom: 10px;
+}
+
+.textoPequeno {
+  font-size: 1.05rem;
+  line-height: 1.3rem;
+  font-weight: 500;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 2rem;
+}
+
+.municipio,
+.escola {
+  border-radius: 0.3rem;
+  border: 1px solid black;
+  display: flex;
+  padding: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  height: 100%;
+}
+
+.escola {
+  height: fit-content;
+  color: white;
+  background: black;
+}
+
+.municipio {
+  height: auto;
+}
+
+.footer {
+  padding: 2.5rem 2.5rem 1rem 2.5rem;
+}
+
+.footer > img {
+  float: right;
+  height: 40px;
+}
+
+.container > div {
+  margin-bottom: 1rem;
+  font-size: 10px;
+  background-color: white !important;
+}
+
+.bolhaCinza {
+  background-color: whitesmoke;
+  font-family: 'Courier New', Courier, monospace;
+  color: grey;
+  margin-right: 5px;
+  padding: 2.5px 5px;
+  border-radius: 10px;
+  font-weight: normal;
+  font-size: 8px;
+}
+
+.stops > div:first-child {
+  display: none;
+}
+
+.stops > div:nth-child(2) div {
+  padding-top: 0px !important;
+}
+
+.stops {
+  padding: 20px 0px 40px;
+  display: block;
+  column-count: 2;
+  column-gap: 30px;
+  background-color: white;
+}
+
+.stops > div {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.stops div:nth-child(2) {
+  padding-top: 0 !important;
+}
+
+.info,
+.stops {
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+@font-face {
+  font-family: 'Greycliff CF';
+  src: url('/fonts/GreycliffCF-ExtraLight.woff') format('woff');
+  font-weight: 200;
+  font-style: light;
+}
+
+@font-face {
+  font-family: 'Greycliff CF';
+  src: url('/fonts/GreycliffCF-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: light;
+}
+
+@font-face {
+  font-family: 'Greycliff CF';
+  src: url('/fonts/GreycliffCF-LightOblique.woff') format('woff');
+  font-weight: 300;
+  font-style: oblique;
+}
+
+@font-face {
+  font-family: 'Greycliff CF';
+  src: url('/fonts/GreycliffCF-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Greycliff CF';
+  src: url('/fonts/GreycliffCF-RegularOblique.woff') format('woff');
+  font-weight: 400;
+  font-style: oblique;
+}
+
+@font-face {
+  font-family: 'Greycliff CF';
+  src: url('/fonts/GreycliffCF-DemiBold.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Greycliff CF';
+  src: url('/fonts/GreycliffCF-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Greycliff CF';
+  src: url('/fonts/GreycliffCF-Heavy.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+}
+
+.body {
+  text-align: center;
+  font-family: 'Greycliff CF', sans-serif;
+}
+
+.pageNumber::after {
+  content: 'Página ' counter(page);
+}
+
+@media print {
+  .pageNumber {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 10pt;
+  }
+}

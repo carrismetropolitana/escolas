@@ -1,16 +1,12 @@
+'use client';
+
 import { useState } from 'react';
 import styles from './Mapa.module.css';
 import Map, { NavigationControl, FullscreenControl, ScaleControl, Marker, Popup } from 'react-map-gl/maplibre';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { Divider } from '@mantine/core';
-import Stop from '../Stop/Stop';
-
-function toTitleCase(str) {
-  return str.replace(/\w\S*/g, function (text) {
-    return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();
-  });
-}
+import Stop from '@/components/Stop/Stop';
 
 export default function Mapa({ id, mapStyle, width, height, scrollZoom = true, onClick = () => {}, interactiveLayerIds = [], children, toolbar, latitude, longitude, schoolInfo, stops }) {
   // DEFAULTS FOR OSM MAP
@@ -101,23 +97,23 @@ export default function Mapa({ id, mapStyle, width, height, scrollZoom = true, o
               <div className={styles.school}>
                 <div className={styles.schoolName}>{schoolInfo.name}</div>
                 <div className={styles.schoolAddress}>{schoolInfo.address}</div>
-                <div className={styles.schoolPostalCode}>{toTitleCase(schoolInfo.postal_code)}</div>
+                <div className={styles.schoolPostalCode}>{schoolInfo.postal_code}</div>
               </div>
             </Popup>
           )}
         </Marker>
 
-        {stops.map((stop, index) => (
+        {/* {stops.map((stop, index) => (
           <Marker key={index} latitude={parseFloat(stop.stop_lat)} longitude={parseFloat(stop.stop_lon)}>
             <div className={styles.circleMarker} onMouseOver={() => handleStopMarkerClick(stop)}></div>
           </Marker>
-        ))}
+        ))} */}
 
-        {selectedStop && (
+        {/* {selectedStop && (
           <Popup latitude={parseFloat(selectedStop.stop_lat)} longitude={parseFloat(selectedStop.stop_lon)} onClose={() => setSelectedStop(null)} closeOnClick={true} className={styles.popup}>
             <Stop stop={selectedStop} isMap={true} />
           </Popup>
-        )}
+        )} */}
 
         <NavigationControl />
         <FullscreenControl />

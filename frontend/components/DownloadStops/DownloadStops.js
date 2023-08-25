@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 
 import styles from './DownloadStops.module.css';
 
-const DownloadStops = ({ schoolInfo, municipality, school, stops }) => {
+export default function DownloadStops({ schoolInfo, municipality, school, stops }) {
   // spinner while loading
   const [loading, setLoading] = useState(false);
   const handleDownload = () => {
@@ -17,17 +17,14 @@ const DownloadStops = ({ schoolInfo, municipality, school, stops }) => {
   };
 
   // URL para descarregar PDF
-  const urlBase = 'http://localhost:5052/generate-pdf'; // middleware
-  const urlFolheto = `http://localhost:3000/folheto?schoolCode=${schoolInfo?.code}`;
+  const urlBase = '/api/generate_pdf';
   const urlParams = new URLSearchParams({
-    url: urlFolheto,
-    schoolName: schoolInfo?.name,
+    school_code: schoolInfo?.code,
   });
 
   const pdfUrl = `${urlBase}?${urlParams.toString()}`;
 
   console.log('pdfUrl', pdfUrl);
-  console.log('urlFolheto', urlFolheto);
 
   return (
     <>
@@ -36,8 +33,7 @@ const DownloadStops = ({ schoolInfo, municipality, school, stops }) => {
         <div className={styles.text}>Descarregue um PDF com a lista de paragens e linhas:</div>
 
         <div className={styles.button}>
-          <a href={pdfUrl} onClick={handleDownload} download>
-            {' '}
+          <a href={pdfUrl} onClick={handleDownload}>
             {loading ? (
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <FontAwesomeIcon icon={faSpinner} style={{ fontSize: '1rem', height: '1rem' }} spin />
@@ -54,6 +50,6 @@ const DownloadStops = ({ schoolInfo, municipality, school, stops }) => {
       </div>
     </>
   );
-};
 
-export default DownloadStops;
+  //
+}

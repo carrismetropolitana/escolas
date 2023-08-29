@@ -1,7 +1,7 @@
 
 # # # # # # # # #
 
-FROM ghcr.io/puppeteer/puppeteer:latest AS base
+FROM node:18-alpine AS base
 
 # # # # # # # # #
 
@@ -11,11 +11,13 @@ FROM ghcr.io/puppeteer/puppeteer:latest AS base
 
 FROM base AS dependencies
 
+RUN apk add --no-cache libc6-compat
+
 WORKDIR /app
 
 COPY package.json ./
 
-RUN npm install --omit=dev
+RUN npm install --omit-dev
 
 
 # # # # # # # # #
@@ -28,7 +30,6 @@ FROM base AS builder
 
 WORKDIR /app
 
-# COPY --from=dependencies /root/.cache/puppeteer ./.cache/puppeteer
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 
@@ -47,18 +48,15 @@ WORKDIR /app
 
 ENV NODE_ENV production
 
-# RUN addgroup --system --gid 1001 nodejs
-# RUN adduser --system --uid 1001 nextjs
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
 
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
-# COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-# COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-# COPY --from=builder --chown=nextjs:nodejs /app/.cache/puppeteer /home/nextjs/.cache/puppeteer
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# USER nextjs
+USER nextjs
 
 EXPOSE 3000
 ENV PORT 3000

@@ -23,14 +23,13 @@
         "@mantine/hooks": "6.0.19",
         "@mantine/next": "6.0.19",
         "@tabler/icons-react": "2.32.0",
-        "maplibre-gl": "3.3.0",
+        "maplibre-gl": "3.3.1",
         "next": "13.4.19",
-        "puppeteer": "21.1.0",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-map-gl": "7.1.5",
         "react-select": "5.7.4",
         "sharp": "0.32.5",
-        "swr": "2.2.1"
+        "swr": "2.2.2"
     }
 }

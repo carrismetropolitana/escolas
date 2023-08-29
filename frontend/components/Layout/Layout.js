@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/legacy/image';
 import styles from './Layout.module.css';
+import AppTopBar from '../AppTopBar/AppTopBar';
 
 export default function Layout({ children, home }) {
   return (
@@ -12,13 +13,7 @@ export default function Layout({ children, home }) {
         <meta name="og:title" content={'Escolas'} />
       </Head>
 
-      <div className={styles.bar}>
-        <a href="//www.tmlmobilidade.pt/">TML</a>
-        <a href="//www.carrismetropolitana.pt/" className={styles.active}>
-          Carris Metropolitana
-        </a>
-        <a href="//www.navegante.pt/">navegante</a>
-      </div>
+      <AppTopBar />
 
       <div className={styles.container}>
         <header className={styles.header}>

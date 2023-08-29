@@ -17,7 +17,7 @@ export default function DownloadStops({ schoolInfo, municipality, school, stops 
   };
 
   // URL para descarregar PDF
-  const urlBase = '/api/generate_pdf';
+  const urlBase = '/printer/';
   const urlParams = new URLSearchParams({
     school_code: schoolInfo?.code,
   });

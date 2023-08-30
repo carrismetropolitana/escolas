@@ -13,7 +13,7 @@ export default function Page() {
 
   const router = useRouter();
   const [selectedMunicipalityCode, setSelectedMunicipalityCode] = useState(null);
-  const [selectedEducationLevel, setSelectedEducationLevel] = useState([]);
+  const [selectedEducationLevels, setSelectedEducationLevels] = useState([]);
   const [selectedSchool, setSelectedSchool] = useState();
 
   //
@@ -31,8 +31,8 @@ export default function Page() {
       <SelectMunicipalityAndSchool
         selectedMunicipalityCode={selectedMunicipalityCode}
         onSelectMunicipalityCode={setSelectedMunicipalityCode}
-        selectedEducationLevel={selectedEducationLevel}
-        onSelectEducationLevel={setSelectedEducationLevel}
+        selectedEducationLevels={selectedEducationLevels}
+        onSelectEducationLevels={setSelectedEducationLevels}
         selectedSchool={selectedSchool}
         onSelectSchool={handleSelectSchool}
       />

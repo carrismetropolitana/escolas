@@ -48,9 +48,12 @@ export default function SelectSchool({ selectedMunicipalityCode, selectedEducati
       filterResult = filterResult.filter((item) => item.municipality_code === selectedMunicipalityCode);
     }
     // If an education level is selected, show schools only from that level
-    if (selectedEducationLevels) {
-      filterResult = filterResult.filter((item) => selectedEducationLevels.find((level) => item.cicles?.inlcudes(level)));
-      console.log(filterResult);
+    if (selectedEducationLevels.length) {
+      filterResult = filterResult.filter((school) => {
+        return selectedEducationLevels.find((level) => {
+          return school.cicles?.includes(level);
+        });
+      });
     }
     // Set filter results
     return filterResult;

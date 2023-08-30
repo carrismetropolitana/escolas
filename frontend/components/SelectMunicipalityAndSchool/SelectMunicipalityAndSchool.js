@@ -5,7 +5,7 @@ import SelectMunicipality from '@/components/SelectMunicipality/SelectMunicipali
 import SelectSchool from '@/components/SelectSchool/SelectSchool';
 import SelectEducationLevel from '../SelectEducationLevel/SelectEducationLevel';
 
-export default function SelectMunicipalityAndSchool({ selectedMunicipalityCode, onSelectMunicipalityCode, selectedEducationLevels, onSelectEducationLevels, selectedSchool, onSelectSchool }) {
+export default function SelectMunicipalityAndSchool({ selectedMunicipalityCode, onSelectMunicipalityCode, selectedEducationLevels, onSelectEducationLevels, onSelectSchool }) {
   //
 
   return (

@@ -12,14 +12,15 @@ export default function Page() {
   // A. Setup variables
 
   const router = useRouter();
-  const [selectedMunicipality, setSelectedMunicipality] = useState(null);
-  const [selectedSchool, setSelectedSchool] = useState(null);
+  const [selectedMunicipalityCode, setSelectedMunicipalityCode] = useState(null);
+  const [selectedEducationLevel, setSelectedEducationLevel] = useState([]);
+  const [selectedSchool, setSelectedSchool] = useState();
 
   //
   // B. Handle actions
 
-  const handleSelectSchool = ({ value }) => {
-    if (value) router.push(`/${value}`);
+  const handleSelectSchool = (schooldId) => {
+    if (schooldId) router.push(`/${schooldId}`);
   };
 
   //
@@ -27,7 +28,14 @@ export default function Page() {
 
   return (
     <Layout>
-      <SelectMunicipalityAndSchool selectedMunicipality={selectedMunicipality} onSelectMunicipality={setSelectedMunicipality} selectedSchool={selectedSchool} onSelectSchool={handleSelectSchool} />
+      <SelectMunicipalityAndSchool
+        selectedMunicipalityCode={selectedMunicipalityCode}
+        onSelectMunicipalityCode={setSelectedMunicipalityCode}
+        selectedEducationLevel={selectedEducationLevel}
+        onSelectEducationLevel={setSelectedEducationLevel}
+        selectedSchool={selectedSchool}
+        onSelectSchool={handleSelectSchool}
+      />
     </Layout>
   );
 

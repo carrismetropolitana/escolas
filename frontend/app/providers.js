@@ -25,7 +25,7 @@ export default function Providers({ children }) {
 
   return (
     <SWRConfig value={swrOptions}>
-      <MantineProvider withGlobalStyles withNormalizeCSS>
+      <MantineProvider>
         <MapProvider>{children}</MapProvider>
       </MantineProvider>
     </SWRConfig>

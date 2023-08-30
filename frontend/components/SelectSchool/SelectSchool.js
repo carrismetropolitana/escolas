@@ -1,49 +1,115 @@
 'use client';
 
 import useSWR from 'swr';
-import { useMemo } from 'react';
+import { Combobox, Highlight, TextInput, useCombobox, Text } from '@mantine/core';
+import { useMemo, useState } from 'react';
 import styles from './SelectSchool.module.css';
-import Select from 'react-select';
-import selectStyles from './selectStyles';
+import useSearch from '@/hooks/useSearch';
 
-export default function SelectSchool({ selectedMunicipality, selectedSchool, onSelectSchool }) {
+export default function SelectSchool({ selectedMunicipalityCode, selectedEducationLevels, onSelectSchool }) {
   //
 
   //
-  // A. Fetch data
+  // A. Setup variables
+
+  const comboboxStore = useCombobox();
+  const [searchQuery, setSearchQuery] = useState('');
+
+  //
+  // B. Fetch data
 
   const { data: allSchoolsData } = useSWR('https://api.carrismetropolitana.pt/facilities/schools');
 
   //
-  // B. Transform data
+  // C. Transform data
 
-  const allSchoolsData_asOptions = useMemo(() => {
+  const allSchoolsSimplified = useMemo(() => {
     // Return empty array if data is not available
     if (!allSchoolsData) return [];
-    // If a municipality is selected, show schools only from that municipality
-    let schoolsFilteredByMunicipality = allSchoolsData;
-    if (selectedMunicipality) schoolsFilteredByMunicipality = allSchoolsData.filter((item) => item.municipality_code === selectedMunicipality.value);
-    // Return formatted array for select
-    return schoolsFilteredByMunicipality.map((item) => ({ label: item.name, value: item.code }));
+    // Keep only the required values
+    return allSchoolsData.map((item) => ({
+      code: item.code,
+      name: item.name,
+      cicles: item.cicles,
+      locality: item.locality,
+      municipality_code: item.municipality_code,
+      municipality_name: item.municipality_name,
+    }));
     //
-  }, [allSchoolsData, selectedMunicipality]);
+  }, [allSchoolsData]);
+
+  const allSchoolsFilteredByConditions = useMemo(() => {
+    // Return empty array if data is not available
+    if (!allSchoolsSimplified) return [];
+    // Setup a variable to hold filtered results
+    let filterResult = allSchoolsSimplified;
+    // If a municipality is selected, show schools only from that municipality
+    if (selectedMunicipalityCode) {
+      filterResult = filterResult.filter((item) => item.municipality_code === selectedMunicipalityCode);
+    }
+    // If an education level is selected, show schools only from that level
+    if (selectedEducationLevels) {
+      filterResult = filterResult.filter((item) => selectedEducationLevels.find((level) => item.cicles?.inlcudes(level)));
+      console.log(filterResult);
+    }
+    // Set filter results
+    return filterResult;
+    //
+  }, [allSchoolsSimplified, selectedMunicipalityCode, selectedEducationLevels]);
 
   //
-  // C. Render components
+  // D. Search
+
+  const allSchoolsDataFilteredBySearchQuery = useSearch(searchQuery, allSchoolsFilteredByConditions, { keys: ['code', 'name', 'locality'] });
+
+  //
+  // E. Handle actions
+
+  const handleSearchQueryChange = ({ currentTarget }) => {
+    setSearchQuery(currentTarget.value);
+    comboboxStore.updateSelectedOptionIndex();
+    comboboxStore.openDropdown();
+  };
+
+  //
+  // F. Render components
 
   return (
     <div className={styles.container}>
-      <Select
-        key="schools-key"
-        placeholder={`Escolha ou digite a instituição`}
-        noOptionsMessage={() => (selectedMunicipality ? `${selectedMunicipality.label} não tem escolas` : `Escola inexistente`)}
-        options={allSchoolsData_asOptions}
-        onChange={onSelectSchool}
-        menuPlacement="bottom"
-        menuPosition="auto"
-        styles={selectStyles}
-        value={selectedSchool}
-      />
+      <Combobox onOptionSubmit={onSelectSchool} store={comboboxStore}>
+        <Combobox.Target>
+          <TextInput
+            aria-label="Pick value or type anything"
+            placeholder="Procure pelo nome da escola"
+            value={searchQuery}
+            size="lg"
+            rightSection={<Combobox.Chevron />}
+            onChange={handleSearchQueryChange}
+            onClick={() => comboboxStore.openDropdown()}
+            onFocus={() => comboboxStore.openDropdown()}
+            onBlur={() => comboboxStore.closeDropdown()}
+          />
+        </Combobox.Target>
+
+        <Combobox.Dropdown>
+          <Combobox.Options mah={200} style={{ overflowY: 'auto' }}>
+            {allSchoolsDataFilteredBySearchQuery.length === 0 ? (
+              <Combobox.Empty>Nothing found</Combobox.Empty>
+            ) : (
+              allSchoolsDataFilteredBySearchQuery.map((item) => (
+                <Combobox.Option key={item.code} value={item.code}>
+                  <div>
+                    <Highlight highlight={searchQuery} fz="sm" fw={500}>
+                      {item.name}
+                    </Highlight>
+                    <Text fz="xs">{item.municipality_name}</Text>
+                  </div>
+                </Combobox.Option>
+              ))
+            )}
+          </Combobox.Options>
+        </Combobox.Dropdown>
+      </Combobox>
     </div>
   );
 }

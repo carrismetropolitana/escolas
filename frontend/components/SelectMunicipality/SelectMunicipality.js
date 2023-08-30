@@ -2,11 +2,11 @@
 
 import useSWR from 'swr';
 import { useMemo } from 'react';
+import { IconChevronDown } from '@tabler/icons-react';
+import { CloseButton, Select } from '@mantine/core';
 import styles from './SelectMunicipality.module.css';
-import Select from 'react-select';
-import selectStyles from './selectStyles';
 
-export default function SelectMunicipality({ selectedMunicipality, onSelectMunicipality }) {
+export default function SelectMunicipality({ selectedMunicipalityCode, onSelectMunicipalityCode }) {
   //
 
   //
@@ -17,29 +17,35 @@ export default function SelectMunicipality({ selectedMunicipality, onSelectMunic
   //
   // B. Transform data
 
-  const allMunicipalitiesData_asOptions = useMemo(() => {
+  const allMunicipalitiesDataAsSelectOptions = useMemo(() => {
     // Return empty array if data is not available
     if (!allMunicipalitiesData) return [];
     // Return formatted array for select
-    return allMunicipalitiesData.map((item) => ({ label: item.name, value: item.code }));
+    return allMunicipalitiesData.map((item) => ({ value: item.code, label: item.name }));
     //
   }, [allMunicipalitiesData]);
 
   //
-  // C. Render components
+  // C. Handle actions
+
+  const handleClearSelectedMunicipalityCode = () => {
+    onSelectMunicipalityCode(null);
+  };
+
+  //
+  // D. Render components
 
   return (
     <div className={styles.container}>
       <Select
-        key="municipalities-key"
-        options={allMunicipalitiesData_asOptions}
-        onChange={onSelectMunicipality}
-        noOptionsMessage={() => 'Município inexistente'}
-        menuPlacement="bottom"
-        menuPosition="auto"
-        styles={selectStyles}
+        label="Filtrar por Município"
         placeholder="Escolha ou digite um Município"
-        value={selectedMunicipality}
+        rightSection={selectedMunicipalityCode ? <CloseButton onClick={handleClearSelectedMunicipalityCode} /> : <IconChevronDown size={18} />}
+        nothingFoundMessage={'Município inexistente'}
+        data={allMunicipalitiesDataAsSelectOptions}
+        value={selectedMunicipalityCode}
+        onChange={onSelectMunicipalityCode}
+        searchable
       />
     </div>
   );

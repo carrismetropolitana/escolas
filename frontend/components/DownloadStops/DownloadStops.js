@@ -6,25 +6,41 @@ import React, { useState } from 'react';
 
 import styles from './DownloadStops.module.css';
 
-export default function DownloadStops({ schoolInfo, municipality, school, stops }) {
-  // spinner while loading
-  const [loading, setLoading] = useState(false);
-  const handleDownload = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 6000); // volta a por o loading a false após 4s
+export default function DownloadStops({ schoolCode }) {
+  //
+
+  //
+  // A. Setup variables
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  //
+  // A. Handle actions
+
+  const handleDownloadPdf = async () => {
+    if (!window) return;
+    try {
+      setIsLoading(true);
+      const pdfResponse = await fetch('https://escolas.carrismetropolitana.pt/printer', { method: 'POST', body: { render_path: `${schoolCode}/render` } });
+      const pdfData = await pdfResponse.blob();
+      const blobUrl = window.URL.createObjectURL(pdfData);
+      const anchor = window.document.createElement('a');
+      anchor.download = 'teste.pdf';
+      anchor.href = blobUrl;
+      anchor.click();
+      window.URL.revokeObjectURL(blobUrl);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+
+    // const fileBlob = new Blob([arrayBuffer], { type: 'application/pdf' });
+    //       let fileBlobUrl = URL.createObjectURL(fileBlob);
+    //       $(`#schedules-explorer .stop#${selected_stop_id}[data-sequence=${selected_stop_sequence}] .stop_details .pdf-container`).html(
+    //         `
+    //             <a class="pdf-file" href="${fileBlobUrl}" target="_blank">Abrir PDF<img width="18" src="/wp-content/themes/carrismetropolitana/images/schedules/icon-pdf.svg"/></a>
   };
-
-  // URL para descarregar PDF
-  const urlBase = '/printer/';
-  const urlParams = new URLSearchParams({
-    school_code: schoolInfo?.code,
-  });
-
-  const pdfUrl = `${urlBase}?${urlParams.toString()}`;
-
-  console.log('pdfUrl', pdfUrl);
 
   return (
     <>
@@ -33,8 +49,8 @@ export default function DownloadStops({ schoolInfo, municipality, school, stops 
         <div className={styles.text}>Descarregue um PDF com a lista de paragens e linhas:</div>
 
         <div className={styles.button}>
-          <a href={pdfUrl} onClick={handleDownload}>
-            {loading ? (
+          <a onClick={handleDownloadPdf}>
+            {isLoading ? (
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <FontAwesomeIcon icon={faSpinner} style={{ fontSize: '1rem', height: '1rem' }} spin />
                 <span style={{ marginLeft: '10px' }}>A gerar o PDF...</span>

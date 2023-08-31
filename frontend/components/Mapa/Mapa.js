@@ -117,9 +117,8 @@ export default function Mapa({ id, mapStyle, width, height, scrollZoom = true, o
 
         <NavigationControl />
         <FullscreenControl />
-        {children}
-
         <ScaleControl maxWidth={200} unit="metric" />
+        {children}
       </Map>
       <Divider />
       {toolbar && <div className={styles.toolbar}>{toolbar}</div>}

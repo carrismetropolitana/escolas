@@ -17,18 +17,13 @@ export default function StopInfo({ stop_code }) {
 
   return (
     stopData && (
-      <div className={`${styles.stop} ${stopData.routes.length < 5 && styles.stopPoucasLinhas}`}>
-        <div className={styles.stopHeader}>
-          <div className={styles.stopName}>{stopData.name} </div>
-          <div>
-            <span className={styles.bolhaCinza}>
-              <span>#{stopData.code}</span>
-            </span>
-            <span className={styles.bolhaCinza}>
-              {stopData.lat}, {stopData.lon}
-            </span>
+      <div className={`${styles.container} ${stopData.routes.length < 5 && styles.stopPoucasLinhas}`}>
+        <div className={styles.header}>
+          <div className={styles.stopName}>{stopData.name}</div>
+          <div className={styles.stopDetails}>
+            <div className={styles.stopLocation}>{stopData.locality}</div>
+            <div className={styles.stopCode}>#{stopData.code}</div>
           </div>
-          <div className={styles.linha}></div>
         </div>
 
         <div className={styles.linesList}>

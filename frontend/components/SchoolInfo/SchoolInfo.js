@@ -27,6 +27,9 @@ export default function SchoolInfo({ school_code }) {
   const { data: schoolData } = useSWR(`https://api.carrismetropolitana.pt/facilities/schools/${school_code}`);
 
   //
+  // D. Handle actions
+
+  //
   // C. Render components
 
   return (

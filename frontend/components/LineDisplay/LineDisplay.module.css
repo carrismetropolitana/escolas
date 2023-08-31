@@ -4,8 +4,8 @@
   justify-content: center;
   min-width: 65px;
   max-width: 65px;
-  min-height: 26px;
-  max-height: 26px;
+  min-height: 24px;
+  max-height: 24px;
   border-radius: 999px;
   color: #ffffff;
   background-color: var(--gray9);
@@ -21,9 +21,9 @@
   justify-content: flex-start;
   width: 100%;
   color: var(--reference-1);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bold;
-  line-height: 1.2;
+  line-height: 1.1;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

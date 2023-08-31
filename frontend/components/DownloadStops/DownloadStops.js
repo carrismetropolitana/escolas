@@ -44,9 +44,9 @@ export default function DownloadStops({ school_code }) {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <BlackHeader text="Descarregue PDF" />
-      <div className={styles.item}>
+      <div className={styles.wrapper}>
         <div className={styles.text}>Descarregue um PDF com a lista de paragens e linhas:</div>
 
         <div className={styles.button}>
@@ -65,7 +65,7 @@ export default function DownloadStops({ school_code }) {
           </a>
         </div>
       </div>
-    </>
+    </div>
   );
 
   //

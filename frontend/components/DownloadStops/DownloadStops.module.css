@@ -1,10 +1,27 @@
-.item {
-  margin: 0 auto;
-  background: white;
-  padding: 2rem;
-  border-radius: 1rem;
+/* * */
+/* CONTAINER */
+
+.container {
+  border-radius: 10px;
+  background-color: #ffffff;
   box-shadow: 2px 3px 2px 0px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
+
+/* * */
+/* WRAPPER */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background: white;
+}
+
+/* * */
+/* * */
+/* * */
 
 .text {
   margin-top: 1ch;

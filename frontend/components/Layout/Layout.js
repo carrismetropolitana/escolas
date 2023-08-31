@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import styles from './Layout.module.css';
 import AppTopBar from '../AppTopBar/AppTopBar';
 

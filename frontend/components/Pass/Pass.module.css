@@ -4,6 +4,8 @@
   box-shadow: 2px 3px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
-.caixa img {
-  padding: 20px;
+.imageWrapper {
+  display: flex;
+  width: 100%;
+  padding: 10px;
 }

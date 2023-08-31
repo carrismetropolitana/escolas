@@ -4,9 +4,14 @@
 }
 
 .container {
-  padding: 0;
   margin: auto;
   max-width: 800px;
+}
+
+@media (max-width: 800px) {
+  .container {
+    padding: 20px;
+  }
 }
 
 .header {

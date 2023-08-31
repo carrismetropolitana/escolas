@@ -15,63 +15,63 @@ export default function SchoolPDF({ school_code }) {
   //
   // A. Setup variables
 
-  const { pdfMap } = useMap();
-  const [schoolStopsAsGeojson, setSchoolStopsAsGeojson] = useState();
+  //   const { pdfMap } = useMap();
+  //   const [schoolStopsAsGeojson, setSchoolStopsAsGeojson] = useState();
 
   //
   // B. Fetch data
 
   const { data: schoolData } = useSWR(`https://api.carrismetropolitana.pt/facilities/schools/${school_code}`);
-  const { data: allStopsData } = useSWR('https://api.carrismetropolitana.pt/stops');
+  //   const { data: allStopsData } = useSWR('https://api.carrismetropolitana.pt/stops');
 
   //
   // C. Transform data
 
-  useEffect(() => {
-    if (!pdfMap || !schoolStopsAsGeojson.features.length) return;
-    const boundingBox = turf.bbox(schoolStopsAsGeojson);
-    pdfMap.fitBounds(boundingBox, { duration: 10, padding: 50 });
-  }, [pdfMap, schoolStopsAsGeojson]);
+  //   useEffect(() => {
+  //     if (!pdfMap || !schoolStopsAsGeojson.features.length) return;
+  //     const boundingBox = turf.bbox(schoolStopsAsGeojson);
+  //     pdfMap.fitBounds(boundingBox, { duration: 10, padding: 50 });
+  //   }, [pdfMap, schoolStopsAsGeojson]);
 
-  useEffect(() => {
-    (async () => {
-      const geoJSON = {
-        type: 'FeatureCollection',
-        features: [],
-      };
-      if (schoolData && schoolData.stops.length) {
-        for (const stopCode of schoolData.stops) {
-          const stopResponse = await fetch(`https://api.carrismetropolitana.pt/stops/${stopCode}`);
-          const stopData = await stopResponse.json();
-          geoJSON.features.push({
-            type: 'Feature',
-            geometry: { type: 'Point', coordinates: [parseFloat(stopData.lon), parseFloat(stopData.lat)] },
-          });
-        }
-        geoJSON.features.push({
-          type: 'Feature',
-          geometry: { type: 'Point', coordinates: [parseFloat(schoolData.lon), parseFloat(schoolData.lat)] },
-        });
-      }
-      setSchoolStopsAsGeojson(geoJSON);
-    })();
-  }, [schoolData]);
+  //   useEffect(() => {
+  //     (async () => {
+  //       const geoJSON = {
+  //         type: 'FeatureCollection',
+  //         features: [],
+  //       };
+  //       if (schoolData && schoolData.stops.length) {
+  //         for (const stopCode of schoolData.stops) {
+  //           const stopResponse = await fetch(`https://api.carrismetropolitana.pt/stops/${stopCode}`);
+  //           const stopData = await stopResponse.json();
+  //           geoJSON.features.push({
+  //             type: 'Feature',
+  //             geometry: { type: 'Point', coordinates: [parseFloat(stopData.lon), parseFloat(stopData.lat)] },
+  //           });
+  //         }
+  //         geoJSON.features.push({
+  //           type: 'Feature',
+  //           geometry: { type: 'Point', coordinates: [parseFloat(schoolData.lon), parseFloat(schoolData.lat)] },
+  //         });
+  //       }
+  //       setSchoolStopsAsGeojson(geoJSON);
+  //     })();
+  //   }, [schoolData]);
 
-  const allStopsDataAsGeojson = useMemo(() => {
-    const geoJSON = {
-      type: 'FeatureCollection',
-      features: [],
-    };
-    if (allStopsData) {
-      for (const stop of allStopsData) {
-        geoJSON.features.push({
-          type: 'Feature',
-          geometry: { type: 'Point', coordinates: [parseFloat(stop.lon), parseFloat(stop.lat)] },
-        });
-      }
-    }
-    return geoJSON;
-  }, [allStopsData]);
+  //   const allStopsDataAsGeojson = useMemo(() => {
+  //     const geoJSON = {
+  //       type: 'FeatureCollection',
+  //       features: [],
+  //     };
+  //     if (allStopsData) {
+  //       for (const stop of allStopsData) {
+  //         geoJSON.features.push({
+  //           type: 'Feature',
+  //           geometry: { type: 'Point', coordinates: [parseFloat(stop.lon), parseFloat(stop.lat)] },
+  //         });
+  //       }
+  //     }
+  //     return geoJSON;
+  //   }, [allStopsData]);
 
   //
   // D. Render components
@@ -92,7 +92,7 @@ export default function SchoolPDF({ school_code }) {
           <p className={styles.municipalityName}>{schoolData.municipality_name}</p>
         </div>
 
-        <OSMMap id="pdfMap" height={400} scrollZoom={false} navigation={false} fullscreen={false}>
+        {/* <OSMMap id="pdfMap" height={400} scrollZoom={false} navigation={false} fullscreen={false}>
           <Source id="allStops" type="geojson" data={allStopsDataAsGeojson}>
             <Layer id="allStops" type="circle" source="allStops" paint={{ 'circle-color': '#ffdd01', 'circle-radius': 4, 'circle-stroke-width': 1, 'circle-stroke-color': '#000000' }} />
           </Source>
@@ -102,7 +102,7 @@ export default function SchoolPDF({ school_code }) {
           <Marker latitude={schoolData.lat} longitude={schoolData.lon}>
             <Image priority src="/images/escola.png" height={50} width={50} alt={schoolData.name} />
           </Marker>
-        </OSMMap>
+        </OSMMap> */}
 
         <div className={styles.stopsWrapper}>
           {schoolData.stops.map((stopCode) => (

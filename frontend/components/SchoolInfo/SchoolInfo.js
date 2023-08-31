@@ -139,7 +139,7 @@ export default function SchoolInfo({ school_code }) {
               </div>
             ) : (
               <div className={styles.stopsList}>
-                <NoServiceMessage fill municipality_code={schoolData.municipality_code} municipality_name={schoolData.municipality_name} />
+                <NoServiceMessage municipality_code={schoolData.municipality_code} municipality_name={schoolData.municipality_name} />
               </div>
             )}
           </div>

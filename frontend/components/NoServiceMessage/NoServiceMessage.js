@@ -1,10 +1,9 @@
 'use client';
 
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import styles from './NoServiceMessage.module.css';
-import { Divider } from '@mantine/core';
 
-export default function NoServiceMessage({ school_name, municipality_code, municipality_name }) {
+export default function NoServiceMessage({ municipality_code, municipality_name }) {
   //
 
   //
@@ -37,7 +36,6 @@ export default function NoServiceMessage({ school_name, municipality_code, munic
     <div className={styles.container}>
       <p className={styles.title}>{messages.title}</p>
       <p className={styles.subtitle}>{messages.subtitle}</p>
-      {/* <Divider /> */}
       <p className={styles.operatorName}>{messages.operator_name}</p>
       <a className={styles.operatorPhone} href={`tel:${messages.operator_phone}`}>
         {messages.operator_phone}

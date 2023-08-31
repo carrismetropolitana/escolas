@@ -83,4 +83,5 @@ services:
     environment:
       - PRINTER_RENDER_BASE_URL=https://escolas.carrismetropolitana.pt
       - PRINTER_RENDER_TIMEOUT=10000
+      - PRINTER_RENDER_DELAY=2000
       - PRINTER_RENDER_PAGE_FORMAT=A4

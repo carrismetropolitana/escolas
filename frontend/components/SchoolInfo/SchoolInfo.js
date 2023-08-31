@@ -16,6 +16,7 @@ import StopInfo from '@/components/StopInfo/StopInfo';
 import BlackHeader from '@/components/BlackHeader/BlackHeader';
 import { SegmentedControl } from '@mantine/core';
 import styles from './SchoolInfo.module.css';
+import NoServiceMessage from '../NoServiceMessage/NoServiceMessage';
 
 export default function SchoolInfo({ school_code }) {
   //
@@ -39,7 +40,7 @@ export default function SchoolInfo({ school_code }) {
   useEffect(() => {
     if (!pdfMap || !schoolStopsAsGeojson.features.length) return;
     const boundingBox = turf.bbox(schoolStopsAsGeojson);
-    pdfMap.fitBounds(boundingBox, { duration: 10, padding: 50 });
+    pdfMap.fitBounds(boundingBox, { duration: 2000, padding: 50 });
   }, [pdfMap, schoolStopsAsGeojson]);
 
   useEffect(() => {
@@ -57,6 +58,8 @@ export default function SchoolInfo({ school_code }) {
             geometry: { type: 'Point', coordinates: [parseFloat(stopData.lon), parseFloat(stopData.lat)] },
           });
         }
+      }
+      if (schoolData) {
         geoJSON.features.push({
           type: 'Feature',
           geometry: { type: 'Point', coordinates: [parseFloat(schoolData.lon), parseFloat(schoolData.lat)] },
@@ -137,7 +140,9 @@ export default function SchoolInfo({ school_code }) {
                 ))}
               </div>
             ) : (
-              <p>No service</p>
+              <div className={styles.stopsList}>
+                <NoServiceMessage fill municipality_code={schoolData.municipality_code} municipality_name={schoolData.municipality_name} />
+              </div>
             )}
           </div>
           <div className={styles.actionsWrapper}>

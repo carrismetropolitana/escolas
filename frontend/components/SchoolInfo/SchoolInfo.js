@@ -75,7 +75,7 @@ export default function SchoolInfo({ school_code }) {
         </div>
 
         <div className={styles.info}>
-          <DownloadStops schoolInfo={schoolData} municipality={schoolData ? schoolData.municipality_name : schoolData} school={schoolData} stops={false ? false : []} />
+          <DownloadStops schoolCode={schoolData.code} />
           <Planner />
           <Pass />
         </div>

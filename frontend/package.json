@@ -11,10 +11,6 @@
         "dev:pdf": "node ./utils/pdfGenerator.js"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-svg-core": "6.4.2",
-        "@fortawesome/free-brands-svg-icons": "6.4.2",
-        "@fortawesome/free-solid-svg-icons": "6.4.2",
-        "@fortawesome/react-fontawesome": "0.2.0",
         "@mantine/core": "7.0.0-beta.2",
         "@mantine/hooks": "7.0.0-beta.2",
         "@tabler/icons-react": "2.32.0",

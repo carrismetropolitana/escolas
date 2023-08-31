@@ -7,16 +7,15 @@ import Image from 'next/image';
 import * as turf from '@turf/turf';
 import Planner from '@/components/Planner/Planner';
 import BackHome from '@/components/BackHome/BackHome';
-import Mapa from '@/components/Mapa/Mapa';
 import OSMMap from '@/components/OSMMap/OSMMap';
 import { useMap, Source, Layer, Marker } from 'react-map-gl/maplibre';
-import DownloadStops from '@/components/DownloadStops/DownloadStops';
+import DownloadPDF from '@/components/DownloadPDF/DownloadPDF';
 import Pass from '@/components/Pass/Pass';
 import StopInfo from '@/components/StopInfo/StopInfo';
 import BlackHeader from '@/components/BlackHeader/BlackHeader';
 import { SegmentedControl } from '@mantine/core';
 import styles from './SchoolInfo.module.css';
-import NoServiceMessage from '../NoServiceMessage/NoServiceMessage';
+import NoServiceMessage from '@/components/NoServiceMessage/NoServiceMessage';
 
 export default function SchoolInfo({ school_code }) {
   //
@@ -86,10 +85,7 @@ export default function SchoolInfo({ school_code }) {
   }, [allStopsData]);
 
   //
-  // D. Handle actions
-
-  //
-  // C. Render components
+  // D. Render components
 
   return (
     schoolData && (
@@ -130,6 +126,8 @@ export default function SchoolInfo({ school_code }) {
           </Marker>
         </OSMMap>
 
+        <div className={styles.serviceAnalysis}>Análise produzida com base nos dados da DGEEC, georeferenciados pela Carris Metropolitana, considerando um tempo pedonal de 5 minutos.</div>
+
         <div className={styles.gridWrapper}>
           <div className={styles.stopsWrapper}>
             <BlackHeader text={`Paragens que servem a instituição: ${schoolData.name}`} />
@@ -146,7 +144,7 @@ export default function SchoolInfo({ school_code }) {
             )}
           </div>
           <div className={styles.actionsWrapper}>
-            <DownloadStops school_code={school_code} />
+            {schoolData.stops.length > 0 && <DownloadPDF school_code={school_code} />}
             <Planner />
             <Pass />
           </div>

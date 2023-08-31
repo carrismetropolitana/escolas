@@ -99,8 +99,8 @@ export default function SchoolInfo({ school_code }) {
           id="pdfMap"
           height={400}
           scrollZoom={false}
-          navigation={false}
-          fullscreen={false}
+          navigation={true}
+          fullscreen={true}
           mapStyle={mapStyle}
           toolbar={
             <>

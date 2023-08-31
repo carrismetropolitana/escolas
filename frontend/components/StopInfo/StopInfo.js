@@ -27,7 +27,7 @@ export default function StopInfo({ stop_code }) {
         </div>
 
         <div className={styles.linesList}>
-          {stopData.routes.map((routeCode) => (
+          {stopData.routes?.map((routeCode) => (
             <LineDisplay key={routeCode} route_code={routeCode} />
           ))}
         </div>

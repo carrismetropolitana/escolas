@@ -1,3 +1,5 @@
+'use client';
+
 import BlackHeader from '../BlackHeader/BlackHeader';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

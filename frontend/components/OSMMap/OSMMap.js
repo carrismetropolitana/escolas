@@ -3,7 +3,6 @@ import osmMapDefaults from './OSMMap.config';
 import Map, { NavigationControl, FullscreenControl, ScaleControl } from 'react-map-gl/maplibre';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { Divider } from '@mantine/core';
 
 export default function OSMMap({ id, mapStyle, width, height, scrollZoom = true, onClick = () => {}, interactiveLayerIds = [], children, toolbar, navigation = true, fullscreen = true, scale = true }) {
   return (
@@ -26,7 +25,6 @@ export default function OSMMap({ id, mapStyle, width, height, scrollZoom = true,
         {scale && <ScaleControl maxWidth={100} unit="metric" />}
         {children}
       </Map>
-      <Divider />
       {toolbar && <div className={styles.toolbar}>{toolbar}</div>}
     </div>
   );

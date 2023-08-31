@@ -36,7 +36,7 @@ export default function SelectEducationLevel({ selectedEducationLevels, onSelect
   return (
     <div className={styles.container}>
       <MultiSelect
-        label="Filtrar por nível de escolaridade"
+        aria-label="Filtrar por nível de escolaridade"
         placeholder="Escolha um nível de educação"
         rightSection={selectedEducationLevels?.length > 0 ? <CloseButton onClick={handleClearselectedEducationLevel} /> : <IconChevronDown size={18} />}
         data={allEducationLevels}

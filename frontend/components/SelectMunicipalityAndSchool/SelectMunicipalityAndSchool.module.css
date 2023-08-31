@@ -8,6 +8,12 @@
   gap: 20px;
 }
 
+@media (max-width: 800px) {
+  .container {
+    padding: 20px;
+  }
+}
+
 /* * */
 /* TITLE */
 
@@ -24,4 +30,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+}
+
+@media (max-width: 800px) {
+  .filters {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-bottom: 20px;
+  }
 }

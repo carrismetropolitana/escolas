@@ -7,7 +7,7 @@ import Image from 'next/image';
 import * as turf from '@turf/turf';
 import styles from './SchoolPDF.module.css';
 import StopInfo from '@/components/StopInfo/StopInfo';
-import OSMMap from '../OSMMap/OSMMap';
+import OSMMap from '@/components/OSMMap/OSMMap';
 
 export default function SchoolPDF({ school_code }) {
   //

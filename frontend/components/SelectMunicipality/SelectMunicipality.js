@@ -38,7 +38,7 @@ export default function SelectMunicipality({ selectedMunicipalityCode, onSelectM
   return (
     <div className={styles.container}>
       <Select
-        label="Filtrar por Município"
+        aria-label="Filtrar por Município"
         placeholder="Escolha ou digite um Município"
         rightSection={selectedMunicipalityCode ? <CloseButton onClick={handleClearSelectedMunicipalityCode} /> : <IconChevronDown size={18} />}
         nothingFoundMessage={'Município inexistente'}

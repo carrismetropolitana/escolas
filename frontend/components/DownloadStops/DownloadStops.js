@@ -23,7 +23,12 @@ export default function DownloadStops({ school_code }) {
     if (!window) return;
     try {
       setIsLoading(true);
-      const pdfResponse = await fetch('https://escolas.carrismetropolitana.pt/printer', { method: 'POST', body: JSON.stringify({ render_path: `${school_code}/render` }) });
+      const pdfResponse = await fetch('https://escolas.carrismetropolitana.pt/printer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ render_path: `${school_code}/render` }),
+      });
+      console.log(pdfResponse);
       const pdfData = await pdfResponse.blob();
       const blobUrl = window.URL.createObjectURL(pdfData);
       const anchor = window.document.createElement('a');

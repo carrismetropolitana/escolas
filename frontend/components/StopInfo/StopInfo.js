@@ -16,8 +16,9 @@ export default function StopInfo({ stop_code }) {
   // B. Render components
 
   return (
-    stopData && (
-      <div className={`${styles.container} ${stopData.routes.length < 5 && styles.stopPoucasLinhas}`}>
+    stopData &&
+    stopData.routes?.length > 0 && (
+      <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.stopName}>{stopData.name}</div>
           <div className={styles.stopDetails}>

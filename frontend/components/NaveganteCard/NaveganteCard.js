@@ -9,7 +9,7 @@ export default function NaveganteCard() {
       <a href="https://www.carrismetropolitana.pt/cartoes/" target="_blank" rel="noopener noreferrer">
         <div className={styles.imageContainer}>
           <div className={styles.imageWrapper}>
-            <Image priority src="/images/PasseNavegante.png" width={852} height={602} style={{ width: '100%', height: '100%' }} alt="Passe navegante" />
+            <Image priority src="/images/navegante.png" width={852} height={602} style={{ width: '100%', height: '100%' }} alt="Passe navegante" />
           </div>
         </div>
       </a>

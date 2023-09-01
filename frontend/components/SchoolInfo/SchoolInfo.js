@@ -10,7 +10,7 @@ import BackHome from '@/components/BackHome/BackHome';
 import OSMMap from '@/components/OSMMap/OSMMap';
 import { useMap, Source, Layer, Marker } from 'react-map-gl/maplibre';
 import DownloadPDF from '@/components/DownloadPDF/DownloadPDF';
-import Pass from '@/components/NaveganteCard/NaveganteCard';
+import NaveganteCard from '@/components/NaveganteCard/NaveganteCard';
 import StopInfo from '@/components/StopInfo/StopInfo';
 import BlackHeader from '@/components/BlackHeader/BlackHeader';
 import { SegmentedControl } from '@mantine/core';
@@ -146,7 +146,7 @@ export default function SchoolInfo({ school_code }) {
           <div className={styles.actionsWrapper}>
             {schoolData.stops.length > 0 && <DownloadPDF school_code={school_code} />}
             <Planner />
-            <Pass />
+            <NaveganteCard />
           </div>
         </div>
 

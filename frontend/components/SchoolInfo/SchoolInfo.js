@@ -10,7 +10,7 @@ import BackHome from '@/components/BackHome/BackHome';
 import OSMMap from '@/components/OSMMap/OSMMap';
 import { useMap, Source, Layer, Marker } from 'react-map-gl/maplibre';
 import DownloadPDF from '@/components/DownloadPDF/DownloadPDF';
-import Pass from '@/components/Pass/Pass';
+import Pass from '@/components/NaveganteCard/NaveganteCard';
 import StopInfo from '@/components/StopInfo/StopInfo';
 import BlackHeader from '@/components/BlackHeader/BlackHeader';
 import { SegmentedControl } from '@mantine/core';
@@ -23,7 +23,7 @@ export default function SchoolInfo({ school_code }) {
   //
   // A. Setup variables
 
-  const { pdfMap } = useMap();
+  const { schoolInfoMap } = useMap();
   const [mapStyle, setMapStyle] = useState('map');
   const [schoolStopsAsGeojson, setSchoolStopsAsGeojson] = useState();
 
@@ -37,10 +37,10 @@ export default function SchoolInfo({ school_code }) {
   // C. Transform data
 
   useEffect(() => {
-    if (!pdfMap || !schoolStopsAsGeojson.features.length) return;
+    if (!schoolInfoMap || !schoolStopsAsGeojson?.features?.length) return;
     const boundingBox = turf.bbox(schoolStopsAsGeojson);
-    pdfMap.fitBounds(boundingBox, { duration: 2000, padding: 50 });
-  }, [pdfMap, schoolStopsAsGeojson]);
+    schoolInfoMap.fitBounds(boundingBox, { duration: 2000, padding: 150 });
+  }, [schoolInfoMap, schoolStopsAsGeojson]);
 
   useEffect(() => {
     (async () => {
@@ -54,14 +54,14 @@ export default function SchoolInfo({ school_code }) {
           const stopData = await stopResponse.json();
           geoJSON.features.push({
             type: 'Feature',
-            geometry: { type: 'Point', coordinates: [parseFloat(stopData.lon), parseFloat(stopData.lat)] },
+            geometry: { type: 'Point', coordinates: [stopData.lon, stopData.lat] },
           });
         }
       }
       if (schoolData) {
         geoJSON.features.push({
           type: 'Feature',
-          geometry: { type: 'Point', coordinates: [parseFloat(schoolData.lon), parseFloat(schoolData.lat)] },
+          geometry: { type: 'Point', coordinates: [schoolData.lon, schoolData.lat] },
         });
       }
       setSchoolStopsAsGeojson(geoJSON);
@@ -77,7 +77,7 @@ export default function SchoolInfo({ school_code }) {
       for (const stop of allStopsData) {
         geoJSON.features.push({
           type: 'Feature',
-          geometry: { type: 'Point', coordinates: [parseFloat(stop.lon), parseFloat(stop.lat)] },
+          geometry: { type: 'Point', coordinates: [stop.lon, stop.lat] },
         });
       }
     }
@@ -95,7 +95,7 @@ export default function SchoolInfo({ school_code }) {
         </div>
 
         <OSMMap
-          id="pdfMap"
+          id="schoolInfoMap"
           height={400}
           scrollZoom={false}
           navigation={true}

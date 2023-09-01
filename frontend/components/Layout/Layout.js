@@ -17,7 +17,7 @@ export default function Layout({ children, home }) {
 
       <div className={styles.container}>
         <header className={styles.header}>
-          <Image priority src="/images/logo.png" height={100} width={100} alt="Logotipo Carris Metropolitana próxima das escolas" />
+          <Image priority src="/images/CM-Escolas.svg" height={100} width={100} alt="Logotipo Carris Metropolitana próxima das escolas" />
           <Image priority src="/images/carris-metropolitana.svg" height={58} width={180} alt="Logotipo Carris Metropolitana" />
         </header>
 

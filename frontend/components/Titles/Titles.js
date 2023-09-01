@@ -22,15 +22,10 @@ export default function Titles({ municipality_name, school_name }) {
   // C. Render components
 
   return (
-    <header className={styles.header}>
-      <div className={styles.municipality} onClick={handleClick}>
-        {municipality_name}
-      </div>
-
-      <div className={styles.school} onClick={handleClick}>
-        {school_name}
-      </div>
-    </header>
+    <div className={styles.container} onClick={handleClick}>
+      <div className={styles.schoolName}>{school_name}</div>
+      <div className={styles.municipalityName}>{municipality_name}</div>
+    </div>
   );
 
   //

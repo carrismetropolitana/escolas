@@ -1,12 +1,11 @@
 import Image from 'next/image';
 import BlackHeader from '../BlackHeader/BlackHeader';
-import styles from './Pass.module.css';
+import styles from './NaveganteCard.module.css';
 
-const Pass = () => {
+export default function NaveganteCard() {
   return (
     <div className={styles.caixa}>
-      <BlackHeader text="Passe navegante" />
-
+      <BlackHeader text="Sobre o navegante®" />
       <a href="https://www.carrismetropolitana.pt/cartoes/" target="_blank" rel="noopener noreferrer">
         <div className={styles.imageContainer}>
           <div className={styles.imageWrapper}>
@@ -16,6 +15,4 @@ const Pass = () => {
       </a>
     </div>
   );
-};
-
-export default Pass;
+}

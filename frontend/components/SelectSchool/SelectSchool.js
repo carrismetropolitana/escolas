@@ -26,8 +26,20 @@ export default function SelectSchool({ selectedMunicipalityCode, selectedEducati
   const allSchoolsSimplified = useMemo(() => {
     // Return empty array if data is not available
     if (!allSchoolsData) return [];
+    // Filter out schools without stops on our municipalities
+    const filteredOutSchools = allSchoolsData.filter((item) => {
+      // Include the school if it is from Barreiro, Cascais or Lisbon
+      // even if it does not have associated stops.
+      const isFromBarreiro = item.municipality_code === '1504';
+      const isFromCascais = item.municipality_code === '1105';
+      const isFromLisbon = item.municipality_code === '1106';
+      if (isFromBarreiro || isFromCascais || isFromLisbon) return true;
+      // If it is from other municipalities, include the school only if it has associated stops
+      return item.stops?.length > 0;
+      //
+    });
     // Keep only the required values
-    return allSchoolsData.map((item) => ({
+    return filteredOutSchools.map((item) => ({
       code: item.code,
       name: item.name,
       cicles: item.cicles,

@@ -1,0 +1,11 @@
+.container {
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #000000;
+  opacity: 0.75;
+}
+
+.container a {
+  text-decoration: underline;
+}

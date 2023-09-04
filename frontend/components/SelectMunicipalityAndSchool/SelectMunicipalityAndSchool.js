@@ -34,8 +34,11 @@ export default function SelectMunicipalityAndSchool({ selectedMunicipalityCode, 
       return item.stops?.length > 0;
       //
     });
+    // Sort schools by name
+    const collator = new Intl.Collator('en', { numeric: true, sensitivity: 'base' });
+    const sortedSchools = filteredOutSchools.sort((a, b) => collator.compare(a.name, b.name));
     // Keep only the required values
-    return filteredOutSchools.map((item) => ({
+    return sortedSchools.map((item) => ({
       code: item.code,
       name: item.name,
       lat: item.lat,

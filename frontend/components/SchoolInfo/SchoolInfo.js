@@ -16,6 +16,7 @@ import BlackHeader from '@/components/BlackHeader/BlackHeader';
 import { SegmentedControl } from '@mantine/core';
 import styles from './SchoolInfo.module.css';
 import NoServiceMessage from '@/components/NoServiceMessage/NoServiceMessage';
+import SourceDisclaimer from '../SourceDisclaimer/SourceDisclaimer';
 
 export default function SchoolInfo({ school_code }) {
   //
@@ -126,12 +127,10 @@ export default function SchoolInfo({ school_code }) {
           </Marker>
         </OSMMap>
 
-        <div className={styles.serviceAnalysis}>Análise produzida com base nos dados da DGEEC, georeferenciados pela Carris Metropolitana, considerando um tempo pedonal de 5 minutos.</div>
-
         <div className={styles.gridWrapper}>
           <div className={styles.stopsWrapper}>
             <BlackHeader text={`Paragens que servem a instituição: ${schoolData.name}`} />
-            {schoolData.stops.length > 0 ? (
+            {schoolData && schoolData.stops.length > 0 ? (
               <div className={styles.stopsList}>
                 {schoolData.stops.map((stopCode) => (
                   <StopInfo key={stopCode} stop_code={stopCode} />
@@ -144,13 +143,15 @@ export default function SchoolInfo({ school_code }) {
             )}
           </div>
           <div className={styles.actionsWrapper}>
-            {schoolData.stops.length > 0 && <DownloadPDF school_code={school_code} />}
+            {schoolData && schoolData.stops.length > 0 && <DownloadPDF school_code={school_code} />}
             <Planner />
             <NaveganteCard />
           </div>
         </div>
 
         <BackHome />
+
+        <SourceDisclaimer />
       </div>
     )
   );

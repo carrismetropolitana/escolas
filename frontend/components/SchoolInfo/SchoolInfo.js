@@ -143,7 +143,7 @@ export default function SchoolInfo({ school_code }) {
             )}
           </div>
           <div className={styles.actionsWrapper}>
-            {schoolData && schoolData.stops.length > 0 && <DownloadPDF school_code={school_code} />}
+            {/* {schoolData && schoolData.stops.length > 0 && <DownloadPDF school_code={school_code} />} */}
             <Planner />
             <NaveganteCard />
           </div>

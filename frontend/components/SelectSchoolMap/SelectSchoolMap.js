@@ -87,7 +87,6 @@ export default function SelectSchoolMap({ allSchoolsData, onSelectSchool }) {
   };
 
   const handleMapMouseEnter = (event) => {
-    console.log(event);
     if (event?.features[0]?.properties?.code) {
       selectSchoolMap.getCanvas().style.cursor = 'pointer';
     }

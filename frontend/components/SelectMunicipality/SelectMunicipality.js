@@ -21,7 +21,9 @@ export default function SelectMunicipality({ selectedMunicipalityCode, onSelectM
     // Return empty array if data is not available
     if (!allMunicipalitiesData) return [];
     // Return formatted array for select
-    return allMunicipalitiesData.map((item) => ({ value: item.code, label: item.name }));
+    const collator = new Intl.Collator('en', { numeric: true, sensitivity: 'base' });
+    const allMunicipalitiesSorted = allMunicipalitiesData.sort((a, b) => collator.compare(a.name, b.name));
+    return allMunicipalitiesSorted.map((item) => ({ value: item.code, label: item.name }));
     //
   }, [allMunicipalitiesData]);
 

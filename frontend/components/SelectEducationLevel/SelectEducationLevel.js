@@ -1,10 +1,10 @@
 'use client';
 
 import { IconChevronDown } from '@tabler/icons-react';
-import { CloseButton, MultiSelect } from '@mantine/core';
+import { CloseButton, Select } from '@mantine/core';
 import styles from './SelectEducationLevel.module.css';
 
-export default function SelectEducationLevel({ selectedEducationLevels, onSelectEducationLevels }) {
+export default function SelectEducationLevel({ selectedEducationLevel, onSelectEducationLevel }) {
   //
 
   //
@@ -27,7 +27,7 @@ export default function SelectEducationLevel({ selectedEducationLevels, onSelect
   // C. Handle actions
 
   const handleClearselectedEducationLevel = () => {
-    onSelectEducationLevels([]);
+    onSelectEducationLevel(null);
   };
 
   //
@@ -35,13 +35,13 @@ export default function SelectEducationLevel({ selectedEducationLevels, onSelect
 
   return (
     <div className={styles.container}>
-      <MultiSelect
+      <Select
         aria-label="Filtrar por nível de escolaridade"
         placeholder="Escolha um nível de educação"
-        rightSection={selectedEducationLevels?.length > 0 ? <CloseButton onClick={handleClearselectedEducationLevel} /> : <IconChevronDown size={18} />}
+        rightSection={selectedEducationLevel ? <CloseButton onClick={handleClearselectedEducationLevel} /> : <IconChevronDown size={18} />}
         data={allEducationLevels}
-        value={selectedEducationLevels}
-        onChange={onSelectEducationLevels}
+        value={selectedEducationLevel}
+        onChange={onSelectEducationLevel}
         searchable
       />
     </div>

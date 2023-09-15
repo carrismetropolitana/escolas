@@ -132,8 +132,8 @@ export default function SelectSchoolMap({ allSchoolsData, onSelectSchool }) {
         <Source id="allStops" type="geojson" data={allStopsDataAsGeojson}>
           <Layer
             id="allStops"
-            type="circle"
             source="allStops"
+            type="circle"
             paint={{
               'circle-color': ['case', ['boolean', ['feature-state', 'selected'], false], '#EE4B2B', '#ffdd01'],
               'circle-radius': ['interpolate', ['linear', 0.5], ['zoom'], 9, ['case', ['boolean', ['feature-state', 'selected'], false], 5, 1], 26, ['case', ['boolean', ['feature-state', 'selected'], false], 20, 10]],

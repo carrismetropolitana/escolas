@@ -8,7 +8,7 @@ import SelectSchool from '@/components/SelectSchool/SelectSchool';
 import SelectEducationLevel from '../SelectEducationLevel/SelectEducationLevel';
 import SelectSchoolMap from '../SelectSchoolMap/SelectSchoolMap';
 
-export default function SelectMunicipalityAndSchool({ selectedMunicipalityId, onSelectMunicipalityId, selectedEducationLevels, onSelectEducationLevels, onSelectSchool }) {
+export default function SelectMunicipalityAndSchool({ selectedMunicipalityId, onSelectMunicipalityId, selectedEducationLevel, onSelectEducationLevel, onSelectSchool }) {
   //
 
   //
@@ -61,17 +61,18 @@ export default function SelectMunicipalityAndSchool({ selectedMunicipalityId, on
       filterResult = filterResult.filter((item) => item.municipality_id === selectedMunicipalityId);
     }
     // If an education level is selected, show schools only from that level
-    if (selectedEducationLevels.length) {
-      filterResult = filterResult.filter((school) => {
-        return selectedEducationLevels.find((level) => {
-          return school.cicles?.includes(level);
-        });
-      });
+    if (selectedEducationLevel) {
+      filterResult = filterResult.filter((item) => item.cicles?.includes(selectedEducationLevel));
+      //   filterResult = filterResult.filter((school) => {
+      //     return selectedEducationLevel.find((level) => {
+      //       return school.cicles?.includes(level);
+      //     });
+      //   });
     }
     // Set filter results
     return filterResult;
     //
-  }, [allSchoolsSimplified, selectedMunicipalityId, selectedEducationLevels]);
+  }, [allSchoolsSimplified, selectedMunicipalityId, selectedEducationLevel]);
 
   //
   // F. Render components
@@ -81,7 +82,7 @@ export default function SelectMunicipalityAndSchool({ selectedMunicipalityId, on
       <p className={styles.title}>Pesquise as linhas que servem a sua escola ou universidade.</p>
       <div className={styles.filters}>
         <SelectMunicipality selectedMunicipalityId={selectedMunicipalityId} onSelectMunicipalityId={onSelectMunicipalityId} />
-        <SelectEducationLevel selectedEducationLevels={selectedEducationLevels} onSelectEducationLevels={onSelectEducationLevels} />
+        <SelectEducationLevel selectedEducationLevel={selectedEducationLevel} onSelectEducationLevel={onSelectEducationLevel} />
       </div>
       <SelectSchool allSchoolsData={allSchoolsFiltered} onSelectSchool={onSelectSchool} />
       <SelectSchoolMap allSchoolsData={allSchoolsFiltered} onSelectSchool={onSelectSchool} />

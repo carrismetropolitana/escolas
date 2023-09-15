@@ -21,13 +21,13 @@ export default function LineDisplay({ route_code }) {
   //
   // A. Fetch data
 
-  const { data: routeData } = useSWR(`https://schedules.carrismetropolitana.pt/api/routes/route_id/${route_code}`);
+  const { data: routeData } = useSWR(`https://api.carrismetropolitana.pt/routes/${route_code}`);
 
   //
   // B. Handle actions
 
   const handleClick = () => {
-    const websiteURL = `https://www.carrismetropolitana.pt/horarios/?route_short_name=${routeData.route_short_name}&date=&route_id=${routeData.route_id}`;
+    const websiteURL = `https://www.carrismetropolitana.pt/horarios/?route_short_name=${routeData.short_name}&date=&route_id=${routeData.code}`;
     window.open(websiteURL, '_blank', 'noopener,noreferrer');
   };
 
@@ -37,8 +37,8 @@ export default function LineDisplay({ route_code }) {
   return (
     routeData && (
       <div className={styles.container} onClick={handleClick}>
-        <LineBadge short_name={routeData.route_short_name} color={routeData.route_color} text_color={routeData.route_text_color} />
-        <LineName name={routeData.route_long_name} />
+        <LineBadge short_name={routeData.short_name} color={routeData.color} text_color={routeData.text_color} />
+        <LineName name={routeData.long_name} />
       </div>
     )
   );

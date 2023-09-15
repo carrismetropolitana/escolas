@@ -9,12 +9,12 @@ export default function Page() {
   //
   // A. Setup variables
 
-  const { school_code } = useParams();
+  const { school_id } = useParams();
 
   //
   // B. Render components
 
-  return <SchoolPDF school_code={school_code} />;
+  return <SchoolPDF school_id={school_id} />;
 
   //
 }

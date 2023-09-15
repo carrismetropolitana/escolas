@@ -51,8 +51,8 @@ export default function SelectSchoolMap({ allSchoolsData, onSelectSchool }) {
               coordinates: [school.lon, school.lat],
             },
             properties: {
-              mapid: `${stop.code}${generateUUID()}`,
-              code: school.code,
+              mapid: `${stop.id}${generateUUID()}`,
+              id: school.id,
             },
           });
         }
@@ -82,18 +82,18 @@ export default function SelectSchoolMap({ allSchoolsData, onSelectSchool }) {
 
   const handleMapClick = (event) => {
     if (event?.features[0]) {
-      onSelectSchool(event.features[0].properties.code);
+      onSelectSchool(event.features[0].properties.id);
     }
   };
 
   const handleMapMouseEnter = (event) => {
-    if (event?.features[0]?.properties?.code) {
+    if (event?.features[0]?.properties?.id) {
       selectSchoolMap.getCanvas().style.cursor = 'pointer';
     }
   };
 
   const handleMapMouseLeave = (event) => {
-    if (event?.features[0]?.properties?.code) {
+    if (event?.features[0]?.properties?.id) {
       selectSchoolMap.getCanvas().style.cursor = 'default';
     }
   };

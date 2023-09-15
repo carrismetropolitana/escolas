@@ -1,7 +1,7 @@
 'use client';
 
 import { IconChevronDown } from '@tabler/icons-react';
-import { CloseButton, Select, MultiSelect } from '@mantine/core';
+import { CloseButton, MultiSelect } from '@mantine/core';
 import styles from './SelectEducationLevel.module.css';
 
 export default function SelectEducationLevel({ selectedEducationLevels, onSelectEducationLevels }) {

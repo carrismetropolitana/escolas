@@ -15,19 +15,19 @@ export function LineName({ name }) {
   return <div className={styles.name}>{name}</div>;
 }
 
-export default function LineDisplay({ route_code }) {
+export default function LineDisplay({ route_id }) {
   //
 
   //
   // A. Fetch data
 
-  const { data: routeData } = useSWR(`https://api.carrismetropolitana.pt/routes/${route_code}`);
+  const { data: routeData } = useSWR(`https://api.carrismetropolitana.pt/routes/${route_id}`);
 
   //
   // B. Handle actions
 
   const handleClick = () => {
-    const websiteURL = `https://www.carrismetropolitana.pt/horarios/?route_short_name=${routeData.short_name}&date=&route_id=${routeData.code}`;
+    const websiteURL = `https://www.carrismetropolitana.pt/horarios/?route_short_name=${routeData.short_name}&date=&route_id=${routeData.id}`;
     window.open(websiteURL, '_blank', 'noopener,noreferrer');
   };
 

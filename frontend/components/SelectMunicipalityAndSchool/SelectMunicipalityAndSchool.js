@@ -8,7 +8,7 @@ import SelectSchool from '@/components/SelectSchool/SelectSchool';
 import SelectEducationLevel from '../SelectEducationLevel/SelectEducationLevel';
 import SelectSchoolMap from '../SelectSchoolMap/SelectSchoolMap';
 
-export default function SelectMunicipalityAndSchool({ selectedMunicipalityCode, onSelectMunicipalityCode, selectedEducationLevels, onSelectEducationLevels, onSelectSchool }) {
+export default function SelectMunicipalityAndSchool({ selectedMunicipalityId, onSelectMunicipalityId, selectedEducationLevels, onSelectEducationLevels, onSelectSchool }) {
   //
 
   //
@@ -26,9 +26,9 @@ export default function SelectMunicipalityAndSchool({ selectedMunicipalityCode, 
     const filteredOutSchools = allSchoolsData.filter((item) => {
       // Include the school if it is from Barreiro, Cascais or Lisbon
       // even if it does not have associated stops.
-      const isFromBarreiro = item.municipality_code === '1504';
-      const isFromCascais = item.municipality_code === '1105';
-      const isFromLisbon = item.municipality_code === '1106';
+      const isFromBarreiro = item.municipality_id === '1504';
+      const isFromCascais = item.municipality_id === '1105';
+      const isFromLisbon = item.municipality_id === '1106';
       if (isFromBarreiro || isFromCascais || isFromLisbon) return true;
       // If it is from other municipalities, include the school only if it has associated stops
       return item.stops?.length > 0;
@@ -39,13 +39,13 @@ export default function SelectMunicipalityAndSchool({ selectedMunicipalityCode, 
     const sortedSchools = filteredOutSchools.sort((a, b) => collator.compare(a.name, b.name));
     // Keep only the required values
     return sortedSchools.map((item) => ({
-      code: item.code,
+      id: item.id,
       name: item.name,
       lat: item.lat,
       lon: item.lon,
       cicles: item.cicles,
       locality: item.locality,
-      municipality_code: item.municipality_code,
+      municipality_id: item.municipality_id,
       municipality_name: item.municipality_name,
     }));
     //
@@ -57,8 +57,8 @@ export default function SelectMunicipalityAndSchool({ selectedMunicipalityCode, 
     // Setup a variable to hold filtered results
     let filterResult = allSchoolsSimplified;
     // If a municipality is selected, show schools only from that municipality
-    if (selectedMunicipalityCode) {
-      filterResult = filterResult.filter((item) => item.municipality_code === selectedMunicipalityCode);
+    if (selectedMunicipalityId) {
+      filterResult = filterResult.filter((item) => item.municipality_id === selectedMunicipalityId);
     }
     // If an education level is selected, show schools only from that level
     if (selectedEducationLevels.length) {
@@ -71,7 +71,7 @@ export default function SelectMunicipalityAndSchool({ selectedMunicipalityCode, 
     // Set filter results
     return filterResult;
     //
-  }, [allSchoolsSimplified, selectedMunicipalityCode, selectedEducationLevels]);
+  }, [allSchoolsSimplified, selectedMunicipalityId, selectedEducationLevels]);
 
   //
   // F. Render components
@@ -80,7 +80,7 @@ export default function SelectMunicipalityAndSchool({ selectedMunicipalityCode, 
     <div className={styles.container}>
       <p className={styles.title}>Pesquise as linhas que servem a sua escola ou universidade.</p>
       <div className={styles.filters}>
-        <SelectMunicipality selectedMunicipalityCode={selectedMunicipalityCode} onSelectMunicipalityCode={onSelectMunicipalityCode} />
+        <SelectMunicipality selectedMunicipalityId={selectedMunicipalityId} onSelectMunicipalityId={onSelectMunicipalityId} />
         <SelectEducationLevel selectedEducationLevels={selectedEducationLevels} onSelectEducationLevels={onSelectEducationLevels} />
       </div>
       <SelectSchool allSchoolsData={allSchoolsFiltered} onSelectSchool={onSelectSchool} />

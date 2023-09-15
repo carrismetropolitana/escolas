@@ -16,9 +16,9 @@ import BlackHeader from '@/components/BlackHeader/BlackHeader';
 import { SegmentedControl } from '@mantine/core';
 import styles from './SchoolInfo.module.css';
 import NoServiceMessage from '@/components/NoServiceMessage/NoServiceMessage';
-import SourceDisclaimer from '../SourceDisclaimer/SourceDisclaimer';
+import SourceDisclaimer from '@/components/SourceDisclaimer/SourceDisclaimer';
 
-export default function SchoolInfo({ school_code }) {
+export default function SchoolInfo({ school_id }) {
   //
 
   //
@@ -31,7 +31,7 @@ export default function SchoolInfo({ school_code }) {
   //
   // B. Fetch data
 
-  const { data: schoolData } = useSWR(`https://api.carrismetropolitana.pt/facilities/schools/${school_code}`);
+  const { data: schoolData } = useSWR(`https://api.carrismetropolitana.pt/facilities/schools/${school_id}`);
   const { data: allStopsData } = useSWR('https://api.carrismetropolitana.pt/stops');
 
   //
@@ -133,17 +133,17 @@ export default function SchoolInfo({ school_code }) {
             {schoolData && schoolData.stops.length > 0 ? (
               <div className={styles.stopsList}>
                 {schoolData.stops.map((stopCode) => (
-                  <StopInfo key={stopCode} stop_code={stopCode} />
+                  <StopInfo key={stopCode} stop_id={stopCode} />
                 ))}
               </div>
             ) : (
               <div className={styles.stopsList}>
-                <NoServiceMessage municipality_code={schoolData.municipality_code} municipality_name={schoolData.municipality_name} />
+                <NoServiceMessage municipality_id={schoolData.municipality_id} municipality_name={schoolData.municipality_name} />
               </div>
             )}
           </div>
           <div className={styles.actionsWrapper}>
-            {schoolData && schoolData.stops.length > 0 && <DownloadPDF school_code={school_code} />}
+            {schoolData && schoolData.stops.length > 0 && <DownloadPDF school_id={school_id} />}
             <Planner />
             <NaveganteCard />
           </div>

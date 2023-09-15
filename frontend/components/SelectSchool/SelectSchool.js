@@ -17,7 +17,7 @@ export default function SelectSchool({ allSchoolsData, onSelectSchool }) {
   //
   // D. Search
 
-  const allSchoolsDataFilteredBySearchQuery = useSearch(searchQuery, allSchoolsData, { keys: ['code', 'name', 'locality'] });
+  const allSchoolsDataFilteredBySearchQuery = useSearch(searchQuery, allSchoolsData, { keys: ['id', 'name', 'locality'] });
 
   //
   // E. Handle actions
@@ -54,7 +54,7 @@ export default function SelectSchool({ allSchoolsData, onSelectSchool }) {
               <Combobox.Empty>Nenhuma instituição encontrada</Combobox.Empty>
             ) : (
               allSchoolsDataFilteredBySearchQuery.map((item) => (
-                <Combobox.Option key={item.code} value={item.code}>
+                <Combobox.Option key={item.id} value={item.id}>
                   <div>
                     <Highlight highlight={searchQuery} fz="sm" fw={500}>
                       {item.name}

@@ -1,12 +1,12 @@
 'use client';
 
-import BlackHeader from '../BlackHeader/BlackHeader';
+import BlackHeader from '@/components/BlackHeader/BlackHeader';
 import React, { useState } from 'react';
 import styles from './DownloadPDF.module.css';
 import { IconDownload } from '@tabler/icons-react';
-import Loader from '../Loader/Loader';
+import Loader from '@/components/Loader/Loader';
 
-export default function DownloadPDF({ school_code }) {
+export default function DownloadPDF({ school_id }) {
   //
 
   //
@@ -24,13 +24,13 @@ export default function DownloadPDF({ school_code }) {
       const pdfResponse = await fetch('https://escolas.carrismetropolitana.pt/printer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ render_path: `${school_code}/render` }),
+        body: JSON.stringify({ render_path: `${school_id}/render` }),
       });
       console.log(pdfResponse);
       const pdfData = await pdfResponse.blob();
       const blobUrl = window.URL.createObjectURL(pdfData);
       const anchor = window.document.createElement('a');
-      anchor.download = `CarrisMetropolitana-Horarios-Escolas-${school_code}.pdf`;
+      anchor.download = `CarrisMetropolitana-Horarios-Escolas-${school_id}.pdf`;
       anchor.href = blobUrl;
       anchor.click();
       window.URL.revokeObjectURL(blobUrl);

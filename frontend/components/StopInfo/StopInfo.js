@@ -4,13 +4,13 @@ import useSWR from 'swr';
 import styles from './StopInfo.module.css';
 import LineDisplay from '../LineDisplay/LineDisplay';
 
-export default function StopInfo({ stop_code }) {
+export default function StopInfo({ stop_id }) {
   //
 
   //
   // A. Fetch data
 
-  const { data: stopData } = useSWR(`https://api.carrismetropolitana.pt/stops/${stop_code}`);
+  const { data: stopData } = useSWR(`https://api.carrismetropolitana.pt/stops/${stop_id}`);
 
   //
   // B. Render components
@@ -23,13 +23,13 @@ export default function StopInfo({ stop_code }) {
           <div className={styles.stopName}>{stopData.name}</div>
           <div className={styles.stopDetails}>
             <div className={styles.stopLocation}>{stopData.locality}</div>
-            <div className={styles.stopCode}>#{stopData.code}</div>
+            <div className={styles.stopId}>#{stopData.id}</div>
           </div>
         </div>
 
         <div className={styles.linesList}>
-          {stopData.routes?.map((routeCode) => (
-            <LineDisplay key={routeCode} route_code={routeCode} />
+          {stopData.routes?.map((routeId) => (
+            <LineDisplay key={routeId} route_id={routeId} />
           ))}
         </div>
       </div>

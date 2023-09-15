@@ -3,7 +3,7 @@
 import { useMemo } from 'react';
 import styles from './NoServiceMessage.module.css';
 
-export default function NoServiceMessage({ municipality_code, municipality_name }) {
+export default function NoServiceMessage({ municipality_id, municipality_name }) {
   //
 
   //
@@ -20,14 +20,14 @@ export default function NoServiceMessage({ municipality_code, municipality_name 
 
   const messages = useMemo(() => {
     //
-    const localOperatorDetails = otherOperators[municipality_code];
+    const localOperatorDetails = otherOperators[municipality_id];
     //
     return {
       title: `A Carris Metropolitana serve parcialmente o município ${localOperatorDetails.article} ${municipality_name}.`,
       subtitle: `Sugerimos que consulte o operador local "${localOperatorDetails.operator_name}" para mais detalhes sobre a oferta de transporte para esta instituição.`,
       ...localOperatorDetails,
     };
-  }, [municipality_code, municipality_name]);
+  }, [municipality_id, municipality_name]);
 
   //
   // C. Render components

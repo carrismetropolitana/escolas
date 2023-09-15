@@ -9,7 +9,7 @@ import styles from './SchoolPDF.module.css';
 import StopInfo from '@/components/StopInfo/StopInfo';
 // import OSMMap from '@/components/OSMMap/OSMMap';
 
-export default function SchoolPDF({ school_code }) {
+export default function SchoolPDF({ school_id }) {
   //
 
   //
@@ -21,7 +21,7 @@ export default function SchoolPDF({ school_code }) {
   //
   // B. Fetch data
 
-  const { data: schoolData } = useSWR(`https://api.carrismetropolitana.pt/facilities/schools/${school_code}`);
+  const { data: schoolData } = useSWR(`https://api.carrismetropolitana.pt/facilities/schools/${school_id}`);
   //   const { data: allStopsData } = useSWR('https://api.carrismetropolitana.pt/stops');
 
   //
@@ -40,8 +40,8 @@ export default function SchoolPDF({ school_code }) {
   //         features: [],
   //       };
   //       if (schoolData && schoolData.stops.length) {
-  //         for (const stopCode of schoolData.stops) {
-  //           const stopResponse = await fetch(`https://api.carrismetropolitana.pt/stops/${stopCode}`);
+  //         for (const stopId of schoolData.stops) {
+  //           const stopResponse = await fetch(`https://api.carrismetropolitana.pt/stops/${stopId}`);
   //           const stopData = await stopResponse.json();
   //           geoJSON.features.push({
   //             type: 'Feature',
@@ -105,8 +105,8 @@ export default function SchoolPDF({ school_code }) {
         </OSMMap> */}
 
         <div className={styles.stopsWrapper}>
-          {schoolData.stops.map((stopCode) => (
-            <StopInfo key={stopCode} stop_code={stopCode} />
+          {schoolData.stops.map((stopId) => (
+            <StopInfo key={stopId} stop_id={stopId} />
           ))}
         </div>
       </div>

@@ -21,7 +21,7 @@ export default function StopInfo({ stop_id, index }) {
     stopData.routes?.length > 0 && (
       <div className={styles.container}>
         <div className={styles.headerWrapper}>
-          <div className={styles.stopIndex}>{index}</div>
+          {index && <div className={styles.stopIndex}>{index}</div>}
           <div className={styles.header}>
             <div className={styles.stopName}>{stopData.name}</div>
             <div className={styles.stopDetails}>
@@ -29,9 +29,11 @@ export default function StopInfo({ stop_id, index }) {
               <Link href={`https://beta.carrismetropolitana.pt/stops/${stopData.id}`} target="_blank" className={styles.stopId}>
                 #{stopData.id}
               </Link>
-              <Link href={`https://beta.carrismetropolitana.pt/stops/${stopData.id}`} target="_blank" className={styles.openInWebsite}>
-                Ver no Tempo Real
-              </Link>
+              {index && (
+                <Link href={`https://beta.carrismetropolitana.pt/stops/${stopData.id}`} target="_blank" className={styles.openInWebsite}>
+                  Ver no Tempo Real
+                </Link>
+              )}
             </div>
           </div>
         </div>

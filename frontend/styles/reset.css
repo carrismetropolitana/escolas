@@ -1,3 +1,12 @@
+@page {
+  size: A4;
+  margin-top: 30px;
+}
+
+@page :first {
+  margin-top: 0px;
+}
+
 html,
 body {
   height: 100%;

@@ -72,10 +72,15 @@
 
 .stopsWrapper {
   padding: 20px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  page-break-inside: auto;
+  columns: 2;
+  column-gap: 20px;
+  /* page-break-inside: auto; */
+}
+
+.stopsWrapper > div {
+  padding-bottom: 25px;
+  border-bottom: 1px dashed rgb(230, 230, 230);
+  margin-bottom: 25px;
 }
 
 /* * */

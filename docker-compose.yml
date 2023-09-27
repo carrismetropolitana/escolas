@@ -69,19 +69,3 @@ services:
       options:
         max-size: '1m'
         max-file: '1'
-
-  # # # # # # # # # # # # # # # # # # # # #
-  # # # # # # # # # # # # # # # # # # # # #
-
-  printer:
-    image: ghcr.io/carrismetropolitana/printer:production
-    restart: unless-stopped
-    logging:
-      options:
-        max-size: '1m'
-        max-file: '1'
-    environment:
-      - PRINTER_RENDER_BASE_URL=https://escolas.carrismetropolitana.pt
-      - PRINTER_RENDER_TIMEOUT=10000
-      - PRINTER_RENDER_DELAY=2000
-      - PRINTER_RENDER_PAGE_FORMAT=A4

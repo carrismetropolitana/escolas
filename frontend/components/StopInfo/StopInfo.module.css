@@ -80,7 +80,7 @@
 }
 
 .openInWebsite:hover {
-  color: #009849;
+  color: var(--realtime-100);
   text-decoration: underline;
 }
 

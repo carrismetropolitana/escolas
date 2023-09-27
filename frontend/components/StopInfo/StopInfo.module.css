@@ -72,6 +72,11 @@
   color: #a1a1a1;
 }
 
+.stopId:hover {
+  color: var(--realtime-100);
+  text-decoration: underline;
+}
+
 .openInWebsite {
   font-size: 11px;
   font-weight: 600;

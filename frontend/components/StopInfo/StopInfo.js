@@ -2,7 +2,7 @@
 
 import useSWR from 'swr';
 import styles from './StopInfo.module.css';
-import LineDisplay from '../LineDisplay/LineDisplay';
+import LineDisplay from '@/components/LineDisplay/LineDisplay';
 import Link from 'next/link';
 
 export default function StopInfo({ stop_id, index }) {
@@ -26,7 +26,9 @@ export default function StopInfo({ stop_id, index }) {
             <div className={styles.stopName}>{stopData.name}</div>
             <div className={styles.stopDetails}>
               <div className={styles.stopLocation}>{stopData.locality}</div>
-              <div className={styles.stopId}>#{stopData.id}</div>
+              <Link href={`https://beta.carrismetropolitana.pt/stops/${stopData.id}`} target="_blank" className={styles.stopId}>
+                #{stopData.id}
+              </Link>
               <Link href={`https://beta.carrismetropolitana.pt/stops/${stopData.id}`} target="_blank" className={styles.openInWebsite}>
                 Ver no Tempo Real
               </Link>

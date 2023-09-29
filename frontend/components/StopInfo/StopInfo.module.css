@@ -36,7 +36,8 @@
   justify-content: center;
   width: 24px;
   height: 24px;
-  background-color: var(--carris-metropolitana);
+  background-color: #235fe1;
+  color: #ffffff;
   font-weight: bold;
   font-size: 13px;
   line-height: 1;

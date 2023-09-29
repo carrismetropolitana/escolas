@@ -49,17 +49,24 @@ export default function SchoolInfo({ school_id }) {
         type: 'FeatureCollection',
         features: [],
       };
+      if (schoolData) {
+        geoJSON.features.push({
+          type: 'Feature',
+          geometry: { type: 'Point', coordinates: [parseFloat(schoolData.lon), parseFloat(schoolData.lat)] },
+        });
+      }
       if (schoolData && schoolData.stops.length) {
         for (const [stopIndex, stopCode] of schoolData.stops.entries()) {
           const stopResponse = await fetch(`https://api.carrismetropolitana.pt/stops/${stopCode}`);
           const stopData = await stopResponse.json();
           geoJSON.features.push({
             type: 'Feature',
-            geometry: { type: 'Point', coordinates: [stopData.lon, stopData.lat] },
+            geometry: { type: 'Point', coordinates: [parseFloat(stopData.lon), parseFloat(stopData.lat)] },
             properties: { index: stopIndex + 1 },
           });
         }
       }
+
       setSchoolStopsAsGeojson(geoJSON);
     })();
   }, [schoolData]);
@@ -115,8 +122,8 @@ export default function SchoolInfo({ school_id }) {
             <Layer id="allStops" type="circle" source="allStops" paint={{ 'circle-color': '#ffdd01', 'circle-radius': 4, 'circle-stroke-width': 1, 'circle-stroke-color': '#000000' }} />
           </Source>
           <Source id="schoolStops" type="geojson" data={schoolStopsAsGeojson}>
-            <Layer id="schoolStops" type="circle" source="schoolStops" paint={{ 'circle-color': '#ffdd01', 'circle-radius': 10, 'circle-stroke-width': 2, 'circle-stroke-color': '#000000' }} />
-            <Layer id="school-stops-labels" type="symbol" source="schoolStops" layout={{ 'text-field': ['get', 'index'], 'text-offset': [0, 0], 'text-anchor': 'center', 'text-size': 12 }} />
+            <Layer id="schoolStops" type="circle" source="schoolStops" paint={{ 'circle-color': '#235fe1', 'circle-radius': 10, 'circle-stroke-width': 2, 'circle-stroke-color': '#000000' }} />
+            <Layer id="school-stops-labels" type="symbol" source="schoolStops" layout={{ 'text-field': ['get', 'index'], 'text-offset': [0, 0], 'text-anchor': 'center', 'text-size': 12 }} paint={{ 'text-color': '#ffffff' }} />
           </Source>
           <Marker latitude={schoolData.lat} longitude={schoolData.lon}>
             <Image priority src="/images/escola.png" height={50} width={50} alt={schoolData.name} />

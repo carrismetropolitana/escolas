@@ -62,8 +62,30 @@ services:
   # # # # # # # # # # # # # # # # # # # # #
   # # # # # # # # # # # # # # # # # # # # #
 
-  frontend:
+  escolas_frontend:
     image: ghcr.io/carrismetropolitana/escolas-frontend:main
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: '1m'
+        max-file: '1'
+
+  # # # # # # # # # # # # # # # # # # # # #
+  # # # # # # # # # # # # # # # # # # # # #
+
+  folhetos_frontend:
+    image: ghcr.io/carrismetropolitana/folhetos-frontend:main
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: '1m'
+        max-file: '1'
+
+  # # # # # # # # # # # # # # # # # # # # #
+  # # # # # # # # # # # # # # # # # # # # #
+
+  folhetos_pdfgen:
+    image: ghcr.io/carrismetropolitana/folhetos-pdf-generator:main
     restart: unless-stopped
     logging:
       options:

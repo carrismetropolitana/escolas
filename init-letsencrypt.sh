@@ -1,7 +1,8 @@
 #!/bin/bash
 
 staging=0 # Set to 1 if you're testing your setup to avoid hitting request limits
-domain=escolas.carrismetropolitana.pt
+domain1=escolas.carrismetropolitana.pt
+domain2=folhetos.carrismetropolitana.pt
 email="carrismetropolitana@gmail.com" # Adding a valid address is strongly recommended
 
 
@@ -14,18 +15,18 @@ curl -s https://raw.githubusercontent.com/certbot/certbot/master/certbot-nginx/c
 curl -s https://raw.githubusercontent.com/certbot/certbot/master/certbot/certbot/ssl-dhparams.pem > "./letsencrypt/ssl-dhparams.pem"
 echo
 
-echo "### Creating dummy certificate for $domain and www.$domain ..."
-mkdir -p "./letsencrypt/live/$domain"
-mkdir -p "./letsencrypt/live/www.$domain"
+echo "### Creating dummy certificate for $domain1 and www.$domain1 and $domain2 and www.$domain2 ..."
+mkdir -p "./letsencrypt/live/$domain1"
+mkdir -p "./letsencrypt/live/$domain2"
 docker compose run --rm --entrypoint "\
   openssl req -x509 -nodes -newkey rsa:4096 -days 1\
-    -keyout '/etc/letsencrypt/live/$domain/privkey.pem' \
-    -out '/etc/letsencrypt/live/$domain/fullchain.pem' \
+    -keyout '/etc/letsencrypt/live/$domain1/privkey.pem' \
+    -out '/etc/letsencrypt/live/$domain1/fullchain.pem' \
     -subj '/CN=localhost'" certbot
 docker compose run --rm --entrypoint "\
   openssl req -x509 -nodes -newkey rsa:4096 -days 1\
-    -keyout '/etc/letsencrypt/live/www.$domain/privkey.pem' \
-    -out '/etc/letsencrypt/live/www.$domain/fullchain.pem' \
+    -keyout '/etc/letsencrypt/live/$domain2/privkey.pem' \
+    -out '/etc/letsencrypt/live/$domain2/fullchain.pem' \
     -subj '/CN=localhost'" certbot
 echo
 
@@ -34,18 +35,15 @@ echo "### Starting nginx ..."
 docker compose up --force-recreate -d nginx
 echo
 
-echo "### Deleting dummy certificate for $domain ..."
+echo "### Deleting dummy certificate for $domain1 ..."
 docker compose run --rm --entrypoint "\
-  rm -Rf /etc/letsencrypt/live/$domain && \
-  rm -Rf /etc/letsencrypt/archive/$domain && \
-  rm -Rf /etc/letsencrypt/renewal/$domain.conf \
-  rm -Rf /etc/letsencrypt/live/www.$domain && \
-  rm -Rf /etc/letsencrypt/archive/www.$domain && \
-  rm -Rf /etc/letsencrypt/renewal/www.$domain.conf" certbot
+  rm -Rf /etc/letsencrypt/live/$domain1 && \
+  rm -Rf /etc/letsencrypt/archive/$domain1 && \
+  rm -Rf /etc/letsencrypt/renewal/$domain1.conf" certbot
 echo
 
 
-echo "### Requesting Let's Encrypt certificate for $domain and www.$domain ..."
+echo "### Requesting Let's Encrypt certificate for $domain1 and www.$domain1 ..."
 
 # Enable staging mode if needed
 if [ $staging != "0" ]; then staging_arg="--staging"; fi
@@ -53,7 +51,27 @@ if [ $staging != "0" ]; then staging_arg="--staging"; fi
 docker compose run --rm --entrypoint "\
   certbot certonly --webroot -w /var/www/certbot \
     $staging_arg \
-    -d $domain -d www.$domain \
+    -d $domain1 -d www.$domain1 \
+    --email $email \
+    --rsa-key-size 4096 \
+    --agree-tos \
+    --noninteractive \
+    --verbose \
+    --force-renewal" certbot
+echo
+
+echo "### Deleting dummy certificate for $domain2 ..."
+docker compose run --rm --entrypoint "\
+  rm -Rf /etc/letsencrypt/live/$domain2 && \
+  rm -Rf /etc/letsencrypt/archive/$domain2 && \
+  rm -Rf /etc/letsencrypt/renewal/$domain2.conf" certbot
+echo
+
+echo "### Requesting Let's Encrypt certificate for $domain2 and www.$domain2 ..."
+docker compose run --rm --entrypoint "\
+  certbot certonly --webroot -w /var/www/certbot \
+    $staging_arg \
+    -d $domain2 -d www.$domain2 \
     --email $email \
     --rsa-key-size 4096 \
     --agree-tos \

@@ -11,7 +11,7 @@ jobs:
   # # # # # # # # # # # # # # # # # # # # #
   # # # # # # # # # # # # # # # # # # # # #
 
-  go-dashboard:
+  escolas-frontend:
     name: 'Build Docker Image (frontend)'
     runs-on: ubuntu-latest
     strategy:

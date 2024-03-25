@@ -14,7 +14,7 @@ export default function SelectMunicipalityAndSchool({ selectedMunicipalityId, on
   //
   // B. Fetch data
 
-  const { data: allSchoolsData } = useSWR('https://api.carrismetropolitana.pt/facilities/schools');
+  const { data: allSchoolsData } = useSWR('https://api.carrismetropolitana.pt/datasets/facilities/schools');
 
   //
   // C. Transform data

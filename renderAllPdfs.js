@@ -5,7 +5,7 @@ const fs = require('fs');
 
   let erroredSchooldIds = [];
 
-  const allSchoolsResponse = await fetch('https://api.carrismetropolitana.pt/facilities/schools');
+  const allSchoolsResponse = await fetch('https://api.carrismetropolitana.pt/datasets/facilities/schools');
   const allSchoolsData = await allSchoolsResponse.json();
 
   for (const [schoolIndex, schoolData] of allSchoolsData.entries()) {

@@ -31,7 +31,7 @@ export default function SchoolInfo({ school_id }) {
   //
   // B. Fetch data
 
-  const { data: schoolData } = useSWR(`https://api.carrismetropolitana.pt/facilities/schools/${school_id}`);
+  const { data: schoolData } = useSWR(`https://api.carrismetropolitana.pt/datasets/facilities/schools/${school_id}`);
   const { data: allStopsData } = useSWR('https://api.carrismetropolitana.pt/stops');
 
   //

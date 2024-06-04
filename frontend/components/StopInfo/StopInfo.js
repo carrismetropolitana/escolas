@@ -40,7 +40,7 @@ export default function StopInfo({ stop_id, index }) {
 
         <div className={styles.linesList}>
           {stopData.routes?.map((routeId) => (
-            <LineDisplay key={routeId} route_id={routeId} />
+            <LineDisplay k={routeId} route_id={routeId} />
           ))}
         </div>
       </div>

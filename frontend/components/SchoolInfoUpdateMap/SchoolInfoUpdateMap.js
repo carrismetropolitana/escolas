@@ -2,23 +2,13 @@
 
 import useSWR from 'swr';
 import { useEffect, useMemo, useState } from 'react';
-import Titles from '@/components/Titles/Titles';
 import Image from 'next/image';
 import * as turf from '@turf/turf';
-import Planner from '@/components/Planner/Planner';
-import BackHome from '@/components/BackHome/BackHome';
 import OSMMap from '@/components/OSMMap/OSMMap';
 import { useMap, Source, Layer, Marker } from 'react-map-gl/maplibre';
-import DownloadPDF from '@/components/DownloadPDF/DownloadPDF';
-import NaveganteCard from '@/components/NaveganteCard/NaveganteCard';
-import StopInfo from '@/components/StopInfo/StopInfo';
-import BlackHeader from '@/components/BlackHeader/BlackHeader';
 import { SegmentedControl } from '@mantine/core';
-import styles from './SchoolInfo.module.css';
-import NoServiceMessage from '@/components/NoServiceMessage/NoServiceMessage';
-import SourceDisclaimer from '@/components/SourceDisclaimer/SourceDisclaimer';
 
-export default function SchoolInfo({ school_id }) {
+export default function SchoolInfoUpdateMap({schoolData}) {
   //
 
   //
@@ -28,11 +18,11 @@ export default function SchoolInfo({ school_id }) {
   const [mapStyle, setMapStyle] = useState('map');
   const [schoolStopsAsGeojson, setSchoolStopsAsGeojson] = useState();
 
+  const {data:allStopsData} = useSWR('https://api.carrismetropolitana.pt/stops')
+
   //
   // B. Fetch data
 
-  const { data: schoolData } = useSWR(`https://api.carrismetropolitana.pt/datasets/facilities/schools/${school_id}`);
-  const { data: allStopsData } = useSWR('https://api.carrismetropolitana.pt/stops');
 
   //
   // C. Transform data
@@ -92,11 +82,6 @@ export default function SchoolInfo({ school_id }) {
 
   return (
     schoolData && (
-      <div className={styles.container}>
-        <div className={styles.titles}>
-          <Titles municipality_name={schoolData.municipality_name} school_name={schoolData.name} />
-        </div>
-
         <OSMMap
           id="schoolInfoMap"
           height={400}
@@ -129,33 +114,6 @@ export default function SchoolInfo({ school_id }) {
             <Image priority src="/images/escola.png" height={50} width={50} alt={schoolData.name} />
           </Marker>
         </OSMMap>
-
-        <div className={styles.gridWrapper}>
-          <div className={styles.stopsWrapper}>
-            <BlackHeader text={`Paragens que servem a instituição: ${schoolData.name}`} />
-            {schoolData && schoolData.stops.length > 0 ? (
-              <div className={styles.stopsList}>
-                {schoolData.stops.map((stopCode, stopIndex) => (
-                  <StopInfo k={stopCode} stop_id={stopCode} index={stopIndex + 1} />
-                ))}
-              </div>
-            ) : (
-              <div className={styles.stopsList}>
-                <NoServiceMessage municipality_id={schoolData.municipality_id} municipality_name={schoolData.municipality_name} />
-              </div>
-            )}
-          </div>
-          <div className={styles.actionsWrapper}>
-            {schoolData && schoolData.stops.length > 0 && <DownloadPDF school_id={school_id} />}
-            <Planner />
-            <NaveganteCard />
-          </div>
-        </div>
-
-        <BackHome />
-
-        <SourceDisclaimer />
-      </div>
     )
   );
 

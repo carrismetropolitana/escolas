@@ -3,7 +3,7 @@ import Image from 'next/image';
 import styles from './Layout.module.css';
 import AppTopBar from '../AppTopBar/AppTopBar';
 
-export default function Layout({ children, home }) {
+export default function Layout({ children }) {
   return (
     <div className={styles.layout}>
       <Head>

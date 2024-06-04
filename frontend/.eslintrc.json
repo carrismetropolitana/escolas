@@ -1,0 +1,37 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+
+  // all plugins (eslint-plugin-xxx) go here:
+  "plugins": [
+    "@next/eslint-plugin-next" // https://github.com/vercel/next.js/blob/canary/packages/eslint-plugin-next/lib/index.js
+  ],
+
+  // all configs (eslint-config-xxx) go here:
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@next/next/recommended",
+    "next", // https://github.com/vercel/next.js/blob/canary/packages/eslint-config-next/package.json
+    "next/core-web-vitals"
+  ],
+  "rules": {
+    // ...add rules which you'd like to disable
+  }
+}

@@ -54,7 +54,7 @@ export default function SelectSchool({ allSchoolsData, onSelectSchool }) {
               <Combobox.Empty>Nenhuma instituição encontrada</Combobox.Empty>
             ) : (
               allSchoolsDataFilteredBySearchQuery.map((item) => (
-                <Combobox.Option key={item.id} value={item.id}>
+                <Combobox.Option k={item.id} value={item.id}>
                   <div>
                     <Highlight highlight={searchQuery} fz="sm" fw={500}>
                       {item.name}

@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import styles from './BackHome.module.css';
 
-export default function BackHome({ setSchool }) {
+export default function BackHome() {
   //
 
   //

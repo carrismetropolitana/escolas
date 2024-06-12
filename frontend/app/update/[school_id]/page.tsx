@@ -12,7 +12,7 @@ export default async function Page({ params }) {
 
 	// B. Fetch data
 
-  const schoolData = await fetch(`https://api.carrismetropolitana.pt/datasets/facilities/schools/${school_id}`).then((response) => response.json());
+	const schoolData = await fetch(`https://api.carrismetropolitana.pt/datasets/facilities/schools/${school_id}`).then(response => response.json());
 	//
 	// C. Render components
 

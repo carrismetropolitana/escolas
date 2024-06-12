@@ -18,30 +18,30 @@ export default function StopInfo({ stop_id, index }) {
 
 	return (
 		stopData &&
-    stopData.routes?.length > 0 &&
-      <div className={styles.container}>
-      	<div className={styles.headerWrapper}>
-      		{index && <div className={styles.stopIndex}>{index}</div>}
-      		<div className={styles.header}>
-      			<div className={styles.stopName}>{stopData.name}</div>
-      			<div className={styles.stopDetails}>
-      				<div className={styles.stopLocation}>{stopData.locality}</div>
-      				<Link href={`https://beta.carrismetropolitana.pt/stops/${stopData.id}`} target='_blank' className={styles.stopId}>
-                #{stopData.id}
-      				</Link>
-      				{index &&
-                <Link href={`https://beta.carrismetropolitana.pt/stops/${stopData.id}`} target='_blank' className={styles.openInWebsite}>
-                  Ver no Tempo Real
-                </Link>
-      				}
-      			</div>
-      		</div>
-      	</div>
+		stopData.routes?.length > 0 &&
+			<div className={styles.container}>
+				<div className={styles.headerWrapper}>
+					{index && <div className={styles.stopIndex}>{index}</div>}
+					<div className={styles.header}>
+						<div className={styles.stopName}>{stopData.name}</div>
+						<div className={styles.stopDetails}>
+							<div className={styles.stopLocation}>{stopData.locality}</div>
+							<Link href={`https://beta.carrismetropolitana.pt/stops/${stopData.id}`} target='_blank' className={styles.stopId}>
+								#{stopData.id}
+							</Link>
+							{index &&
+								<Link href={`https://beta.carrismetropolitana.pt/stops/${stopData.id}`} target='_blank' className={styles.openInWebsite}>
+									Ver no Tempo Real
+								</Link>
+							}
+						</div>
+					</div>
+				</div>
 
-      	<div className={styles.linesList}>
-      		{stopData.routes?.map(routeId => <LineDisplay k={routeId} route_id={routeId} />)}
-      	</div>
-      </div>
+				<div className={styles.linesList}>
+					{stopData.routes?.map(routeId => <LineDisplay key={routeId} k={routeId} route_id={routeId} />)}
+				</div>
+			</div>
 
 	);
 }

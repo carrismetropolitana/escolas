@@ -36,10 +36,10 @@ export default function LineDisplay({ route_id }) {
 
 	return (
 		routeData &&
-      <div className={styles.container} onClick={handleClick}>
-      	<LineBadge short_name={routeData.short_name} color={routeData.color} text_color={routeData.text_color} />
-      	<LineName name={routeData.long_name} />
-      </div>
+			<div className={styles.container} onClick={handleClick}>
+				<LineBadge short_name={routeData.short_name} color={routeData.color} text_color={routeData.text_color} />
+				<LineName name={routeData.long_name} />
+			</div>
 
 	);
 

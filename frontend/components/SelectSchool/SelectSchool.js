@@ -52,7 +52,7 @@ export default function SelectSchool({ allSchoolsData, onSelectSchool }) {
 					<Combobox.Options mah={200} style={{ overflowY: 'auto' }}>
 						{allSchoolsDataFilteredBySearchQuery.length === 0 ?
 							<Combobox.Empty>Nenhuma instituição encontrada</Combobox.Empty> :
-							allSchoolsDataFilteredBySearchQuery.map(item => <Combobox.Option k={item.id} value={item.id}>
+							allSchoolsDataFilteredBySearchQuery.map(item => <Combobox.Option key={item.id} k={item.id} value={item.id}>
 								<div>
 									<Highlight highlight={searchQuery} fz='sm' fw={500}>
 										{item.name}

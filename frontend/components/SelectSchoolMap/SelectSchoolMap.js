@@ -103,49 +103,49 @@ export default function SelectSchoolMap({ allSchoolsData, onSelectSchool }) {
 
 	return (
 		allSchoolsData &&
-    allStopsData &&
-      <OSMMap
-      	id='selectSchoolMap'
-      	height={400}
-      	scrollZoom={true}
-      	navigation={true}
-      	fullscreen={true}
-      	mapStyle={mapStyle}
-      	interactiveLayerIds={['allSchools']}
-      	onClick={handleMapClick}
-      	onMouseEnter={handleMapMouseEnter}
-      	onMouseLeave={handleMapMouseLeave}
-      	toolbar={
-      		<>
-      			<SegmentedControl
-      				value={mapStyle}
-      				onChange={setMapStyle}
-      				size='xs'
-      				data={[
-      					{ label: 'Map', value: 'map' },
-      					{ label: 'Satellite', value: 'satellite' },
-      				]}
-      			/>
-      		</>
-      	}
-      >
-      	<Source id='allStops' type='geojson' data={allStopsDataAsGeojson}>
-      		<Layer
-      			id='allStops'
-      			source='allStops'
-      			type='circle'
-      			paint={{
-      				'circle-color': ['case', ['boolean', ['feature-state', 'selected'], false], '#EE4B2B', '#ffdd01'],
-      				'circle-radius': ['interpolate', ['linear', 0.5], ['zoom'], 9, ['case', ['boolean', ['feature-state', 'selected'], false], 5, 1], 26, ['case', ['boolean', ['feature-state', 'selected'], false], 20, 10]],
-      				'circle-stroke-width': ['interpolate', ['linear', 0.5], ['zoom'], 9, 0.35, 26, 5],
-      				'circle-stroke-color': '#000000',
-      			}}
-      		/>
-      	</Source>
-      	<Source id='allSchools' type='geojson' data={allSchoolsAsGeojson}>
-      		<Layer id='allSchools' source='allSchools' type={'symbol'} layout={{ 'icon-image': 'store-icon', 'icon-size': ['interpolate', ['linear', 0.5], ['zoom'], 9, 0.1, 26, 0.75] }} />
-      	</Source>
-      </OSMMap>
+		allStopsData &&
+			<OSMMap
+				id='selectSchoolMap'
+				height={400}
+				scrollZoom={true}
+				navigation={true}
+				fullscreen={true}
+				mapStyle={mapStyle}
+				interactiveLayerIds={['allSchools']}
+				onClick={handleMapClick}
+				onMouseEnter={handleMapMouseEnter}
+				onMouseLeave={handleMapMouseLeave}
+				toolbar={
+					<>
+						<SegmentedControl
+							value={mapStyle}
+							onChange={setMapStyle}
+							size='xs'
+							data={[
+								{ label: 'Map', value: 'map' },
+								{ label: 'Satellite', value: 'satellite' },
+							]}
+						/>
+					</>
+				}
+			>
+				<Source id='allStops' type='geojson' data={allStopsDataAsGeojson}>
+					<Layer
+						id='allStops'
+						source='allStops'
+						type='circle'
+						paint={{
+							'circle-color': ['case', ['boolean', ['feature-state', 'selected'], false], '#EE4B2B', '#ffdd01'],
+							'circle-radius': ['interpolate', ['linear', 0.5], ['zoom'], 9, ['case', ['boolean', ['feature-state', 'selected'], false], 5, 1], 26, ['case', ['boolean', ['feature-state', 'selected'], false], 20, 10]],
+							'circle-stroke-width': ['interpolate', ['linear', 0.5], ['zoom'], 9, 0.35, 26, 5],
+							'circle-stroke-color': '#000000',
+						}}
+					/>
+				</Source>
+				<Source id='allSchools' type='geojson' data={allSchoolsAsGeojson}>
+					<Layer id='allSchools' source='allSchools' type={'symbol'} layout={{ 'icon-image': 'store-icon', 'icon-size': ['interpolate', ['linear', 0.5], ['zoom'], 9, 0.1, 26, 0.75] }} />
+				</Source>
+			</OSMMap>
 
 	);
 

@@ -14,7 +14,7 @@ export default function Page() {
 	const router = useRouter();
 	const [selectedMunicipalityId, setSelectedMunicipalityId] = useState(null);
 	const [selectedEducationLevel, setSelectedEducationLevel] = useState(null);
-	const [selectedSchool, setSelectedSchool] = useState();
+	const [selectedSchool, _setSelectedSchool] = useState();
 
 	//
 	// B. Handle actions

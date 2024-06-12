@@ -81,38 +81,38 @@ export default function SchoolInfoUpdateMap({ schoolData }) {
 
 	return (
 		schoolData &&
-        <OSMMap
-        	id='schoolInfoMap'
-        	height={400}
-        	scrollZoom={false}
-        	navigation={true}
-        	fullscreen={true}
-        	mapStyle={mapStyle}
-        	toolbar={
-        		<>
-        			<SegmentedControl
-        				value={mapStyle}
-        				onChange={setMapStyle}
-        				size='xs'
-        				data={[
-        					{ label: 'Map', value: 'map' },
-        					{ label: 'Satellite', value: 'satellite' },
-        				]}
-        			/>
-        		</>
-        	}
-        >
-        	<Source id='allStops' type='geojson' data={allStopsDataAsGeojson}>
-        		<Layer id='allStops' type='circle' source='allStops' paint={{ 'circle-color': '#ffdd01', 'circle-radius': 4, 'circle-stroke-width': 1, 'circle-stroke-color': '#000000' }} />
-        	</Source>
-        	<Source id='schoolStops' type='geojson' data={schoolStopsAsGeojson}>
-        		<Layer id='schoolStops' type='circle' source='schoolStops' paint={{ 'circle-color': '#235fe1', 'circle-radius': 10, 'circle-stroke-width': 2, 'circle-stroke-color': '#000000' }} />
-        		<Layer id='school-stops-labels' type='symbol' source='schoolStops' layout={{ 'text-field': ['get', 'index'], 'text-offset': [0, 0], 'text-anchor': 'center', 'text-size': 12 }} paint={{ 'text-color': '#ffffff' }} />
-        	</Source>
-        	<Marker latitude={schoolData.lat} longitude={schoolData.lon}>
-        		<Image priority src='/images/escola.png' height={50} width={50} alt={schoolData.name} />
-        	</Marker>
-        </OSMMap>
+				<OSMMap
+					id='schoolInfoMap'
+					height={400}
+					scrollZoom={false}
+					navigation={true}
+					fullscreen={true}
+					mapStyle={mapStyle}
+					toolbar={
+						<>
+							<SegmentedControl
+								value={mapStyle}
+								onChange={setMapStyle}
+								size='xs'
+								data={[
+									{ label: 'Map', value: 'map' },
+									{ label: 'Satellite', value: 'satellite' },
+								]}
+							/>
+						</>
+					}
+				>
+					<Source id='allStops' type='geojson' data={allStopsDataAsGeojson}>
+						<Layer id='allStops' type='circle' source='allStops' paint={{ 'circle-color': '#ffdd01', 'circle-radius': 4, 'circle-stroke-width': 1, 'circle-stroke-color': '#000000' }} />
+					</Source>
+					<Source id='schoolStops' type='geojson' data={schoolStopsAsGeojson}>
+						<Layer id='schoolStops' type='circle' source='schoolStops' paint={{ 'circle-color': '#235fe1', 'circle-radius': 10, 'circle-stroke-width': 2, 'circle-stroke-color': '#000000' }} />
+						<Layer id='school-stops-labels' type='symbol' source='schoolStops' layout={{ 'text-field': ['get', 'index'], 'text-offset': [0, 0], 'text-anchor': 'center', 'text-size': 12 }} paint={{ 'text-color': '#ffffff' }} />
+					</Source>
+					<Marker latitude={schoolData.lat} longitude={schoolData.lon}>
+						<Image priority src='/images/escola.png' height={50} width={50} alt={schoolData.name} />
+					</Marker>
+				</OSMMap>
 
 	);
 

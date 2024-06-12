@@ -22,9 +22,9 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
     // eslint-disable-next-line no-unused-vars
     [key in SchoolCicle]: {
       // hasCicle:(value:boolean,values:FormType)=>null|string,
-      type:(value:string, values:FormType)=>null|string,
-      entry:(value:string, values:FormType)=>null|string,
-      exit:(value:string, values:FormType)=>null|string
+      type:(_value:string, _values:FormType)=>null|string,
+      entry:(_value:string, _values:FormType)=>null|string,
+      exit:(_value:string, _values:FormType)=>null|string
     }
   };
 	schoolCicles.forEach(cicle => {

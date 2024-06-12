@@ -3,11 +3,12 @@ import Titles from '@/components/Titles/Titles';
 import BackHome from '@/components/BackHome/BackHome';
 import SchoolInfoUpdateMap from '../SchoolInfoUpdateMap/SchoolInfoUpdateMap';
 // import { submit } from './SubmitAction';
-import { Button, Paper, SegmentedControl, Stack, Text, TextInput, Textarea, Title } from '@mantine/core';
+import { Button, Group, Loader, Paper, SegmentedControl, Stack, Text, TextInput, Textarea, Title } from '@mantine/core';
 import { isEmail, useForm } from '@mantine/form';
 import SchoolCycleItem from './SchoolCycleItem';
 import { submit } from './SubmitAction';
 import { FormType, SchoolCicle, SchoolCicleObjects, SchoolData, schoolCicles } from './types';
+import { useState } from 'react';
 
 export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id: string, schoolData: SchoolData}) {
 	//
@@ -38,7 +39,7 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
 	const form = useForm<FormType>({
 		initialValues: {
 			id: school_id,
-			correctLocation: 'nao',
+			correctLocation: '',
 			submissionDate: '', // gets populated server side
 			postal_code: schoolData.postal_code || '',
 			email: schoolData.email || '',
@@ -48,11 +49,14 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
 			...defaultCicle,
 		},
 		validate: {
+			correctLocation: value => value !== '' ? null : 'Indique se a localização está correta',
 			email: value => isEmail(value) ? null : 'Email inválido',
 			url: value => value === '' || /^\S+\.\S+$/.test(value) ? null : 'Website inválido, tem de conter um ponto',
 			...verifiers,
 		},
 	});
+
+	const [submitState, setSubmitState] = useState<'no'|'done'|'processing'>('no');
 
 	//
 	// B. Fetch data
@@ -68,14 +72,19 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
 			<div>
 				<Titles municipality_name={schoolData.municipality_name} school_name={schoolData.name} />
 			</div>
-			<form onSubmit={form.onSubmit(values => { submit(values); })}
-				style={{ display: 'flex', flexDirection: 'column', gap: 8, textAlign: 'left' }}>
+			<form onSubmit={form.onSubmit(async values => {
+				setSubmitState('processing');
+				await submit(values);
+				setSubmitState('done');
+			})}
+			style={{ display: 'flex', flexDirection: 'column', gap: 8, textAlign: 'left' }}>
 				<Paper shadow='sm' radius='md'>
 					<SchoolInfoUpdateMap schoolData={schoolData} />
 				</Paper>
 				<Paper p={16}>
 					<Title order={3} fw={700}>Confirmar Posição</Title>
 					<Text size='xs' c='dimmed'>A posição da escola no mapa corresponde com a posição real?</Text>
+					{form.getInputProps('correctLocation').error && <Text c='red' size='xs'>{form.getInputProps('correctLocation').error}</Text>}
 					<SegmentedControl
 						style={{ flexShrink: 0 }}
 						size='xs'
@@ -131,9 +140,16 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
 						label='Comentário'
 						description='Informação extra que queira transmitir sobre a escola'
 						placeholder='Há muitos estudantes que vêm de sitio X/Não há aulas sextas-feiras/etc'
+						{...form.getInputProps('comment')}
 					/>
 				</Paper>
-				<Button type='submit'>Submit</Button>
+				<Button leftSection={
+					(<div>{submitState === 'processing' && <Loader size={16} color='white' />}
+						{submitState === 'done' && ' ✓'}</div>)
+				}
+				type='submit' size='md'>
+					Enviar
+				</Button>
 			</form>
 			<BackHome />
 		</div>

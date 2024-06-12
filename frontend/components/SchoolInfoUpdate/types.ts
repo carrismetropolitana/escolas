@@ -31,7 +31,7 @@ export type SchoolCicleObjects = {
 }
 export type FormType = {
   id: string;
-  correctLocation: 'sim' | 'quase' | 'nao';
+  correctLocation: 'sim' | 'quase' | 'nao' | '';
   submissionDate: string;
   postal_code: string;
   email: string;

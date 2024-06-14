@@ -27,8 +27,17 @@ export const schoolCicles = ['pre_school', 'basic_1', 'basic_2', 'basic_3', 'hig
 export type SchoolCicle = typeof schoolCicles[number]
 export type SchoolCicleObjects = {
   // eslint-disable-next-line no-unused-vars
-  [key in SchoolCicle]: {hasCicle:boolean, type:null|string, entry:null|string, exit:null|string}
+  [_key in SchoolCicle]: {
+    hasCicle:boolean,
+    morningEntry:string,
+    morningExit:string,
+    afternoonEntry:string,
+    afternoonExit:string
+  }
 }
+
+type DatePair = [ Date|null, Date|null ]
+
 export type FormType = {
   id: string;
   correctLocation: 'sim' | 'quase' | 'nao' | '';
@@ -37,5 +46,10 @@ export type FormType = {
   email: string;
   phone: string;
   url: string;
-  comment:string
+  calendar: {
+    cycleFrequency: ''|'semester'|'trimester',
+    dates: DatePair[]
+    vacations: DatePair[]
+  }
+  , comment:string
 } & SchoolCicleObjects

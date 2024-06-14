@@ -1,19 +1,20 @@
 'use client';
-import { ActionIcon, Box, Button, Group, Paper, SegmentedControl, Stack, Switch, Text, TextInput, Title } from '@mantine/core';
+import { ActionIcon, Button, Group, Paper, SegmentedControl, Stack, Text, Title } from '@mantine/core';
 import { DatePickerInput } from '@mantine/dates';
 import { UseFormReturnType } from '@mantine/form/lib/types';
 import '@mantine/dates/styles.css';
 import { FormType } from '../SchoolInfoUpdate/types';
 import { IconTrash } from '@tabler/icons-react';
-import { useForm } from '@mantine/form';
-import { randomId } from '@mantine/hooks';
 
 export function SchoolInfoUpdateCalendar({ form }:{form:UseFormReturnType<FormType, (_: FormType) => FormType>}) {
+	// A. Setup Variables
 	const cycleFrequencyProps = form.getInputProps('calendar.cycleFrequency', { type: 'input' });
 	const cycleFrequency:''|'trimester'|'semester' = cycleFrequencyProps.value;
 
 	const datesProps = form.getInputProps('calendar.dates');
 	const vacationsProps = form.getInputProps('calendar.vacations');
+
+	// B. Render
 
 	return <Paper shadow='sm' radius='md' p={16}>
 		<Title order={3} fw={700}>Calendário Escolar</Title>
@@ -31,13 +32,13 @@ export function SchoolInfoUpdateCalendar({ form }:{form:UseFormReturnType<FormTy
 			{cycleFrequencyProps.error && <Text c='red' size='xs'>{cycleFrequencyProps.error}</Text>}
 			{datesProps.error && <Text c='red' size='xs'>{datesProps.error}</Text>}
 			{cycleFrequency === 'semester' && <Stack gap={6}>
-				<Text size='xs'>Intervalo de Datas do Primeiro Semestre</Text>
+				<Text size='xs'>Periodo letivo do Primeiro Semestre</Text>
 				<DatePickerInput
 					type='range'
 					maw={300}
 					{...form.getInputProps('calendar.dates.0')}
 				/>
-				<Text size='xs'>Intervalo de Datas do Segundo Semestre</Text>
+				<Text size='xs'>Periodo letivo do Segundo Semestre</Text>
 				<DatePickerInput
 					type='range'
 					maw={300}
@@ -67,7 +68,7 @@ export function SchoolInfoUpdateCalendar({ form }:{form:UseFormReturnType<FormTy
 			</Stack>
 			}
 			<Stack gap={4}>
-				<Text size='md' fw={500}>Lista de Férias/Interrupções Escolares</Text>
+				<Text size='md' fw={500}>Lista de Interrupções dentro do período escolar</Text>
 				{vacationsProps.error && <Text c='red' size='xs'>{vacationsProps.error}</Text>}
 				{form.getValues().calendar.vacations.map((item, index) => <Group key={index}>
 					<DatePickerInput
@@ -91,60 +92,4 @@ export function SchoolInfoUpdateCalendar({ form }:{form:UseFormReturnType<FormTy
 			</Stack>
 		</Stack>
 	</Paper>;
-}
-
-export function SchoolInfoUpdateCalendarr() {
-	const form = useForm({
-		mode: 'uncontrolled',
-		initialValues: {
-			employees: [{ name: '', active: false, key: randomId() }],
-		},
-	});
-
-	const fields = form.getValues().employees.map((item, index) => <Group key={item.key} mt='xs'>
-		<TextInput
-			placeholder='John Doe'
-			withAsterisk
-			style={{ flex: 1 }}
-			key={form.key(`employees.${index}.name`)}
-			{...form.getInputProps(`employees.${index}.name`)}
-		/>
-		<Switch
-			label='Active'
-			key={form.key(`employees.${index}.active`)}
-			{...form.getInputProps(`employees.${index}.active`, { type: 'checkbox' })}
-		/>
-		<ActionIcon color='red' onClick={() => form.removeListItem('employees', index)}>
-			<IconTrash size='1rem' />
-		</ActionIcon>
-	</Group>);
-
-	return (
-		<Box maw={500} mx='auto'>
-			{fields.length > 0 ?
-				<Group mb='xs'>
-					<Text fw={500} size='sm' style={{ flex: 1 }}>
-            Name
-					</Text>
-					<Text fw={500} size='sm' pr={90}>
-            Status
-					</Text>
-				</Group> :
-				<Text c='dimmed' ta='center'>
-          No one here...
-				</Text>
-			}
-
-			{fields}
-
-			<Group justify='center' mt='md'>
-				<Button
-					onClick={() => form.insertListItem('employees', { name: '', active: false, key: randomId() })
-					}
-				>
-          Add employee
-				</Button>
-			</Group>
-		</Box>
-	);
 }

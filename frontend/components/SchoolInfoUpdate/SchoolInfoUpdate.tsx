@@ -119,7 +119,7 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
 				</Paper>
 				<Paper p={16}>
 					<Title order={3} fw={700}>Confirmar Posição</Title>
-					<Text size='xs' c='dimmed'>A posição da escola no mapa corresponde com a posição real?</Text>
+					<Text size='xs' c='dimmed'>A posição da escola no mapa corresponde com a posição da porta prícipal de entrada da escola?</Text>
 					{form.getInputProps('correctLocation').error && <Text c='red' size='xs'>{form.getInputProps('correctLocation').error}</Text>}
 					<SegmentedControl
 						style={{ flexShrink: 0 }}
@@ -147,6 +147,12 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
 							placeholder='www.escola.pt'
 							k={form.key('url')}
 							{...form.getInputProps('url')}
+						/>
+						<TextInput
+							label='Telefone'
+							placeholder='910001337'
+							k={form.key('phone')}
+							{...form.getInputProps('phone')}
 						/>
 					</Stack>
 				</Paper>

@@ -16,10 +16,25 @@ export async function submit(data:FormType):Promise<{success:boolean, error?:str
 	data.submissionDate = (new Date).toISOString();
 
 	const extractedCycles = schoolCicles.map(cicle => [cicle, data[cicle].hasCicle ? JSON.stringify({ ...data[cicle], hasCicle: undefined }) : false]);
-	console.log('submitted data', data);
 	const newCalendar = { ...data.calendar, vacations: data.calendar.vacations.filter((d:any) => d !== null && d[0] != null && d[1] != null) };
 	// make sure we don't pass null items, if some smartypants makes requests manually
-	const toSubmit = [data.id, data.correctLocation, data.submissionDate, data.postal_code, data.email, data.phone, data.url, data.comment, JSON.stringify(newCalendar), ...extractedCycles.map(c => c[1])]
+	const toSubmit = [data.id,
+		data.correctLocation,
+		data.submissionDate,
+		data.postal_code,
+		data.email,
+		data.phone,
+		data.url,
+		data.comment,
+		data.calendar.cycleFrequency,
+		data.calendar.dates[0] ? data.calendar.dates[0][0] : '',
+		data.calendar.dates[0] ? data.calendar.dates[0][1] : '',
+		data.calendar.dates[1] ? data.calendar.dates[1][0] : '',
+		data.calendar.dates[1] ? data.calendar.dates[1][1] : '',
+		data.calendar.dates[2] ? data.calendar.dates[2][0] : '',
+		data.calendar.dates[2] ? data.calendar.dates[2][1] : '',
+		JSON.stringify(newCalendar.vacations),
+		...extractedCycles.map(c => c[1])]
 		.map(v => v == null ? '' : v);
 
 	try {

@@ -86,7 +86,7 @@ export async function submit(data:FormType):Promise<{success:boolean, message:st
 		Website: ${data.url}<br>
 		Tipo de calendário: ${data.calendar.cycleFrequency === 'semester' ? 'Semestre' : 'Trimestre'}<br>
 		${data.calendar.dates.map((d, i) => `${data.calendar.cycleFrequency === 'semester' ? 'Semestre' : 'Trimestre'} ${i + 1}: ${fmtDate(d[0])} a ${fmtDate(d[1])}`).join('<br>')}<br>
-		Férias: ${newCalendar.vacations.length > 0 ? newCalendar.vacations.map((d:any) => `${d[0]} a ${d[1]}`).join('<br>') : 'Nenhuma preenchida'}<br>
+		Férias: ${newCalendar.vacations.length > 0 ? newCalendar.vacations.map(d => `${fmtDate(d[0])} a ${fmtDate(d[1])}`).join('<br>') : 'Nenhuma preenchida'}<br>
 		${schoolCicles.map((c, i) => data[c].hasCicle ? `${schoolCyclesHeader[i]}:
 			<div style="padding-left:10px">Manhã: ${data[c].morningEntry} até ${data[c].morningExit}</div>
 			<div style="padding-left:10px">Tarde: ${data[c].afternoonEntry} até ${data[c].afternoonExit}</div>` : null).filter(v => v !== null).join('<br>')}<br>

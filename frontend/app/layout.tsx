@@ -5,10 +5,12 @@ import '@/styles/reset.css';
 import '@/styles/defaults.css';
 import '@/styles/colors.css';
 import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
 import { Inter } from 'next/font/google';
 import Providers from './providers';
 import { ColorSchemeScript } from '@mantine/core';
 import React from 'react';
+import { Notifications } from '@mantine/notifications';
 
 const inter = Inter({
 	weight: ['400', '500', '600', '700', '800'],
@@ -30,7 +32,10 @@ export default function RootLayout({ children }:{ children: React.ReactNode }) {
 				<link rel='shortcut icon' href='/favicon.svg' />
 			</head>
 			<body>
-				<Providers>{children}</Providers>
+				<Providers>
+					<Notifications />
+					{children}
+				</Providers>
 			</body>
 		</html>
 	);

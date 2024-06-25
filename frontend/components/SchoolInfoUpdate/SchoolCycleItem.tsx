@@ -1,5 +1,5 @@
 'use client';
-import { Checkbox, Collapse, Paper, SegmentedControl, Stack, Text } from '@mantine/core';
+import { Checkbox, Collapse, Paper, Stack, Text } from '@mantine/core';
 import { UseFormReturnType } from '@mantine/form';
 import { TimeInput } from '@mantine/dates';
 import { FormType, SchoolCicle } from './types';

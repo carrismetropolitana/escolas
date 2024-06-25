@@ -10,6 +10,8 @@ import { submit } from './SubmitAction';
 import { FormType, SchoolCicle, SchoolCicleObjects, SchoolData, schoolCicles } from './types';
 import { useState } from 'react';
 import { SchoolInfoUpdateCalendar } from '../SchoolInfoUpdateCalendar/SchoolInfoUpdateCalendar';
+import { notifications } from '@mantine/notifications';
+import { IconX } from '@tabler/icons-react';
 
 export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id: string, schoolData: SchoolData}) {
 	//
@@ -92,8 +94,20 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
 		},
 	});
 
-	const [submitState, setSubmitState] = useState<'no'|'done'|'processing'>('no');
+	const [submitState, setSubmitState] = useState<'no'|'done'|'processing'|'error'>('no');
 
+	const onSubmit = async (values:FormType) => {
+		setSubmitState('processing');
+		const res = await submit(values);
+		const title = res.success ? 'Submissão efetuada' : 'Erro';
+		const body = res.message;
+		notifications.show({ title: title, message: body, color: res.success ? 'blue' : 'red' });
+		if (res.success) {
+			setSubmitState('done');
+		} else {
+			setSubmitState('error');
+		}
+	};
 	//
 	// B. Fetch data
 
@@ -108,12 +122,8 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
 			<div>
 				<Titles municipality_name={schoolData.municipality_name} school_name={schoolData.name} />
 			</div>
-			<form onSubmit={form.onSubmit(async values => {
-				setSubmitState('processing');
-				await submit(values);
-				setSubmitState('done');
-			})}
-			style={{ display: 'flex', flexDirection: 'column', gap: 8, textAlign: 'left' }}>
+			<form onSubmit={form.onSubmit(onSubmit)}
+				style={{ display: 'flex', flexDirection: 'column', gap: 8, textAlign: 'left' }}>
 				<Paper shadow='sm' radius='md'>
 					<SchoolInfoUpdateMap schoolData={schoolData} />
 				</Paper>
@@ -131,6 +141,12 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
 						]}
 
 						{...form.getInputProps('correctLocation', { type: 'input' })}
+
+					/>
+					<TextInput
+						label='Código Postal'
+						placeholder='1234-567'
+						{...form.getInputProps('postal_code')}
 					/>
 				</Paper>
 				<Paper shadow='sm' radius='md' p={16}>
@@ -139,19 +155,16 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
 						<TextInput
 							label='Email'
 							placeholder='email@exemplo.pt'
-							k={form.key('email')}
 							{...form.getInputProps('email')}
 						/>
 						<TextInput
 							label='Website'
 							placeholder='www.escola.pt'
-							k={form.key('url')}
 							{...form.getInputProps('url')}
 						/>
 						<TextInput
 							label='Telefone'
 							placeholder='910001337'
-							k={form.key('phone')}
 							{...form.getInputProps('phone')}
 						/>
 					</Stack>
@@ -186,7 +199,7 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
 				</Paper>
 				<Button leftSection={
 					(<div>{submitState === 'processing' && <Loader size={16} color='white' />}
-						{submitState === 'done' && '✓'}</div>)
+						{submitState === 'done' && '✓'}{submitState === 'error' && <IconX size={20}/>}</div>)
 				}
 				type='submit' size='md'>
 					Enviar

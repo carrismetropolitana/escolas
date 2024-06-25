@@ -154,6 +154,7 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
 					<Stack gap={6}>
 						<TextInput
 							label='Email'
+							description='Email(s) separados por vírgulas'
 							placeholder='email@exemplo.pt'
 							{...form.getInputProps('email')}
 						/>

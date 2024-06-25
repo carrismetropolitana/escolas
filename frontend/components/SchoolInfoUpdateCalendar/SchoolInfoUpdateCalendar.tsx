@@ -47,19 +47,19 @@ export function SchoolInfoUpdateCalendar({ form }:{form:UseFormReturnType<FormTy
 			</Stack>
 			}
 			{cycleFrequency === 'trimester' && <Stack gap={6}>
-				<Text size='xs'>Intervalo de Datas do Primeiro Período</Text>
+				<Text size='xs'>Periodo letivo do Primeiro Período</Text>
 				<DatePickerInput
 					type='range'
 					maw={300}
 					{...form.getInputProps('calendar.dates.0')}
 				/>
-				<Text size='xs'>Intervalo de Datas do Segundo Período</Text>
+				<Text size='xs'>Periodo letivo do Segundo Período</Text>
 				<DatePickerInput
 					type='range'
 					maw={300}
 					{...form.getInputProps('calendar.dates.1')}
 				/>
-				<Text size='xs'>Intervalo de Datas do Terceiro Período</Text>
+				<Text size='xs'>Periodo letivo do Terceiro Período</Text>
 				<DatePickerInput
 					type='range'
 					maw={300}
@@ -74,6 +74,7 @@ export function SchoolInfoUpdateCalendar({ form }:{form:UseFormReturnType<FormTy
 					<DatePickerInput
 						style={{ flex: 1 }}
 						type='range'
+						allowSingleDateInRange={true}
 						{...form.getInputProps(`calendar.vacations.${index}`)}/>
 
 					<ActionIcon size='lg' color='red' onClick={() => form.removeListItem('calendar.vacations', index)}>

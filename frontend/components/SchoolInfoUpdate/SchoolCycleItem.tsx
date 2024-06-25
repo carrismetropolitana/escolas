@@ -26,7 +26,6 @@ export default function SchoolCycleItem({ form, label, k }:{form:UseFormReturnTy
 				c={checked ? 'blue' : ''}
 				fw={700}
 				label={label}
-				k={form.key(k + '.hasCicle')}
 				{...form.getInputProps(k + '.hasCicle', { type: 'checkbox' })} />
 
 			<Collapse

@@ -6,67 +6,64 @@ import styles from './SelectSchool.module.css';
 import useSearch from '@/hooks/useSearch';
 
 export default function SelectSchool({ allSchoolsData, onSelectSchool }) {
-  //
+	//
 
-  //
-  // A. Setup variables
+	//
+	// A. Setup variables
 
-  const comboboxStore = useCombobox();
-  const [searchQuery, setSearchQuery] = useState('');
+	const comboboxStore = useCombobox();
+	const [searchQuery, setSearchQuery] = useState('');
 
-  //
-  // D. Search
+	//
+	// D. Search
 
-  const allSchoolsDataFilteredBySearchQuery = useSearch(searchQuery, allSchoolsData, { keys: ['id', 'name', 'locality'] });
+	const allSchoolsDataFilteredBySearchQuery = useSearch(searchQuery, allSchoolsData, { keys: ['id', 'name', 'locality'] });
 
-  //
-  // E. Handle actions
+	//
+	// E. Handle actions
 
-  const handleSearchQueryChange = ({ currentTarget }) => {
-    setSearchQuery(currentTarget.value);
-    comboboxStore.updateSelectedOptionIndex();
-    comboboxStore.openDropdown();
-  };
+	const handleSearchQueryChange = ({ currentTarget }) => {
+		setSearchQuery(currentTarget.value);
+		comboboxStore.updateSelectedOptionIndex();
+		comboboxStore.openDropdown();
+	};
 
-  //
-  // F. Render components
+	//
+	// F. Render components
 
-  return (
-    <div className={styles.container}>
-      <Combobox onOptionSubmit={onSelectSchool} store={comboboxStore}>
-        <Combobox.Target>
-          <TextInput
-            aria-label="Selecione uma instituição"
-            placeholder="Procure pelo nome da instituição"
-            value={searchQuery}
-            size="lg"
-            rightSection={<Combobox.Chevron />}
-            onChange={handleSearchQueryChange}
-            onClick={() => comboboxStore.openDropdown()}
-            onFocus={() => comboboxStore.openDropdown()}
-            onBlur={() => comboboxStore.closeDropdown()}
-          />
-        </Combobox.Target>
+	return (
+		<div className={styles.container}>
+			<Combobox onOptionSubmit={onSelectSchool} store={comboboxStore}>
+				<Combobox.Target>
+					<TextInput
+						aria-label='Selecione uma instituição'
+						placeholder='Procure pelo nome da instituição'
+						value={searchQuery}
+						size='lg'
+						rightSection={<Combobox.Chevron />}
+						onChange={handleSearchQueryChange}
+						onClick={() => comboboxStore.openDropdown()}
+						onFocus={() => comboboxStore.openDropdown()}
+						onBlur={() => comboboxStore.closeDropdown()}
+					/>
+				</Combobox.Target>
 
-        <Combobox.Dropdown>
-          <Combobox.Options mah={200} style={{ overflowY: 'auto' }}>
-            {allSchoolsDataFilteredBySearchQuery.length === 0 ? (
-              <Combobox.Empty>Nenhuma instituição encontrada</Combobox.Empty>
-            ) : (
-              allSchoolsDataFilteredBySearchQuery.map((item) => (
-                <Combobox.Option key={item.id} value={item.id}>
-                  <div>
-                    <Highlight highlight={searchQuery} fz="sm" fw={500}>
-                      {item.name}
-                    </Highlight>
-                    <Text fz="xs">{item.municipality_name}</Text>
-                  </div>
-                </Combobox.Option>
-              ))
-            )}
-          </Combobox.Options>
-        </Combobox.Dropdown>
-      </Combobox>
-    </div>
-  );
+				<Combobox.Dropdown>
+					<Combobox.Options mah={200} style={{ overflowY: 'auto' }}>
+						{allSchoolsDataFilteredBySearchQuery.length === 0 ?
+							<Combobox.Empty>Nenhuma instituição encontrada</Combobox.Empty> :
+							allSchoolsDataFilteredBySearchQuery.map(item => <Combobox.Option key={item.id} k={item.id} value={item.id}>
+								<div>
+									<Highlight highlight={searchQuery} fz='sm' fw={500}>
+										{item.name}
+									</Highlight>
+									<Text fz='xs'>{item.municipality_name}</Text>
+								</div>
+							</Combobox.Option>)
+						}
+					</Combobox.Options>
+				</Combobox.Dropdown>
+			</Combobox>
+		</div>
+	);
 }

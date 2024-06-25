@@ -20,7 +20,7 @@ export default function Page() {
 	// B. Handle actions
 
 	const handleSelectSchool = schooldId => {
-		if (schooldId) router.push(`/${schooldId}`);
+		if (schooldId) router.push(`/update/${schooldId}`);
 	};
 
 	//
@@ -38,6 +38,5 @@ export default function Page() {
 			/>
 		</Layout>
 	);
-
 	//
 }

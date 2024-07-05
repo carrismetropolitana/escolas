@@ -30,7 +30,7 @@ export default function HomeUpdate() {
 						<h1>Área Reservada</h1>
 						<h2>CMetropolitana mais próxima das escolas</h2>
 						<p>A Carris Metropolitana trabalha com os municípios e escolas para garantir que o regresso às aulas corre sobre rodas.</p>
-						<p>É solicitada a colaboração de todas as escolas para a partilha de informação necessária de modo a garantir uma resposta eficiênte da rede da CMetropolitana.</p>
+						<p>É solicitada a colaboração de todas as escolas para a partilha de informação necessária de modo a garantir uma resposta eficiente da rede da CMetropolitana.</p>
 						<div>
 						Próximos passos:
 							<div>

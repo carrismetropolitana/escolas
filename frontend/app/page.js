@@ -29,6 +29,7 @@ export default function Page() {
 	return (
 		<Layout>
 			<SelectMunicipalityAndSchool
+				title='Pesquise as linhas que servem a sua escola ou universidade.'
 				selectedMunicipalityId={selectedMunicipalityId}
 				onSelectMunicipalityId={setSelectedMunicipalityId}
 				selectedEducationLevel={selectedEducationLevel}

@@ -9,12 +9,15 @@
   gap: 10px;
   background-color: #000000;
   border-radius: 10px;
-  cursor: pointer;
   padding: 20px;
   transition: opacity 300ms ease;
 }
 
-.container:hover {
+.container[data-clickable='true'] {
+  cursor: pointer;
+}
+
+.container[data-clickable='true']:hover {
   opacity: 0.75;
 }
 

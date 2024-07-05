@@ -39,7 +39,10 @@ export type SchoolCicleObjects = {
 type DatePair = [ Date|null, Date|null ]
 
 export type FormType = {
+  password:string;
   id: string;
+  fillerIdentifier: string;
+  fillerIdentifierPosition: string;
   correctLocation: 'sim' | 'quase' | 'nao' | '';
   submissionDate: string;
   postal_code: string;
@@ -50,6 +53,6 @@ export type FormType = {
     cycleFrequency: ''|'semester'|'trimester',
     dates: DatePair[]
     vacations: DatePair[]
-  }
-  , comment:string
+  },
+  comment:string
 } & SchoolCicleObjects

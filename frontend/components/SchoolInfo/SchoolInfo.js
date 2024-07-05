@@ -94,7 +94,7 @@ export default function SchoolInfo({ school_id }) {
 		schoolData &&
 			<div className={styles.container}>
 				<div className={styles.titles}>
-					<Titles municipality_name={schoolData.municipality_name} school_name={schoolData.name} />
+					<Titles municipality_name={schoolData.municipality_name} school_name={schoolData.name} goHome={true} />
 				</div>
 
 				<OSMMap

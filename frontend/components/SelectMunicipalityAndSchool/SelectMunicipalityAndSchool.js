@@ -8,7 +8,7 @@ import SelectSchool from '@/components/SelectSchool/SelectSchool';
 import SelectEducationLevel from '../SelectEducationLevel/SelectEducationLevel';
 import SelectSchoolMap from '../SelectSchoolMap/SelectSchoolMap';
 
-export default function SelectMunicipalityAndSchool({ selectedMunicipalityId, onSelectMunicipalityId, selectedEducationLevel, onSelectEducationLevel, onSelectSchool }) {
+export default function SelectMunicipalityAndSchool({ selectedMunicipalityId, onSelectMunicipalityId, selectedEducationLevel, onSelectEducationLevel, onSelectSchool, title }) {
 	//
 
 	//
@@ -79,7 +79,7 @@ export default function SelectMunicipalityAndSchool({ selectedMunicipalityId, on
 
 	return (
 		<div className={styles.container}>
-			<p className={styles.title}>Pesquise as linhas que servem a sua escola ou universidade.</p>
+			<p className={styles.title}>{title}</p>
 			<div className={styles.filters}>
 				<SelectMunicipality selectedMunicipalityId={selectedMunicipalityId} onSelectMunicipalityId={onSelectMunicipalityId} />
 				<SelectEducationLevel selectedEducationLevel={selectedEducationLevel} onSelectEducationLevel={onSelectEducationLevel} />

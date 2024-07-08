@@ -89,6 +89,7 @@ export async function submit(data:FormType):Promise<{success:boolean, message:st
 			<p>O resumo da informação submetida no formulário encontra-se abaixo.</p>
 			<p>Iremos analisar as informações enviadas para garantir que o regresso às aulas corre sobre rodas.</p>
 			<p>A CMetropolitana continuará a trabalhar em conjunto com o Departamento da Mobilidade do município em prol de uma rede eficiente, próxima das escolas e dos passageiros.</p>
+			<br><br>
 			<b>Localização:</b>
 			<div style="padding-left:10px;padding-bottom:5px">
 				Localização correta: ${data.correctLocation}<br>

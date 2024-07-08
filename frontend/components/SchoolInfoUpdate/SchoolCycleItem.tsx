@@ -1,7 +1,7 @@
 'use client';
 import { Checkbox, Collapse, Paper, Stack, Text } from '@mantine/core';
 import { UseFormReturnType } from '@mantine/form';
-import { TimeInput } from '@mantine/dates';
+import CustomTimeInput from '../CustomTimeInput/CustomTimeInput';
 import { FormType, SchoolCicle } from './types';
 
 // eslint-disable-next-line no-unused-vars
@@ -34,30 +34,26 @@ export default function SchoolCycleItem({ form, label, k }:{form:UseFormReturnTy
 				<Stack gap={10}>
 					<div>
 						<Text size='sm'>Principal hora de entrada de manhã</Text>
-						<TimeInput
-							maw={120}
-							{...morningEntryProps}
+						<CustomTimeInput
+							inputProps={ morningEntryProps }
 						/>
 					</div>
 					<div>
 						<Text size='sm'>Principal hora de saída de manhã</Text>
-						<TimeInput
-							maw={120}
-							{...morningExitProps}
+						<CustomTimeInput
+							inputProps={ morningExitProps }
 						/>
 					</div>
 					<div>
 						<Text size='sm'>Principal hora de entrada de tarde</Text>
-						<TimeInput
-							maw={120}
-							{...afternoonEntryProps}
+						<CustomTimeInput
+							inputProps={ afternoonEntryProps }
 						/>
 					</div>
 					<div>
 						<Text size='sm'>Principal hora de saída de tarde</Text>
-						<TimeInput
-							maw={120}
-							{...afternoonExitProps}
+						<CustomTimeInput
+							inputProps={ afternoonExitProps }
 						/>
 					</div>
 				</Stack>

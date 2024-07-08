@@ -85,7 +85,7 @@ export async function submit(data:FormType):Promise<{success:boolean, message:st
 		subject: 'Confirmação de submissão de calendário escolar',
 		html: body({
 			body: `
-			<p>Agradecemos a colaboração!</p>
+			<p>Agradecemos a sua colaboração!</p>
 			<p>O resumo da informação submetida no formulário encontra-se abaixo.</p>
 			<p>Iremos analisar as informações enviadas para garantir que o regresso às aulas corre sobre rodas.</p>
 			<p>A CMetropolitana continuará a trabalhar em conjunto com o Departamento da Mobilidade do município em prol de uma rede eficiente, próxima das escolas e dos passageiros.</p>

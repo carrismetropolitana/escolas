@@ -24,9 +24,6 @@ export default function CustomTimeInput({ inputProps }:{inputProps:GetInputProps
 		// Split the value into hours and minutes
 		let hoursString = formattedValue.slice(0, 2);
 		let minutesString = formattedValue.slice(2, 4);
-		console.log('formattedValue', formattedValue);
-		console.log('hoursString', hoursString);
-		console.log('minutesString', minutesString);
 		// Parse the hours
 		if (hoursString && hoursString.length == 2) {
 			// Format the hours

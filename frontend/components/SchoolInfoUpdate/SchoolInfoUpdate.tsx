@@ -1,17 +1,17 @@
 'use client';
-import Titles from '@/components/Titles/Titles';
 import BackHome from '@/components/BackHome/BackHome';
+import Titles from '@/components/Titles/Titles';
 import SchoolInfoUpdateMap from '../SchoolInfoUpdateMap/SchoolInfoUpdateMap';
 // import { submit } from './SubmitAction';
 import { Button, Loader, Paper, PasswordInput, SegmentedControl, Stack, Text, TextInput, Textarea, Title } from '@mantine/core';
-import { isEmail, useForm } from '@mantine/form';
+import { useForm } from '@mantine/form';
+import { notifications } from '@mantine/notifications';
+import { IconX } from '@tabler/icons-react';
+import { useState } from 'react';
+import { SchoolInfoUpdateCalendar } from '../SchoolInfoUpdateCalendar/SchoolInfoUpdateCalendar';
 import SchoolCycleItem from './SchoolCycleItem';
 import { isPasswordCorrect, submit } from './SubmitAction';
 import { FormType, SchoolCicle, SchoolCicleObjects, SchoolData, schoolCicles } from './types';
-import { useState } from 'react';
-import { SchoolInfoUpdateCalendar } from '../SchoolInfoUpdateCalendar/SchoolInfoUpdateCalendar';
-import { notifications } from '@mantine/notifications';
-import { IconX } from '@tabler/icons-react';
 
 export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id: string, schoolData: SchoolData}) {
 	//
@@ -69,7 +69,13 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
 			url: value => value === '' || /^\S+\.\S+$/.test(value) ? null : 'Website inválido, tem de conter um ponto',
 			fillerIdentifier(value, _values, _path) {
 				if (value === '') {
-					return 'Indique o seu nome/cargo';
+					return 'Indique o seu nome';
+				}
+				return null;
+			},
+			fillerIdentifierPosition(value, _values, _path) {
+				if (value === '') {
+					return 'Indique o seu cargo';
 				}
 				return null;
 			},

@@ -3,25 +3,40 @@ import BackHome from '@/components/BackHome/BackHome';
 import Titles from '@/components/Titles/Titles';
 import SchoolInfoUpdateMap from '../SchoolInfoUpdateMap/SchoolInfoUpdateMap';
 // import { submit } from './SubmitAction';
-import { Button, Loader, Paper, PasswordInput, SegmentedControl, Stack, Text, TextInput, Textarea, Title } from '@mantine/core';
+import { Button, Loader, Modal, Paper, PasswordInput, SegmentedControl, Stack, Text, TextInput, Textarea, Title } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { notifications } from '@mantine/notifications';
 import { IconX } from '@tabler/icons-react';
 import { useState } from 'react';
 import { SchoolInfoUpdateCalendar } from '../SchoolInfoUpdateCalendar/SchoolInfoUpdateCalendar';
 import SchoolCycleItem from './SchoolCycleItem';
+import styles from './SchoolInfoUpdate.module.css';
 import { isPasswordCorrect, submit } from './SubmitAction';
 import { FormType, SchoolCicle, SchoolCicleObjects, SchoolData, schoolCicles } from './types';
+import { FormValidateInput } from '@mantine/form/lib/types';
+import { useRouter } from 'next/navigation';
 
 export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id: string, schoolData: SchoolData}) {
 	//
 
 	//
 	// A. Setup variables
+	const [submitState, setSubmitState] = useState<'no'|'done'|'processing'|'error'>('no');
+	const [formOpen, setFormOpen] = useState(false);
+	const [successMessage, setSuccessMessage] = useState<string|null>(null);
+	const router = useRouter();
+
+	//
+	// B. Fetch data
+
+	//
+	// C. Transform data
 	const defaultCicle = {} as SchoolCicleObjects;
 	schoolCicles.forEach(cicle => {
 		defaultCicle[cicle] = { hasCicle: schoolData.cicles.includes(cicle), morningEntry: '', morningExit: '', afternoonEntry: '', afternoonExit: '' };
 	});
+
+	// C.1) Form validation for school cicles
 	const verifiers = {} as {
     // eslint-disable-next-line no-unused-vars
     [key in SchoolCicle]: {
@@ -43,6 +58,53 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
 			afternoonExit: (value, values) => values[cicle].hasCicle === false || value !== '' ? null : 'Indique a hora de saída',
 		};
 	});
+
+	// C.2) Rest of form validation
+	const validate:FormValidateInput<FormType> = {
+		correctLocation: value => value !== '' ? null : 'Indique se a localização está correta',
+		email: value => /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(value) ? null : 'Email inválido',
+		url: value => value === '' || /^\S+\.\S+$/.test(value) ? null : 'Website inválido, tem de conter um ponto',
+		fillerIdentifier(value, _values, _path) {
+			if (value === '') {
+				return 'Indique o seu nome';
+			}
+			return null;
+		},
+		fillerIdentifierPosition(value, _values, _path) {
+			if (value === '') {
+				return 'Indique o seu cargo';
+			}
+			return null;
+		},
+		calendar: {
+			cycleFrequency: value => value === 'semester' || value === 'trimester' ? null : 'Indique se o ensino é semestral ou trimestral',
+			dates(value, values) {
+				if (values.calendar.cycleFrequency === 'semester') {
+					return value.length === 2 && value.every(d => d.every(d => d !== null)) ? null : 'Indique os intervalos de datas dos semestres';
+				}
+				if (values.calendar.cycleFrequency === 'trimester') {
+					return value.length === 3 && value.every(d => d.every(d => d !== null)) ? null : 'Indique os intervalos de datas dos trimestres';
+				}
+				return null;
+			},
+			vacations(value, values) {
+				// Make sure they are contained within the picked "dates" intervals
+				const schoolIntervals = values.calendar.dates;
+				const isCorrect = value.every(vacationInterval => schoolIntervals.some(schoolInterval => {
+					if (vacationInterval[0] === null || vacationInterval[1] === null) {
+						return true;
+					}
+					if (vacationInterval[0] >= schoolInterval[0] && vacationInterval[1] <= schoolInterval[1]) {
+						return true;
+					}
+					return false;
+				}));
+				return isCorrect ? null : `As férias têm de estar contidas nos ${values.calendar.cycleFrequency === 'semester' ? 'semestres' : 'trimestres'}`;
+			},
+		},
+		...verifiers,
+	};
+
 	const form = useForm<FormType>({
 		initialValues: {
 			password: '',
@@ -63,68 +125,28 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
 			},
 			...defaultCicle,
 		},
-		validate: {
-			correctLocation: value => value !== '' ? null : 'Indique se a localização está correta',
-			email: value => /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(value) ? null : 'Email inválido',
-			url: value => value === '' || /^\S+\.\S+$/.test(value) ? null : 'Website inválido, tem de conter um ponto',
-			fillerIdentifier(value, _values, _path) {
-				if (value === '') {
-					return 'Indique o seu nome';
-				}
-				return null;
-			},
-			fillerIdentifierPosition(value, _values, _path) {
-				if (value === '') {
-					return 'Indique o seu cargo';
-				}
-				return null;
-			},
-			calendar: {
-				cycleFrequency: value => value === 'semester' || value === 'trimester' ? null : 'Indique se o ensino é semestral ou trimestral',
-				dates(value, values) {
-					if (values.calendar.cycleFrequency === 'semester') {
-						return value.length === 2 && value.every(d => d.every(d => d !== null)) ? null : 'Indique os intervalos de datas dos semestres';
-					}
-					if (values.calendar.cycleFrequency === 'trimester') {
-						return value.length === 3 && value.every(d => d.every(d => d !== null)) ? null : 'Indique os intervalos de datas dos trimestres';
-					}
-					return null;
-				},
-				vacations: (value, values:FormType) => {
-					// Make sure they are contained within the picked "dates" intervals
-					const schoolIntervals = values.calendar.dates;
-					const isCorrect = value.every(vacationInterval => schoolIntervals.some(schoolInterval => {
-						if (vacationInterval[0] === null || vacationInterval[1] === null) {
-							return true;
-						}
-						if (vacationInterval[0] >= schoolInterval[0] && vacationInterval[1] <= schoolInterval[1]) {
-							return true;
-						}
-						return false;
-					}));
-					return isCorrect ? null : `As férias têm de estar contidas nos ${values.calendar.cycleFrequency === 'semester' ? 'semestres' : 'trimestres'}`;
-				},
-			},
-			...verifiers,
-		},
+		validate: validate,
 	});
 
-	const [submitState, setSubmitState] = useState<'no'|'done'|'processing'|'error'>('no');
-
 	const onSubmit = async (values:FormType) => {
+		if (submitState === 'processing') {
+			return;
+		}
 		setSubmitState('processing');
 		const res = await submit(values);
 		const title = res.success ? 'Submissão efetuada' : 'Erro';
 		const body = res.message;
-		notifications.show({ title: title, message: body, color: res.success ? 'blue' : 'red' });
+		if (res.success) {
+			setSuccessMessage(body);
+		} else {
+			notifications.show({ title: title, message: body, color: 'red' });
+		}
 		if (res.success) {
 			setSubmitState('done');
 		} else {
 			setSubmitState('error');
 		}
 	};
-
-	const [open, setOpen] = useState(false);
 
 	const checkPassword = async (password:string) => {
 		const isCorrect = await isPasswordCorrect(form.getValues().password);
@@ -134,14 +156,8 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
 		} else {
 			notifications.show({ title: 'Código de acesso aceite', message: '', color: 'blue' });
 		}
-		setOpen(isCorrect);
+		setFormOpen(isCorrect);
 	};
-
-	//
-	// B. Fetch data
-
-	//
-	// C. Transform data
 
 	//
 	// D. Render components
@@ -168,7 +184,7 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
 					checkPassword(form.getValues().password);
 				}} size='md'>Verificar</Button>
 			</Paper>
-			{open &&
+			{formOpen &&
 				<>
 					<form onSubmit={form.onSubmit(onSubmit, errors => {
 						const firstErrorPath = Object.keys(errors)[0];
@@ -271,6 +287,20 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
 					</form>
 				</>
 			}
+			<Modal opened={successMessage != null} onClose={() => {
+				setSuccessMessage(null);
+			}} centered withCloseButton={false}>
+				<div className={styles.modal}>
+					<h1>Obrigado pela sua submissão.</h1>
+					<p>{successMessage}</p>
+					<Button onClick={() => {
+						router.push('/portal-escolas');
+					}}>Fechar</Button>
+					<Button variant='subtle' onClick={() => {
+						setSuccessMessage(null);
+					}}>Voltar ao formulário</Button>
+				</div>
+			</Modal>
 			<BackHome />
 		</div>
 	);

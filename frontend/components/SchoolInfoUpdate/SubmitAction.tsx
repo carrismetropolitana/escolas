@@ -32,7 +32,7 @@ export async function submit(data:FormType):Promise<{success:boolean, message:st
 	}
 	data.submissionDate = (new Date).toISOString();
 
-	const emails = data.email.match(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@;, \t\r\n]+/);
+	const emails = data.email.match(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@;,| \t\r\n]+/);
 	if (emails === null || emails.length === 0) {
 		return { success: false, message: 'Email inválido' };
 	}
@@ -78,12 +78,13 @@ export async function submit(data:FormType):Promise<{success:boolean, message:st
 
 	const schoolCyclesHeader = ['Pré-escolar', '1º Ciclo', '2º Ciclo', '3º Ciclo', 'Secundário', 'Ensino Profissional', 'Ensino Especial', 'Ensino Artístico', 'Ensino Superior', 'Outro'];
 	const to = emails[0];
-	const mail = await transporter.sendMail({
-		from: env.EMAIL_FROM,
-		to: to,
-		subject: 'Confirmação de submissão de calendário escolar',
-		html: body({
-			body: `
+	try {
+		const mail = await transporter.sendMail({
+			from: env.EMAIL_FROM,
+			to: to,
+			subject: 'Confirmação de submissão de calendário escolar',
+			html: body({
+				body: `
 			<p>Agradecemos a sua colaboração!</p>
 			<p>O resumo da informação submetida no formulário encontra-se abaixo.</p>
 			<p>Iremos analisar as informações enviadas para garantir que o regresso às aulas corre sobre rodas.</p>
@@ -117,8 +118,23 @@ export async function submit(data:FormType):Promise<{success:boolean, message:st
 				${data.comment}
 			</div>
 		`,
-		}),
-	});
+			}),
+		});
+	} catch (e:unknown) {
+		if (typeof e == 'object') {
+			if ('rejectedErrors' in e && Array.isArray(e.rejectedErrors)) {
+				const fiveohone = e.rejectedErrors.find(e => typeof e == 'object' && e.responseCode == 501);
+				if (fiveohone) {
+					return { success: false, message: `O endereço ${fiveohone.recipient} é inválido, por favor verifique se o email está correto.` };
+				}
+				if ('code' in e && e.code === 'EENVELOPE' && 'command' in e && e.command == 'API') {
+					return { success: false, message: 'O email inserido é inválido, por favor verifique se o email está correto.' };
+				}
+			}
+		}
+
+		return { success: false, message: e.toString() };
+	}
 	console.log('Sent confirmation email to', to);
 	return { success: true, message: `E-mail de confirmação enviado para ${to}` };
 }

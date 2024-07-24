@@ -99,7 +99,7 @@ export default function SchoolInfoUpdate({ school_id, schoolData }: { school_id:
 					}
 					return false;
 				}));
-				return isCorrect ? null : `As férias têm de estar contidas nos ${values.calendar.cycleFrequency === 'semester' ? 'semestres' : 'trimestres'}`;
+				return isCorrect ? null : `Os intervalos têm de estar contidos nos ${values.calendar.cycleFrequency === 'semester' ? 'semestres' : 'trimestres'}. Não indique férias entre semestres/trimestres.`;
 			},
 		},
 		...verifiers,
